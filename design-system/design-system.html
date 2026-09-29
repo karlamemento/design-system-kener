@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Estilos — Laboratorios Kener</title>
+
+<!-- Bootstrap 5.3 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://jsdelivr.net">
+
+<!-- Estilos propios de marca — separados en su propio archivo -->
+<link href="../css/kener-styles.css" rel="stylesheet">
+
+<!--
+  ══════════════════════════════════════════════════════════════════
+  CÓMO EDITAR ESTA GUÍA — resumen rápido
+  ══════════════════════════════════════════════════════════════════
+  La documentación completa está en README.md (mismo directorio).
+  En corto:
+  1. Marcado (este archivo)  → estructura y contenido, con Bootstrap 5.3
+     (grid, navbar, card, btn, badge, progress) como base.
+  2. Estilos (kener-styles.css) → toda la apariencia: variables de marca
+     en :root, sobreescritura de utilidades Bootstrap y clases propias
+     para lo que Bootstrap no cubre (símbolo K, degradados, íconos).
+  3. Para cambiar un color o la tipografía, edita SOLO kener-styles.css
+     — no hace falta tocar este HTML.
+  4. Los tokens de marca vienen de Guia_Gráfica.pdf, secciones
+     "03 · El color" y "04 · La tipografía". Ver README.md § Tokens.
+  ══════════════════════════════════════════════════════════════════
+-->
+</head>
+<body>
+
+<!-- ═══ SVG defs: marca K reutilizable (bracket + flecha) ═══ -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="k-mark" viewBox="0 0 124 120">
+    <rect x="6" y="6" width="46" height="108" fill="none" stroke="currentColor" stroke-width="9"/>
+    <path d="M44 4 L119 60 L44 116 L67 60 Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- ══ NAV — navbar de Bootstrap ══ -->
+<nav class="navbar navbar-expand-lg sticky-top py-3 border-bottom" style="background:rgba(243,249,251,0.86); backdrop-filter:blur(14px);">
+  <div class="container-xxl">
+    <a class="navbar-brand logo-mark" href="#">
+      <img src="../img/logo/logo kener-01.png" width="80" height="211" class="img-fluid"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav mx-lg-auto gap-lg-4 my-3 my-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#identidad">Identidad</a></li>
+        <li class="nav-item"><a class="nav-link" href="#logotipo">Logotipo</a></li>
+        <li class="nav-item"><a class="nav-link" href="#color">Color</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tipografia">Tipografía</a></li>
+        <li class="nav-item"><a class="nav-link" href="#componentes">Componentes</a></li>
+        <li class="nav-item"><a class="nav-link" href="#iconografia">Iconografía</a></li>
+        <li class="nav-item"><a class="nav-link" href="#fotografia">Fotografía</a></li>
+      </ul>
+      <a href="#aplicacion" class="btn btn-gradient rounded-pill btn-sm px-3">Ver aplicación</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="container-xxl pt-5">
+  <div class="row g-4 pb-5">
+    <div class="col-lg-12">
+      <div class="eyebrow">Guía de estilos · Laboratorios KENER</div>
+      <h1 class="display-4 fw-bold mb-3" style="letter-spacing:-0.02em; line-height:1.04;">Guía de estilos<br><span class="fw-light" style="color:var(--primary-slate);">Sistema de Diseño</span></h1>
+      <p class="section-sub mb-4">Sistema visual para el sitio web de Laboratorios Kener, construido sobre la Guía Gráfica oficial de marca — su paleta de color, su tipografía y sus principios de identidad — y adaptado a componentes de Bootstrap 5.</p>
+      <div class="row row-cols-2 row-cols-md-4 g-3">
+        <div class="col"><div class="fw-bold fs-5" style="color:var(--primary);">#005A7B</div><div class="small text-muted">Color primario · Orient</div></div>
+        <div class="col"><div class="fw-bold fs-5" style="color:var(--primary);">Bricolage + Ubuntu</div><div class="small text-muted">2 Tipografías</div></div>
+        <div class="col"><div class="fw-bold fs-5" style="color:var(--primary);">Bootstrap 5</div><div class="small text-muted">Framework base</div></div>
+        <div class="col"><div class="fw-bold fs-5" style="color:var(--primary);">v1.3</div><div class="small text-muted">Documento editable</div></div>
+      </div>
+    </div>
+    <!--<div class="col-lg-5">
+      <div class="hero-visual h-100">
+        <svg class="dna-svg" viewBox="0 0 120 280">
+          <g fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round">
+            <path d="M20 10 C60 40 60 60 20 90 C-20 120 -20 140 20 170 C60 200 60 220 20 250" opacity="0.5"/>
+            <path d="M100 10 C60 40 60 60 100 90 C140 120 140 140 100 170 C60 200 60 220 100 250" opacity="0.5"/>
+            <path d="M20 10 L100 10M28 70 L92 70M20 170 L100 170M28 230 L92 230" opacity="0.3"/>
+          </g>
+        </svg>
+        <div class="photo-wrap">
+          <div class="photo-frame">
+            <img src="img/gemini_generated_image_xduejzxduejzxdue-mrajwsuy.png" alt="Especialista clínico en un entorno hospitalario">
+          </div>
+          <div class="float-chip"><span class="dot"></span><span>+35 años de confianza médica</span></div>
+        </div>
+        
+        <div class="hero-quote mt-4">
+          <p class="mt-4">"Ciencia que avanza con la vida"</p>
+          <span>Territorio narrativo — Kener</span>
+        </div>
+      </div>
+    </div>-->
+  </div>
+</div>
+
+<!-- ══ IDENTIDAD ══ -->
+<section id="identidad" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">01 · Identidad verbal</div>
+    <h2 class="section-title fs-1 mb-3">Quiénes <em>somos al hablar</em></h2>
+    <p class="section-sub mb-5">El tono y los valores de marca dan contexto a cada texto del sitio: desde los títulos de sección hasta los mensajes de formularios.</p>
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-lg-5 mb-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-4">
+          <h3 class="fs-3 mb-2">El sabio + el cuidador</h3>
+          <p class="text-muted fw-light small mb-0">Kener construye su personalidad de la unión de dos fuerzas complementarias: la precisión del Sabio y la sensibilidad del Cuidador. Habla desde el conocimiento, pero nunca desde la distancia.</p>
+        </div>
+        <div class="col-lg-8">
+          <div class="row row-cols-2 row-cols-md-5 g-3">
+            <div class="col"><div class="adn-pill h-100"><div class="n">Evolución</div><div class="d">Aprender y avanzar sin perseguir cada novedad.</div></div></div>
+            <div class="col"><div class="adn-pill h-100"><div class="n">Cercanía</div><div class="d">Hablar desde el entorno clínico, no desde la distancia.</div></div></div>
+            <div class="col"><div class="adn-pill h-100"><div class="n">Precisión</div><div class="d">Rigor y sustento; sin exageraciones.</div></div></div>
+            <div class="col"><div class="adn-pill h-100"><div class="n">Responsabilidad</div><div class="d">Ética y conciencia sobre el impacto de la marca.</div></div></div>
+            <div class="col"><div class="adn-pill h-100"><div class="n">Vida</div><div class="d">Detrás de cada tratamiento, siempre hay personas.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-medium small mb-3">Tono de voz — al escribir contenido del sitio</div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+          <h4 class="fs-6 mb-3">Profesional, sin arrogancia</h4>
+          <div class="d-flex gap-2 mb-2"><span class="badge rounded-pill bg-danger-subtle text-danger-emphasis align-self-start">Evitar</span><span class="small text-muted fw-light">"Somos líderes indiscutibles del sector."</span></div>
+          <div class="d-flex gap-2"><span class="badge rounded-pill bg-success-subtle text-success-emphasis align-self-start">Preferir</span><span class="small text-muted fw-light">"Seguimos incorporando nuevas capacidades para responder a un entorno hospitalario que evoluciona."</span></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+          <h4 class="fs-6 mb-3">Innovador por hechos, no por hype</h4>
+          <div class="d-flex gap-2 mb-2"><span class="badge rounded-pill bg-danger-subtle text-danger-emphasis align-self-start">Evitar</span><span class="small text-muted fw-light">"Disrupción", "next generation", "tecnología de vanguardia" sin respaldo.</span></div>
+          <div class="d-flex gap-2"><span class="badge rounded-pill bg-success-subtle text-success-emphasis align-self-start">Preferir</span><span class="small text-muted fw-light">Explicar qué es la innovación en la industria, qué cambia y por qué importa.</span></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+          <h4 class="fs-6 mb-3">Humano, no sentimental</h4>
+          <div class="d-flex gap-2 mb-2"><span class="badge rounded-pill bg-danger-subtle text-danger-emphasis align-self-start">Evitar</span><span class="small text-muted fw-light">"Porque tu sonrisa es nuestra mayor inspiración."</span></div>
+          <div class="d-flex gap-2"><span class="badge rounded-pill bg-success-subtle text-success-emphasis align-self-start">Preferir</span><span class="small text-muted fw-light">"Detrás de cada avance científico existe un equipo humano de primer nivel."</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOGOTIPO ══ -->
+<section id="logotipo" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">02 · Identidad gráfica</div>
+    <h2 class="section-title fs-1 mb-3">Logotipo</h2>
+    <p class="section-sub mb-5">La marca combina un símbolo geométrico — un corchete abierto y una flecha sólida que forman la letra K — con el wordmark KENER en versalitas espaciadas.</p>
+
+    <div class="row row-cols-1 row-cols-md-2 g-3 mb-3">
+      <div class="col">
+        <div class="logo-panel bg-white border shadow-sm d-flex align-items-center justify-content-center h-100">
+          <div class="text-center">
+            <img src="../img/logo/logo kener-01.png" width="278" height="200" class="img-fluid"/>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="logo-panel bg-primary d-flex align-items-center justify-content-center h-100">
+          <div class="text-center">
+            <img src="../img/logo/logo kener-03.png" width="278" height="200" class="img-fluid"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-5">
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+          <div class="bg-body-tertiary rounded-3 border d-flex align-items-center justify-content-center mb-3" style="height:90px; border-style:dashed !important; border-color:var(--primary-pale) !important;">
+            <img src="../img/logo/logo kener-01.png" width="80" height="211" class="img-fluid"/>
+          </div>
+          <h5 class="fs-6">Zona segura</h5>
+          <p class="small text-muted fw-light mb-0">Debe mantenerse libre de otros elementos un área mínima equivalente al ancho del corchete alrededor del logotipo completo.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+          <div class="bg-body-tertiary rounded-3 border d-flex align-items-center justify-content-center text-center px-2 mb-3" style="height:90px; border-style:dashed !important; border-color:var(--primary-pale) !important;">
+            <span class="small text-muted">Alto mínimo recomendado: 28px en pantalla</span>
+          </div>
+          <h5 class="fs-6">Tamaño mínimo</h5>
+          <p class="small text-muted fw-light mb-0">Por debajo de este tamaño el wordmark pierde legibilidad. En espacios reducidos, usar solo el símbolo K.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+          <div class="rounded-3 d-flex align-items-center justify-content-center mb-3" style="height:90px; background:var(--ink);">
+            <img src="../img/logo/logo kener-03.png" width="80" height="211" class="img-fluid"/>
+          </div>
+          <h5 class="fs-6">Uso monocromático</h5>
+          <p class="small text-muted fw-light mb-0">Reservado para contextos donde solo se puede imprimir/mostrar una tinta: blanco sobre fondo oscuro o negro sobre fondo claro.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-medium small mb-3">Usos incorrectos</div>
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center gap-3"><span class="badge rounded-circle bg-danger-subtle text-danger-emphasis fs-6" style="width:30px;height:30px; line-height:1;">✕</span><span class="small text-muted">No sustituir los colores oficiales del logotipo.</span></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center gap-3"><span class="badge rounded-circle bg-danger-subtle text-danger-emphasis fs-6" style="width:30px;height:30px; line-height:1;">✕</span><span class="small text-muted">No deformar, rotar ni estirar el símbolo.</span></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center gap-3"><span class="badge rounded-circle bg-danger-subtle text-danger-emphasis fs-6" style="width:30px;height:30px; line-height:1;">✕</span><span class="small text-muted">No alterar la proporción entre el símbolo y el wordmark.</span></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center gap-3"><span class="badge rounded-circle bg-danger-subtle text-danger-emphasis fs-6" style="width:30px;height:30px; line-height:1;">✕</span><span class="small text-muted">No invadir la zona segura con texto o imágenes.</span></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center gap-3"><span class="badge rounded-circle bg-danger-subtle text-danger-emphasis fs-6" style="width:30px;height:30px; line-height:1;">✕</span><span class="small text-muted">No agregar sombras paralelas ni efectos 3D.</span></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center gap-3"><span class="badge rounded-circle bg-danger-subtle text-danger-emphasis fs-6" style="width:30px;height:30px; line-height:1;">✕</span><span class="small text-muted">No aplicar degradados sobre el logotipo.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COLOR ══ -->
+<section id="color" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">03 · El color</div>
+    <h2 class="section-title fs-1 my-3">Paleta de marca</h2>
+    <p class="section-sub mb-5">Los colores principales construyen la identidad y deben predominar en la mayoría de las composiciones. Los secundarios acentúan y destacan, sin superar aproximadamente el 20% del área total.</p>
+    <div class="fw-medium small my-3">Paleta principal</div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-5">
+      <div class="col-xs-12 col-md-6 col-lg-3">
+        <div class="swatch-card swatch-main border">
+          <div class="fill" style="background:var(--primary);">#005A7B</div>
+          <div class="info"><b>Orient</b>RGB 0,90,123 · CMYK 100,27,0,52<br>Color de marca, CTAs, títulos clave</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-3"">
+        <div class="swatch-card swatch-main border">
+          <div class="fill" style="background:var(--primary-soft);">#7EACBC</div>
+          <div class="info"><b>Soft blue/grey</b>RGB 126,172,188<br>Wordmark, texto sobre fondo oscuro</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-3"">
+        <div class="swatch-card swatch-main border">
+          <div class="fill" style="background:var(--primary-slate);">#6C89A3</div>
+          <div class="info"><b>Slate</b>RGB 108,137,163<br>Apoyo, degradados, fondos medios</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-3"">
+        <div class="swatch-card swatch-main border">
+          <div class="fill" style="background:var(--primary-pale); color:var(--ink);">#B5CCD6</div>
+          <div class="info"><b>Pale blue/grey</b>RGB 181,204,214<br>Fondos claros, bordes, superficies</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="fw-medium small my-1">Paleta secundaria</div>
+    <p class="small text-muted fw-light mb-3">Uso decorativo puntual — máximo 20% del área de cada composición.</p>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-5">
+      <div class="col"><div class="swatch-card border"><div class="fill" style="background:var(--sec-dark-blue);"></div><div class="info">#062a38</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="fill" style="background:var(--sec-jeans-blue);"></div><div class="info">#026689</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="fill" style="background:var(--sec-sky-blue);"></div><div class="info">#00bfff</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="fill" style="background:var(--sec-light-sky);"></div><div class="info">#5BD6FF</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="fill" style="background:var( --sec-ice-blue);"></div><div class="info">#B9EDFF</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="fill" style="background:var(--sec-aquamarine);"></div><div class="info">#63FDD6</div></div></div>
+    </div>
+
+    <div class="fw-medium small my-1">Degradados</div>
+    <p class="small text-muted fw-light mb-3">Mismo formato de tarjeta que la paleta secundaria — cada una muestra el nombre del degradado y los dos tonos de la paleta oficial con los que se construye. Se usan en fondos y elementos gráficos; nunca sobre el logotipo ni el cuerpo de texto.</p>
+    <div class="row row-cols-2 row-cols-md-4 g-3 mb-5 g-3 mb-5">
+      <div class="col">
+        <div class="swatch-card border">
+          <div class="fill" style="background: var(--grad-orient);"></div>
+          <div class="info"><b>Orient</b>140° #005A7B → ##00bfff </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="swatch-card border">
+          <div class="fill" style="background:var(--grad-cielo);"></div>
+          <div class="info"><b>Cielo</b>160° #FFFFFF → #5BD6FF </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="swatch-card border">
+          <div class="fill" style="background:var(--grad-ice);"></div>
+          <div class="info"><b>Ice</b>160° #BCD2DC → #B9EDFF</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="swatch-card border">
+          <div class="fill" style="background:var(--grad-aqua);"></div>
+          <div class="info"><b>Aqua</b>160° #005A7B → #00bfff → #63FDD6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fw-medium small mb-3">Jerarquía de color</div>
+    <div class="progress rounded-pill mb-2" style="height:38px;" role="progressbar" aria-label="Jerarquía de color" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar fw-medium" style="width:80%; background-color:var(--primary);">Principal · ~80%</div>
+      <div class="progress-bar fw-medium" style="width:20%; background-color:var(--sec-sky-blue);">Secundaria · ~20%</div>
+    </div>
+    <p class="small text-muted fw-light mb-0">Regla general para cualquier vista del sitio: la paleta principal domina la composición (fondos, tipografía, botones); la secundaria aparece solo como acento — un ícono, un chip, un detalle de estado.</p>
+
+    <div class="fw-medium small mt-4">Paleta para Especialidades</div>
+    <p class="small text-muted fw-light mb-3">Uso exclusivo para las líneas terapéuticas — máximo 20% del área de cada composición.</p>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-5">
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-analgesia"> #007279</div><div class="info">Analgesia</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-anestesia"> #59c3e3</div><div class="info">Anestesia</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-antihemorragico"> #782700</div><div class="info">Antihemorrágico</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-antivirales"> #000000</div><div class="info">Antivirales</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-antimicotico"> #fda3c2</div><div class="info">Antimicótico</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-cardiovascular"> #e1261d</div><div class="info">Cadiovascular</div></div></div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-5">
+      
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-gastrointestinal"> #f08019</div><div class="info">Gastrointestinal</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-hematopoyeticos"> #881337</div><div class="info">Hematopoyéticos</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-infectologia"> #00aca6</div><div class="info">Infectología</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-inmunologicos"> #00af68</div><div class="info">Inmunológicos</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-oftalmologia"> #f49a69</div><div class="info">Oftalmología</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-oncologia"> #7e3a8e</div><div class="info">Oncología</div></div></div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-5">
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-SNC"> #3f2683</div><div class="info">Sistema Nervioso Central</div></div></div>
+      <div class="col"><div class="swatch-card border"><div class="p-2 text-center text-white esp-urgencias"> #ab182d</div><div class="info">Urgencias</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TIPOGRAFÍA ══ -->
+<section id="tipografia" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">04 · Tipografía</div>
+    <h2 class="section-title fs-1 mb-3">Dos familias: <em>Bricolage +</em> <em>Ubuntu</em></h2>
+    <p class="section-sub mb-5">Diseño contemporáneo, limpio y de gran legibilidad. Sus formas equilibradas y carácter tecnológico comunican tanto la evolución como la solidez de la marca. La jerarquía del sitio se logra con peso y tamaño, aplicando Bricolage para títulos y Ubunto para párrafos y textos small.</p>
+
+    <div class="card type-specimen border-0 p-4 p-lg-5 mb-4">
+      <div class="type-label">Familia — Bricolage Grotesque (Google Fonts)</div>
+      <div class="d-flex flex-wrap gap-4 weight-list text-bricolage">
+        <div style="font-weight:300;">Light</div>
+        <div style="font-weight:400;">Regular</div>
+        <div style="font-weight:500;">Medium</div>
+        <div style="font-weight:700;">Bold</div>
+        <div class="i" style="font-weight:300;">Light italic</div>
+        <div class="i" style="font-weight:400;">Regular italic</div>
+        <div class="i" style="font-weight:500;">Medium italic</div>
+        <div class="i" style="font-weight:700;">Bold italic</div>
+      </div>
+      <div class="type-label mt-4">Familia — Ubuntu (Google Fonts)</div>
+      <div class="d-flex flex-wrap gap-4 weight-list text-ubuntu">
+        <div style="font-weight:300;">Light</div>
+        <div style="font-weight:400;">Regular</div>
+        <div style="font-weight:500;">Medium</div>
+        <div style="font-weight:700;">Bold</div>
+        <div class="i" style="font-weight:300;">Light italic</div>
+        <div class="i" style="font-weight:400;">Regular italic</div>
+        <div class="i" style="font-weight:500;">Medium italic</div>
+        <div class="i" style="font-weight:700;">Bold italic</div>
+      </div>
+      
+    </div>
+
+    <div class="card type-specimen border-0 p-4 p-lg-5 mb-4">
+      
+      <div class="type-label">Abecedario - Bricolage</div>
+      <div><h2>ABCDEFGHIJKLMNÑOPQRSTUVWXYZd</h2></div>
+      <div class="mt-1 text-bricolage"><h3>abcdefghijklmnñopqrstuvwxyz</h3></div>
+      <div class="type-label mt-4">Abecedario - Ubuntu</div>
+      <div class="alphabet">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</div>
+      <div class="alphabet mt-1">abcdefghijklmnñopqrstuvwxyz</div>
+    </div>
+
+    <div class="card type-specimen border-0 p-4 p-lg-5 mb-4 ">
+      <div class="type-label">Escala tipográfica para el sitio web</div>
+      <div class="scale-row d-flex justify-content-between align-items-baseline flex-wrap gap-2 py-3"><div class="fw-bold text-bricolage" style="font-size:52px;">H1 — Titular hero</div><div class="scale-meta">Bricolage Grotesque Bold / 52–58px / interlineado 1.05</div></div>
+      <div class="scale-row d-flex justify-content-between align-items-baseline flex-wrap gap-2 py-3"><div class="fw-bold text-bricolage" style="font-size:36px;">H2 — Título de sección</div><div class="scale-meta">Bricolage Grotesque Bold Bold / 34–40px / interlineado 1.1</div></div>
+      <div class="scale-row d-flex justify-content-between align-items-baseline flex-wrap gap-2 py-3"><div class="fw-bold text-bricolage" style="font-size:24px;">H3 — Subtítulo</div><div class="scale-meta">Bricolage Grotesque Bold Medium / 22–26px / interlineado 1.2</div></div>
+      <div class="scale-row d-flex justify-content-between align-items-baseline flex-wrap gap-2 py-3"><div class="fw-medium text-bricolage" style="font-size:18px;">H4 — Encabezado de tarjeta</div><div class="scale-meta">Bricolage Grotesque Bold Medium / 16–18px</div></div>
+      <div class="scale-row d-flex justify-content-between align-items-baseline flex-wrap gap-2 py-3"><div class="fw-light" style="font-size:17px;">Cuerpo de texto</div><div class="scale-meta">Ubuntu Light–Regular / 15–17px / interlineado 1.6</div></div>
+      <div class="d-flex justify-content-between align-items-baseline flex-wrap gap-2 py-3"><div class="fw-bold text-uppercase" style="font-size:12px; letter-spacing:.1em;">Eyebrow / Etiqueta</div><div class="scale-meta">Ubuntu Bold / 11–12px / tracking +0.1em</div></div>
+    </div>
+    <p class="small text-muted fw-light mb-0">Nota de uso: en párrafos largos, limitar el ancho de línea a ~70–80 caracteres para mantener la legibilidad clínica que pide la marca.</p>
+  </div>
+</section>
+
+<!-- ══ COMPONENTES: BOTONES + CARDS + TAGS ══ -->
+<section id="componentes" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">05 · Componentes</div>
+    <!-- Botones -->
+    <h2 class="section-title fs-1 mb-3">Botones</h2>
+    <p class="section-sub mb-4">Forma de píldora, siempre. El botón primario usa el color sólido Orient; el degradado queda reservado para llamados a la acción destacados sobre fondos oscuros o imágenes.</p>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex flex-wrap gap-3 mb-3 align-items-center">
+          <button class="btn btn-primary rounded-pill px-4 py-2 fs-6">Contactar a Kener <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
+        </svg></button>
+          <button class="btn btn-gradient rounded-pill px-4 py-2 fs-6 ">Farmacovigilancia <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+        </svg></button>
+              <button class="btn btn-outline-primary rounded-pill px-4 py-2 fs-6">Especialidades <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+        </svg></button>
+              <button class="btn btn-outline-primary rounded-pill px-2 py-1 fs-6"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"/>
+        </svg></button>
+              <button class="btn btn-secondary rounded-pill px-4 py-2 fs-6" disabled>No disponible</button>
+        </div>
+        <div class="d-flex flex-wrap gap-3 mb-5 align-items-center">
+          <button class="btn btn-secondary btn-sm rounded-pill px-3">Enviar consulta</button>
+          <button class="btn btn-outline-secondary btn-sm rounded-pill px-3">Descargar ficha técnica</button>
+          <button class="nav-link py-2 fs-6">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+          </svg></button>
+        </div>
+        <!-- Etiquetas Badget -->
+        <h3 class="section-title fs- mb-3">Etiquetas</h3>
+        <div class="d-flex flex-wrap gap-3 mb-5 align-items-center">
+          <div class="tag-primary shadow-sm"><span class="dot"></span><span>Investigación</span></div>
+          <span class="badge rounded-pill text-bg-success">Antiinfecciosos</span>
+          <span class="badge rounded-pill" style="background-color: #8B5FBF;">Analgesia</span>
+          <span class="badge rounded-pill text-bg-warning">Dolor</span>
+          <span class="badge rounded-pill text-bg-danger">Urgencias</span>
+        </div>
+        <!-- Alertas e Información -->
+        <h3 class="section-title fs-2 mb-3">Alertas e información</h3>
+        <div class="glass-bg alert-aqua shadow-sm text-primary p-4  my-4">
+          <h5 class="card-title mb-1 fw-bold fs-6">Consulta enviada</h5>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">Gracias por contactar a Laboratorio Kener. Un especialista revisará tu consulta y se pondrá en contacto contigo a la brevedad.</p>
+        </div>
+        <h4 class="section-title fs-3 mb-3">Páginación</h4>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- Campos de Formulario -->
+      <div class="col p-4">
+          <form class="bg-primary rounded-4 p-4">
+            <h3 class="section-title fs-1 mb-3 text-white">Formulario</h3>
+            <div class="field text-uppercase my-3"><label class="label-text p-2">Nombre completo</label><input type="text" placeholder="Dr. / Dra. Nombre Apellido" required=""></div>
+              <div class="field my-2">
+                <label class="label-text text-uppercase p-2">Servicio</label>
+                <select aria-label="Default select example">
+                  <option selected>Selecciona una opción</option>
+                  <option value="1">Solicitar información</option>
+                  <option value="2">Cotización</option>
+                  <option value="3">Visita de ejecutivo</option>
+                </select>
+              </div>
+              <div class="field text-uppercase my-3"><label class="label-text p-2">Mensaje</label> <textarea id="exampleFormControlTextarea1" rows="3"></textarea></div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label text-white" for="flexCheckDefault">
+                  He leído y Acepto los Términos y Condiciones
+                </label>
+              </div>
+              <div class="form-check form-switch mb-4">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label text-white" for="flexSwitchCheckDefault">Botón de Switch</label>
+              </div>
+              <button class="btn btn-sm rounded-pill btn-outline-secondary px-3 mb-4" >Enviar consulta</button>
+              <p class="p-2 text-white m-0">Label / Texto - Texto de área - Selección / Ubuntu/ 12px / Regular</p>
+              <p class="p-2 text-white m-0">Input / Texto - Texto de área - Selección / Ubuntu/ 14px / Regular</p>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Cards -->
+    <h2 class="section-title fs-1 mb-3">Cards</h2>
+    <p class="section-sub mb-4">Esquinas redondeadas generosas, sombra suave y bajo contraste de borde. La variante oscura se reserva para bloques destacados.</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-2">
+      <div class="col col-lg-3">
+        <div class="card bg-card-secondary border-0 shadow-sm rounded-4 p-4 my-4">
+          <img src="../img/Iconos-Kener_1/icono-cardiovascular-v1.png"  alt="">
+          <h4 class="fs-6 mb-2">Cardiovascular</h4>
+          <p class="small text-muted fw-light mb-3">Tratamientos inyectables de alta precisión para el manejo cardiovascular.</p>
+          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fs-6">Conocer más <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+          </svg>
+          </button>
+        </div>
+        <div class="card border-left-sky  shadow-sm rounded-4 my-4">
+            <div class="shadow-sm m-3 fs-3 fs-bold rounded-pill  border-sky text-sky text-center py-1 px-2 w-50">95%</div>
+            <div class=" card-body px-4">
+                <h5 class="fs-6 mb-2">De eficacia clínica reportada en UCI coronaria</h5>
+              <p class="small  fw-light">Formulación inyectable de alta biodisponibilidad utilizada en protocolos de emergencia en hospitales de tercer nivel. Trazabilidad lote a lote verificada.</p>
+            </div>
+        </div>
+        <div class="background-image p-4 rounded">
+          <div class="card glass-card glass-bg shadow-sm text-primary p-3">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-primary">Certificación COFEPRIS</h5>
+              <p class="card-text">
+                Procesos auditados bajo Buenas Prácticas de Fabricación en cada lote producido.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-3">
+        <div class="card bg-card-secondary border-0 shadow-sm rounded-4 p-4 my-4">
+          <img src="../img/Iconos-Kener_1/icono-analgesia-v1.png"  alt="">
+          <h4 class="fs-6 mb-2">Dolor</h4>
+        </div>
+        <div class="card border-left-aqua shadow-sm rounded-4 my-4">
+            <div class="tag-primary shadow-sm m-2"><span class="dot"></span><span>Simposio</span></div>
+            <div class=" card-body px-4">
+              <p><small>Septiembre 2026</small></p>
+                <h5 class="fs-6 mb-2">Participación en el LVIII Congreso Nacional de la Sociedad Mexicana de Cardiología</h5>
+              <p class="small  fw-light">Laboratorio K. presentó datos de eficacia de su portafolio de insumos cardiovasculares ante los principales especialistas del país.</p>
+              <div class="float-end">
+                <button class="btn btn-outline-primary rounded-pill px-2 py-1 fs-6 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"/>
+              </svg></button>
+              </div>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-primary text-white my-4 ">
+          <h4 class="fs-6 mb-2 text-white">Farmacovigilancia activa</h4>
+          <p class="small fw-light mb-0" style="color:rgba(255,255,255,.72);">Canal directo de reporte disponible las 24 horas para profesionales de la salud.</p>
+        </div>
+      </div>
+      <div class="col col-lg-4">
+        <div class="card shadow-sm rounded-4 my-4">
+            <img src="../img/investigacion-blog.png" width="auto" height="320px" class="card-img-top position-relative img-fluid" alt="LVIII Congreso Nacional de la Sociedad Mexicana de Cardiología">
+            <div class="tag-primary shadow-sm m-2"><span class="dot"></span><span>Investigación</span></div>
+            <div class=" card-body px-4">
+              <p><small>Septiembre 2026</small></p>
+                <h5 class="fs-6 mb-2">Nuevos estudios de bioequivalencia respaldan formulaciones cardiovasculares</h5>
+              <p class="small  fw-light">Resultados clínicos confirman la eficacia y seguridad de las formulaciones Kener para el manejo de patologías cardíacas.</p>
+              <button class="nav-link py-2 fs-6 float-end">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+              </svg></button>
+            </div>
+        </div>
+        <div class="glass-card glass-bg shadow-sm text-primary p-2  my-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-white text-primary border-aqua shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-lungs-fill" viewBox="0 0 16 16">
+              <path d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z"/>
+            </svg>
+            </div>
+            <div>
+              <h5 class="card-title mb-1 fw-bold fs-6">+140</h5>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">PRODUCTOS ESPECIALIZADOS</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card glass-bg shadow-sm text-primary p-2  my-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-white text-primary border-sky shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hospital-fill" viewBox="0 0 16 16">
+                <path d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25"/>
+              </svg>
+            </div>
+            <div>
+              <h5 class="card-title mb-1 fw-bold fs-6">+1000</h5>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">HOSPITALES ATENDIDOS</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card glass-bg shadow-sm text-primary p-2  my-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-white text-primary border-primaary shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+              <img src="../img/Iconos-Kener_1/icono-gastroenterologia-v1.png" width="40" height="40" alt="">
+            </div>
+            <div>
+              <h5 class="card-title mb-1 fw-bold fs-6">+10</h5>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">ESPECIALIDADES</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-2">
+        <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-aqua text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+              <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5"/>
+            </svg>
+            </div>
+            <div>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">Innovación</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-sky text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-heart-pulse-fill" viewBox="0 0 16 16">
+                <path d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9z"/>
+                <path d="M.88 8C-2.427 1.68 4.41-2 7.823 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">Honestidad</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864z"/>
+                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">Calidad</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-primary p-2 my-4">
+          <div class="d-flex align-items-center gap-3">
+            <div class="glass-card glass-bg shadow-sm text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+                <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="card-text mb-0 small opacity-75 text-ubuntu">Eficiencia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ICONOGRAFÍA ══ -->
+<section id="iconografia" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">06 · Elementos visuales</div>
+    <h2 class="section-title fs-1 mb-3">Iconografía</h2>
+    <h3>Identificadores de especialidad</h3>
+    <p class="section-sub mb-5">La Guía Gráfica define renders 3D translúcidos para cada área terapéutica. Para uso en interfaz (navegación, tarjetas, badges), esta es su adaptación en formato ligero: un blob de degradado con un trazo blanco fino al centro.</p>
+    <p>Versión 1 - Estilo glassmorphism con detalles hiper realistas</p>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 py-2 ">
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-analgesia-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Analgesia / Dolor</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-anestesia-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Anestesia</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-antihemorragico-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antihemmorragico</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-antinfecciosos-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antiinfecciosos</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-antimicotico-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antimicótico</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-antivirales-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antivirales</div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 py-2">
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-cardiovascular-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Cardiovascular</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-gastroenterologia-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Gastroenterología</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-hematopoyetico-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Hematopoyético</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-inmunologicos-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Inmunológicos</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-oftalmologia-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Oftalmología</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-oncologia-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Oncología</div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 py-2 mb-4">
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-SNC-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Sistema Nervioso Central</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_1/icono-urgencias-v1.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Urgencias</div>
+        </div>
+      </div>
+    </div>
+    <p class="mt-4">Versión 2 - Estilo glassmorphism con menos detalles realistas</p>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 py-2 ">
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-analgesia-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Analgesia / Dolor</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-anestesia-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Anestesia</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-antihemorragico-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antihemmorragico</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-antiinfecciosos-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antiinfecciosos</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-antimicotico-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antimicótico</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-antivirales-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Antivirales</div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 py-2">
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-cardiovascular-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Cardiovascular</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-gastroenterologia-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Gastroenterología</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-hematopoyetico-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Hematopoyético</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-inmunologicos-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Inmunológicos</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-oftalmologia-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Oftalmología</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-oncologia-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Oncología</div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 py-2 mb-4">
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-SNC-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Sistema Nervioso Central</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 card-border-grad border-0 shadow-sm rounded-4 p-4 text-center">
+          <div> <img src="../img/Iconos-Kener_2/icono-urgencias-v2.png" width="128px" height="auto"></div>
+          <div class="small fw-medium">Urgencias</div>
+        </div>
+      </div>
+    </div>
+    <h3 class="section-title my-4">Iconos</h3>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 py-2">
+      <div class="col"><p class="section-title">Bootstrap Icons - Fill</p>
+        <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 bd-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-lungs-fill" viewBox="0 0 16 16">
+            <path d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z"/>
+            </svg></div>
+              <div class="p-2 bd-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-hospital-fill" viewBox="0 0 16 16">
+              <path d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25"/>
+                          </svg></div>
+              <div class="p-2 bd-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+            <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5"/>
+            </svg></div>
+              <div class="p-2 bd-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
+            <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864z"/>
+            <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
+            </svg></div>
+              <div class="p-2 bd-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-heart-pulse-fill" viewBox="0 0 16 16">
+            <path d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9z"/>
+            <path d="M.88 8C-2.427 1.68 4.41-2 7.823 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8z"/>
+            </svg></div>
+              <div class="p-2 bd-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+            <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641z"/>
+            </svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOTOGRAFÍA ══ -->
+<section id="fotografia" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">06 · Elementos visuales</div>
+    <h2 class="section-title fs-1 mb-3">Fotografía y texturas</h2>
+    <p class="section-sub mb-5">Fotografía realista de personas reales en entornos clínicos — nunca ilustración plana ni stock genérico — combinada puntualmente con texturas biofuturistas como fondo de apoyo.</p>
+    <div class="row g-4">
+      <div class="col-lg-3">
+        <div class="my-2"><img src="../img/investigacion-blog.png" class="img-fluid rounded" alt=""></div>
+        <div class="my-2"><img src="../img/biofuturism-cells.jpg" class="img-fluid rounded" alt=""></div>
+        <div class="my-2"><img src="../img/abrazo-mujeres.jpg" class="img-fluid rounded" alt=""></div>
+      </div>
+      <div class="col-lg-3">
+        <div class="my-2"><img src="../img/doctor-de-frente.jpg" class="img-fluid rounded" alt=""></div>
+        <div class="my-2"><img src="../img/researcher-analyzing-samples-under-microscope-in-l-2026-09-23-07-21-56-utc.jpg" class="img-fluid rounded" alt=""></div>
+        <div class="my-2"><img src="../img/team-people-laboratory.jpg" class="img-fluid rounded" alt=""></div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+          <ul class="list-unstyled photo-notes mb-0">
+            <li>Iluminación fría y controlada, propia de quirófano o laboratorio.</li>
+            <li>Profundidad de campo baja: el gesto clínico o el instrumento en foco absoluto.</li>
+            <li>Paleta de la escena alineada al azul de marca, sin tonos cálidos dominantes.</li>
+            <li>Personas reales en bata, nunca íconos genéricos de "doctor".</li>
+            <li>El encuadre de curvas (marco a la izquierda) es la firma fotográfica: recorte con esquinas orgánicas, no un rectángulo estándar.</li>
+            <li>Las texturas biofuturistas se usan solo como fondo, nunca como protagonista sobre una fotografía real.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONFIANZA ══ -->
+<section id="confianza" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">07 · Confianza</div>
+    <h2 class="section-title fs-1 mb-3">Respaldo institucional</h2>
+    <p class="section-sub mb-4">Certificaciones y afiliaciones verificables, mostradas con sobriedad — sin afirmaciones vagas.</p>
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+      <div class="d-flex flex-wrap justify-content-between gap-3">
+        <div class="tag-primary shadow-sm"><span class="dot"></span><span>Liderazgo desde 1989</span></div>
+        <div class="tag-primary shadow-sm"><span class="dot"></span><span>Especialidad hospitalaria</span></div>
+        <div class="tag-primary shadow-sm"><span class="dot"></span><span>Calidad y cumplimiento</span></div>
+        <div class="tag-primary shadow-sm"><span class="dot"></span><span>Presencia nacional</span></div>
+      </div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-4 g-3 align-items-center">
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 text-center"> <img src="../img/imss_logosimbolo-mraff2tm.png" width="70px" height="auto" alt="Logo IMSS"></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 text-center"><img src="../img/issste_logo-mrafel0m.png" width="180px" height="auto" alt="Logo ISSTE"></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 text-center"><img src="../img/hospital_angeles-mrafkaiv.png" width="128px" height="auto" alt="Logo Hospitales Angeles"></div></div>
+      <div class="col"><div class="card border-0 shadow-sm rounded-4 p-3 text-center"><img src="../img/abc-logo-mrafksny.webp" width="90px" height="auto" alt="Logo Hospital ABC"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ESPACIADO ══ -->
+<section id="espaciado" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">08 · Sistema</div>
+    <h2 class="section-title fs-1 mb-3">Espaciado y radios</h2>
+    <p class="section-sub mb-4">Escala de 4px, compatible con las utilidades de espaciado de Bootstrap (<code>gap-*</code>, <code>p-*</code>). La composición debe respirar: menos elementos, mejor ejecutados.</p>
+    <div class="d-flex align-items-end gap-4 flex-wrap mb-4">
+      <div><div class="space-label">4px</div><div class="space-block" style="width:4px; height:24px;"></div></div>
+      <div><div class="space-label">8px</div><div class="space-block" style="width:8px; height:24px;"></div></div>
+      <div><div class="space-label">16px</div><div class="space-block" style="width:16px; height:24px;"></div></div>
+      <div><div class="space-label">24px</div><div class="space-block" style="width:24px; height:24px;"></div></div>
+      <div><div class="space-label">40px</div><div class="space-block" style="width:40px; height:24px;"></div></div>
+      <div><div class="space-label">64px</div><div class="space-block" style="width:64px; height:24px;"></div></div>
+    </div>
+    <div class="d-flex align-items-end gap-4 flex-wrap">
+      <div><div class="space-label">R 10px</div><div class="space-block" style="width:60px;height:40px;border-radius:10px;"></div></div>
+      <div><div class="space-label">R 18px</div><div class="space-block" style="width:60px;height:40px;border-radius:18px;"></div></div>
+      <div><div class="space-label">R 26px</div><div class="space-block" style="width:60px;height:40px;border-radius:26px;"></div></div>
+      <div><div class="space-label">R pill</div><div class="space-block" style="width:80px;height:40px;border-radius:999px;"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APLICACIÓN ══ -->
+<section id="aplicacion" class="py-5">
+  <div class="container-xxl">
+    <div class="eyebrow">09 · Aplicación</div>
+    <h2 class="section-title fs-1 mb-3">El sistema en contexto</h2>
+    <p class="section-sub mb-5">Los elementos anteriores combinados en un módulo real de homepage, armado con grid de Bootstrap con la paleta y tipografía oficiales.</p>
+
+    <div class="app-mock card hero-visual h-100">
+      <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+        <div class="logo-mark">
+          <img src="../img/logo/logo kener-01.png" width="80" height="211" alt="" class="img-fluid">
+        </div>
+        <ul class="d-none d-md-flex gap-4 small text-muted list-unstyled mb-0">
+          <li>Quiénes somos</li><li>Portafolio</li><li>Eventos</li><li>Noticias</li>
+        </ul>
+        <button class="btn btn-gradient rounded-pill px-4 py-2 fs-6 ">Farmacovigilancia <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+        </svg></button>
+      </div>
+      <div class="row g-4 p-4">
+        <div class="col-lg-5">
+          <div class="eyebrow mt-4">Guía de estilos · Laboratorios KENER</div>
+          <h1 class="display-4 fw-bold mb-3" style="letter-spacing:-0.02em; line-height:1.04;">Soluciones farmacéuticas<br><span class="fw-light" style="color:var(--primary-slate);">de alta especialidad.</span></h1>
+          <p class="section-sub mb-4">Kener es un laboratorio farmacéutico mexicano que desde 1989 combina experiencia, conocimiento y nuevas capacidades para responder con precisión a las necesidades de una salud hospitalaria en constante evolución.</p>
+          <button class="btn btn-primary rounded-pill px-4 py-2 fs-6">Contactar a Kener <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
+          </svg></button>
+        </div>
+        <div class="col-lg-7">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="photo-wrap ">
+                <div class="h-100">
+                <img src="../img/laboratorio-360x980.png" class="img-fluid" alt="">
+                </div>
+                <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4 float-chip">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="bg-white text-primary border-sky shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hospital-fill" viewBox="0 0 16 16">
+                        <path d="M6 0a1 1 0 0 0-1 1v1a1 1 0 0 0-1 1v4H1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6v-2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V16h6a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-3V3a1 1 0 0 0-1-1V1a1 1 0 0 0-1-1zm2.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM2.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5A.25.25 0 0 1 2 9.75v-.5A.25.25 0 0 1 2.25 9m0 2h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zM13.25 9h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25M13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25v-.5a.25.25 0 0 1 .25-.25"/>
+                      </svg>
+                    </div>
+                    <div class="fw-bold">
+                      <h5 class="card-title mb-1 fs-6">+1000</h5>
+                      <p class="card-text mb-0 small opacity-75 text-ubuntu fs-bold">Hospitales atendidos</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-lg-6">
+              <div class="photo-wrap">
+                <div class="h-100">
+                <img src="../img/doctore-en-quirofano-360x980.png" class="img-fluid" alt="">
+                </div>
+                <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4 float-chip">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="bg-white text-primary border-aqua shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-lungs-fill" viewBox="0 0 16 16">
+                      <path d="M8 1a.5.5 0 0 1 .5.5v5.243L9 7.1V4.72C9 3.77 9.77 3 10.72 3c.524 0 1.023.27 1.443.592.431.332.847.773 1.216 1.229.736.908 1.347 1.946 1.58 2.48.176.405.393 1.16.556 2.011.165.857.283 1.857.24 2.759-.04.867-.232 1.79-.837 2.33-.67.6-1.622.556-2.741-.004l-1.795-.897A2.5 2.5 0 0 1 9 11.264V8.329l-1-.715-1 .715V7.214c-.1 0-.202.03-.29.093l-2.5 1.786a.5.5 0 1 0 .58.814L7 8.329v2.935A2.5 2.5 0 0 1 5.618 13.5l-1.795.897c-1.12.56-2.07.603-2.741.004-.605-.54-.798-1.463-.838-2.33-.042-.902.076-1.902.24-2.759.164-.852.38-1.606.558-2.012.232-.533.843-1.571 1.579-2.479.37-.456.785-.897 1.216-1.229C4.257 3.27 4.756 3 5.28 3 6.23 3 7 3.77 7 4.72V7.1l.5-.357V1.5A.5.5 0 0 1 8 1m3.21 8.907a.5.5 0 1 0 .58-.814l-2.5-1.786A.5.5 0 0 0 9 7.214V8.33z"/>
+                    </svg>
+                    </div>
+                    <div class="fw-bold">
+                      <h5 class="card-title mb-1  fs-6">+140</h5>
+                      <p class="card-text mb-0 small opacity-75 text-ubuntu fs-bold">Productos especializados</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap gap-4 small text-muted fw-light p-3 pt-0">
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-4 text-center small border-top">
+  Guía de Estilos — Laboratorios Kener · Uso interno para el rediseño web · Basada en Brandbook · Bootstrap 5.3<br>
+  <strong class="text-body">Memento Studio</strong> — Proyecto Kener · Documento editable (HTML + CSS + Bootstrap) · Etapa Definir → Idear
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

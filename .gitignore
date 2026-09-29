@@ -1,0 +1,16 @@
+# Archivos/carpetas generados por cPanel o servidor web
+cgi-bin/
+.well-known/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuraciones de editores o entornos locales
+.vscode/
+.idea/
+*.log
+
+# Otros archivos
+style-guide-kener.html

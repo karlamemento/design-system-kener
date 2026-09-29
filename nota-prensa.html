@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comunicado de Prensa — Laboratorios Kener</title>
+  <style>
+    @font-face {
+      font-family: 'Bricolage';
+      src: url('fonts/BricolageGrotesque-VariableFont.ttf') format('truetype');
+      font-weight: 100 900;
+    }
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-VariableFont.ttf') format('truetype');
+      font-weight: 100 900;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:     #0C5F7C;
+      --teal-d:   #094E67;
+      --teal-mid: #1A8DB5;
+      --sky:      #74C7E5;
+      --mint:     #3DD9B0;
+      --white:    #FFFFFF;
+      --gray:     #5A7A8A;
+      --border:   rgba(116,199,229,0.22);
+      --r:        20px;
+
+      --grad-page:     linear-gradient(135deg, #FFFFFF 0%, #CCE8F5 50%, #96CCEB 100%);
+      --grad-sky-cell: linear-gradient(185deg, #48AECB 0%, #6DC2DA 14%, #A2D8EE 40%, #CAE9F6 65%, #EBF7FC 84%, #FFFFFF 100%);
+      --grad-text:     linear-gradient(150deg, #EAF5FC 0%, #D5EBF7 100%);
+      --grad-teal:     linear-gradient(140deg, #0C5F7C 0%, #1A8DB5 100%);
+      --grad-mint:     linear-gradient(140deg, #3DD9B0 0%, #27C8A0 100%);
+      --grad-card:     linear-gradient(145deg, #DAEEF8 0%, #C5E4F3 55%, #BEE9E2 100%);
+      --grad-wide:     linear-gradient(115deg, #0C5F7C 0%, #1A8DB5 58%, #1DA89D 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #FFFFFF;
+      color: var(--teal);
+      min-height: 100vh;
+    }
+
+    /* ══ NAV ══ */
+    nav {
+      position: sticky; top: 0; z-index: 99;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 88px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      gap: 24px;
+    }
+    .logo-img { height: 72px; object-fit: contain; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500;
+      color: var(--teal); opacity: .65;
+      text-decoration: none; white-space: nowrap;
+      transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-pill {
+      background: var(--grad-teal);
+      color: var(--white);
+      font-size: 12px; font-weight: 700;
+      padding: 9px 18px; border-radius: 50px;
+      text-decoration: none; white-space: nowrap;
+      flex-shrink: 0; transition: filter .2s;
+    }
+    .nav-pill:hover { filter: brightness(1.1); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; width: 36px; height: 36px;
+      cursor: pointer; flex-shrink: 0; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; height: 2px; border-radius: 2px;
+      background: var(--teal); transition: all .25s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ══ ARTICLE WRAPPER ══ */
+    .article-wrap {
+      max-width: 820px; margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    /* ══ HEADER BADGE ══ */
+    .article-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .badge-comunicado {
+      background: var(--grad-teal);
+      color: #fff; font-size: 10px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px;
+    }
+    .badge-categoria {
+      background: rgba(61,217,176,.15);
+      color: #1DA89D; font-size: 10px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px;
+      border: 1px solid rgba(61,217,176,.3);
+    }
+    .meta-fecha {
+      font-size: 12px; color: var(--gray); margin-left: auto;
+      font-weight: 500;
+    }
+
+    /* ══ HEADLINE ══ */
+    .article-headline {
+      font-family: 'Bricolage', sans-serif;
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 800; line-height: 1.12;
+      letter-spacing: -.02em;
+      color: var(--teal-d);
+      margin-bottom: 10px;
+    }
+    .article-headline em {
+      font-style: normal;
+      background: var(--grad-wide);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .article-subhead {
+      font-size: 18px; font-weight: 400;
+      color: var(--gray); line-height: 1.55;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--sky);
+      padding-left: 16px;
+    }
+
+    /* ══ AUTHOR / SOURCE ROW ══ */
+    .author-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 32px;
+    }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--grad-teal);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage', sans-serif;
+      font-size: 15px; font-weight: 800; color: #fff;
+      flex-shrink: 0;
+    }
+    .author-info { flex: 1; }
+    .author-name { font-size: 13px; font-weight: 700; color: var(--teal); }
+    .author-title { font-size: 11px; color: var(--gray); margin-top: 1px; }
+    .share-row { display: flex; gap: 8px; }
+    .share-btn {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.7);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .2s;
+      color: var(--teal-mid); font-size: 13px;
+    }
+    .share-btn:hover { background: var(--teal-mid); color: #fff; border-color: var(--teal-mid); }
+
+    /* ══ IMAGEN PRINCIPAL ══ */
+    .hero-image-wrap {
+      width: 100%; border-radius: 22px; overflow: hidden;
+      position: relative; margin-bottom: 36px;
+      box-shadow: 0 12px 48px rgba(12,60,78,.18);
+    }
+    .hero-image-wrap img {
+      width: 100%; height: 440px;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+    .hero-image-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(9,78,103,.55) 0%, transparent 55%);
+    }
+    .hero-image-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+      font-size: 11px; color: rgba(255,255,255,.8);
+      font-style: italic; font-weight: 400;
+    }
+
+    /* ══ DATOS DESTACADOS ══ */
+    .data-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-bottom: 40px;
+    }
+    .data-card {
+      background: linear-gradient(145deg, #0C5F7C 0%, #1A8DB5 55%, #1DA89D 100%);
+      border-radius: 16px; padding: 20px 18px;
+      border: none;
+      text-align: center;
+    }
+    .data-card .dc-num {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 30px; font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+    .data-card .dc-label {
+      font-size: 11px; color: rgba(255,255,255,.75);
+      font-weight: 600; margin-top: 6px;
+      text-transform: uppercase; letter-spacing: .07em;
+    }
+
+    /* ══ BODY TEXT ══ */
+    .article-body { line-height: 1.78; font-size: 16px; color: #1C4A5C; }
+
+    .article-body p { margin-bottom: 22px; }
+
+    .article-body h2 {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 22px; font-weight: 800;
+      color: var(--teal-d); margin: 40px 0 14px;
+      letter-spacing: -.01em;
+    }
+
+    .article-body h3 {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 17px; font-weight: 700;
+      color: var(--teal-mid); margin: 28px 0 10px;
+    }
+
+    /* Cita destacada */
+    .pull-quote {
+      margin: 36px 0;
+      padding: 24px 28px;
+      background: var(--grad-card);
+      border-left: 4px solid var(--mint);
+      border-radius: 0 16px 16px 0;
+      position: relative;
+    }
+    .pull-quote::before {
+      content: '\201C';
+      font-family: 'Bricolage', sans-serif;
+      font-size: 72px; font-weight: 900;
+      color: var(--sky);
+      position: absolute; top: -8px; left: 14px;
+      line-height: 1; pointer-events: none;
+      opacity: .6;
+    }
+    .pull-quote p {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 19px; font-weight: 600;
+      color: var(--teal-d); line-height: 1.45;
+      margin-bottom: 10px !important;
+      padding-left: 36px;
+    }
+    .pull-quote cite {
+      font-size: 12px; color: var(--gray);
+      font-style: normal; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em;
+      padding-left: 36px; display: block;
+    }
+
+    /* Caja de datos / recuadro */
+    .info-box {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 24px 26px;
+      margin: 32px 0;
+    }
+    .info-box h4 {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 13px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--teal-mid); margin-bottom: 14px;
+    }
+    .info-box ul {
+      list-style: none; display: flex; flex-direction: column; gap: 8px;
+    }
+    .info-box ul li {
+      font-size: 14px; color: #1C4A5C;
+      padding-left: 20px; position: relative;
+    }
+    .info-box ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 8px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--grad-mint);
+    }
+
+    /* Imagen interior */
+    .inline-image {
+      width: 100%; border-radius: 16px; overflow: hidden;
+      margin: 32px 0;
+      box-shadow: 0 6px 28px rgba(12,60,78,.12);
+    }
+    .inline-image img {
+      width: 100%; height: 280px;
+      object-fit: cover; display: block;
+    }
+    .inline-image figcaption {
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.6);
+      font-size: 11px; color: var(--gray);
+      font-style: italic;
+    }
+
+    /* Destacado teal */
+    .highlight-block {
+      background: var(--grad-teal);
+      border-radius: 18px; padding: 28px 30px;
+      margin: 36px 0; color: #fff;
+    }
+    .highlight-block p {
+      font-size: 15px; line-height: 1.6;
+      color: rgba(255,255,255,.9); margin-bottom: 0 !important;
+    }
+    .highlight-block strong { color: #fff; }
+
+    /* ══ CONTACTO DE PRENSA ══ */
+    .press-contact {
+      background: var(--grad-sky-cell);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 30px;
+      margin-top: 52px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .press-contact h4 {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--teal-mid); margin-bottom: 14px;
+      grid-column: 1/-1;
+    }
+    .contact-line { font-size: 13px; color: #1C4A5C; line-height: 1.6; }
+    .contact-line strong { display: block; font-weight: 700; color: var(--teal); }
+    .contact-line a { color: var(--teal-mid); text-decoration: none; }
+
+    /* ══ TAGS ══ */
+    .tags-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; }
+    .tag {
+      font-size: 11px; font-weight: 600;
+      color: var(--teal-mid);
+      background: rgba(116,199,229,.15);
+      border: 1px solid rgba(116,199,229,.3);
+      padding: 5px 14px; border-radius: 50px;
+      letter-spacing: .04em;
+    }
+
+    /* ══ NOTICIAS RELACIONADAS ══ */
+    .related-section { margin-top: 60px; }
+    .related-section h3 {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 18px; font-weight: 800;
+      color: var(--teal-d); margin-bottom: 20px;
+      letter-spacing: -.01em;
+    }
+    .related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .related-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      text-decoration: none; color: inherit;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(12,60,78,.12); }
+    .related-card-img {
+      height: 130px; overflow: hidden; position: relative;
+    }
+    .related-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .related-card-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,60,78,.4), transparent);
+    }
+    .related-card-body { padding: 14px 16px; }
+    .related-card-tag {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .09em; color: var(--teal-mid); margin-bottom: 6px;
+    }
+    .related-card-title {
+      font-family: 'Bricolage', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--teal-d); line-height: 1.4;
+    }
+
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--grad-teal);
+      color: rgba(255,255,255,.7);
+      padding: 40px 48px 32px;
+      margin-top: 60px;
+    }
+    .footer-inner {
+      max-width: 820px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-logo-img { height: 44px; object-fit: contain; filter: brightness(10); opacity: .9; }
+    .footer-copy { font-size: 12px; line-height: 1.6; }
+    .footer-copy strong { color: #fff; }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; height: 72px; position: relative; }
+      .logo-img { height: 52px; }
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: rgba(255,255,255,.97);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+        padding: 8px 0; z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block; padding: 14px 24px;
+        font-size: 14px; font-weight: 600; opacity: 1;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-toggle { display: flex; }
+      .nav-pill { font-size: 11px; padding: 8px 12px; }
+
+      .article-wrap { padding: 24px 16px 60px; }
+      .hero-image-wrap img { height: 260px; }
+      .data-strip { grid-template-columns: repeat(3,1fr); gap: 8px; }
+      .data-card { padding: 14px 10px; }
+      .data-card .dc-num { font-size: 22px; }
+      .pull-quote p { font-size: 16px; }
+      .press-contact { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      footer { padding: 32px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .data-strip { grid-template-columns: 1fr 1fr; }
+      .data-card:last-child { grid-column: 1/-1; }
+      .article-body { font-size: 15px; }
+      .article-subhead { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <img class="logo-img" src="img/logo.jpg" alt="Laboratorios Kener" />
+    <ul class="nav-links">
+      <li><a href="index.html#quienes-somos">Quiénes Somos</a></li>
+      <li><a href="index.html#portafolio">Portafolio</a></li>
+      <li><a href="index.html#eventos">Eventos</a></li>
+      <li><a href="index.html#noticias">Noticias / Prensa</a></li>
+    </ul>
+    <a href="index.html#contacto-medico" class="nav-pill">Farmacovigilancia</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="article-wrap">
+
+    <!-- META BADGES -->
+    <div class="article-meta" style="margin-top:24px;">
+      <span class="badge-comunicado">Comunicado de Prensa</span>
+      <span class="badge-categoria">Industria Farmacéutica</span>
+      <span class="meta-fecha">Ciudad de México, 16 de abril de 2026</span>
+    </div>
+
+    <!-- HEADLINE -->
+    <h1 class="article-headline">
+      Laboratorios Kener: <em>El nuevo pulso<br>de la salud mexicana</em>
+    </h1>
+    <p class="article-subhead">
+      Con más de tres décadas de experiencia en soluciones parenterales, Laboratorios Kener consolida su posición como referente estratégico del sector hospitalario privado en México, impulsando innovación, seguridad farmacéutica y acceso a tratamientos especializados a escala nacional.
+    </p>
+
+    <!-- AUTHOR ROW -->
+    <div class="author-row">
+      <div class="author-avatar">K</div>
+      <div class="author-info">
+        <div class="author-name">Dirección de Comunicación Corporativa</div>
+        <div class="author-title">Laboratorios Kener® · Toluca, Estado de México</div>
+      </div>
+      <div class="share-row">
+        <button class="share-btn" title="Copiar enlace">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+        <button class="share-btn" title="Descargar PDF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
+        <button class="share-btn" title="Imprimir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- IMAGEN PRINCIPAL -->
+    <div class="hero-image-wrap">
+      <img src="img/kener-planta.jpg"
+           alt="Planta de manufactura Laboratorios Kener, Toluca" />
+      <div class="hero-image-overlay"></div>
+      <p class="hero-image-caption">
+        Planta de manufactura Laboratorios Kener en Toluca, Estado de México. Certificada ante COFEPRIS bajo los más estrictos estándares de Buenas Prácticas de Fabricación.
+      </p>
+    </div>
+
+    <!-- DATOS CLAVE -->
+    <div class="data-strip">
+      <div class="data-card">
+        <div class="dc-num">+35</div>
+        <div class="dc-label">Años en el mercado</div>
+      </div>
+      <div class="data-card">
+        <div class="dc-num">+600</div>
+        <div class="dc-label">Hospitales atendidos</div>
+      </div>
+      <div class="data-card">
+        <div class="dc-num">98%</div>
+        <div class="dc-label">Índice de disponibilidad</div>
+      </div>
+    </div>
+
+    <!-- CUERPO DE LA NOTA -->
+    <div class="article-body">
+
+      <p>
+        <strong>Toluca, Estado de México.—</strong> Laboratorios Kener, empresa mexicana especializada en la fabricación y distribución de soluciones farmacéuticas de uso hospitalario, anuncia la consolidación de su red de distribución a nivel nacional y el lanzamiento de su nueva línea de terapias especializadas en oncología y antimicóticos de alta complejidad, reafirmando su compromiso de llevar ciencia de vanguardia a los hospitales privados del país.
+      </p>
+
+      <p>
+        Fundada en la ciudad de Toluca, la compañía ha crecido de forma sostenida hasta convertirse en uno de los laboratorios de referencia para el sector hospitalario privado en México, con presencia activa en más de 600 unidades médicas distribuidas en los 32 estados de la república. Su portafolio —que abarca desde soluciones parenterales hasta agentes antimicóticos, antiinfecciosos y cardiovasculares— responde a las necesidades terapéuticas más complejas de médicos especialistas y equipos de anestesiología.
+      </p>
+
+      <div class="pull-quote">
+        <p>"México necesitaba un laboratorio que entendiera la velocidad del quirófano y la exigencia del intensivista. Eso es exactamente lo que Kener construyó durante más de tres décadas."</p>
+        <cite>— Dirección General, Laboratorios Kener®</cite>
+      </div>
+
+      <h2>Una infraestructura pensada para la excelencia clínica</h2>
+
+      <p>
+        La planta de manufactura ubicada en Toluca opera bajo los estándares de Buenas Prácticas de Fabricación (BPF) exigidos por la Comisión Federal para la Protección contra Riesgos Sanitarios (COFEPRIS), con certificaciones vigentes que garantizan la trazabilidad completa de cada lote producido. Los procesos de control de calidad incluyen pruebas microbiológicas, fisicoquímicas y de esterilidad que superan los parámetros mínimos regulatorios.
+      </p>
+
+      <p>
+        La inversión en infraestructura tecnológica ha permitido a Kener duplicar su capacidad de producción en los últimos cuatro años, alcanzando más de 12 millones de unidades anuales entre soluciones intravenosas, ampolletería y presentaciones especiales para terapia de alto costo. Esta expansión posiciona a la empresa como un actor estratégico en el abastecimiento ininterrumpido de medicamentos críticos a nivel hospitalario.
+      </p>
+
+      <figure class="inline-image">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=820&q=80"
+             alt="Personal especializado en laboratorio farmacéutico" />
+        <figcaption>Equipo de control de calidad realizando pruebas de esterilidad en el área de manufactura estéril.</figcaption>
+      </figure>
+
+      <h2>Especialidades que marcan la diferencia</h2>
+
+      <p>
+        El portafolio especializado de Kener cubre cinco grandes áreas terapéuticas que concentran la mayor demanda hospitalaria del sistema privado de salud en México. Cada área cuenta con protocolos de distribución diferenciados, asesoría médica especializada y un sistema de farmacovigilancia activa que permite detectar y reportar eventos adversos en tiempo real.
+      </p>
+
+      <div class="info-box">
+        <h4>Áreas terapéuticas del portafolio Kener</h4>
+        <ul>
+          <li><strong>Cardiovascular</strong> — Soluciones para manejo perioperatorio y soporte hemodinámico en UCI</li>
+          <li><strong>Oncología</strong> — Citotóxicos de alta precisión bajo protocolo de mezclas estériles</li>
+          <li><strong>Anestesiología</strong> — Agentes anestésicos y coadyuvantes para procedimientos de mediana y alta complejidad</li>
+          <li><strong>Antiinfecciosos</strong> — Antibióticos de amplio espectro y terapia combinada para infecciones intrahospitalarias</li>
+          <li><strong>Antimicóticos</strong> — Tratamientos sistémicos para candidiasis invasora y aspergilosis en pacientes inmunocomprometidos</li>
+        </ul>
+      </div>
+
+      <h2>Farmacovigilancia: seguridad como cultura institucional</h2>
+
+      <p>
+        Como parte del compromiso con la seguridad del paciente, Laboratorios Kener opera un programa de farmacovigilancia activa que involucra a médicos, farmacéuticos hospitalarios y profesionales de enfermería. A través de un canal directo de reporte disponible las 24 horas, la compañía garantiza la atención de cualquier evento adverso sospechoso o falla terapéutica en un plazo máximo de 72 horas, en cumplimiento con la normativa NOM-220-SSA1-2016.
+      </p>
+
+      <p>
+        En 2025, el programa recibió reconocimiento por parte de COFEPRIS como un modelo replicable de buenas prácticas en farmacovigilancia para la industria farmacéutica nacional, distinción que refuerza el compromiso de Kener con la mejora continua del sistema de salud mexicano.
+      </p>
+
+      <div class="highlight-block">
+        <p>
+          <strong>Nota para medios:</strong> Laboratorios Kener pone a disposición de los medios de comunicación entrevistas con su equipo médico y directivo, visitas guiadas a instalaciones certificadas y material gráfico de alta resolución. Para solicitudes, comuníquese con el área de Comunicación Corporativa en el correo de contacto indicado en este comunicado.
+        </p>
+      </div>
+
+      <h2>Próximos pasos: expansión y alianzas estratégicas</h2>
+
+      <p>
+        Para el segundo semestre de 2026, Kener tiene previsto el lanzamiento de tres nuevas moléculas dentro de su línea antiinfecciosa, la apertura de un centro de distribución regional en Guadalajara y el inicio de operaciones de un laboratorio de mezclas estériles personalizadas para oncología en alianza con redes hospitalarias de primer nivel. Estas iniciativas refuerzan la visión de largo plazo de la empresa: ser el socio farmacéutico de confianza del médico especialista mexicano.
+      </p>
+
+      <p>
+        Con una cultura organizacional orientada a la excelencia científica y un equipo de más de 300 colaboradores entre investigadores, químicos farmacobiólogos, médicos y personal de distribución, Laboratorios Kener reafirma su papel como el nuevo pulso de la salud hospitalaria en México.
+      </p>
+
+    </div><!-- /article-body -->
+
+    <!-- TAGS -->
+    <div class="tags-row">
+      <span class="tag">Farmacovigilancia</span>
+      <span class="tag">Sector Hospitalario</span>
+      <span class="tag">COFEPRIS</span>
+      <span class="tag">Soluciones Parenterales</span>
+      <span class="tag">Oncología</span>
+      <span class="tag">Antimicóticos</span>
+      <span class="tag">BPF</span>
+      <span class="tag">Comunicado Oficial</span>
+    </div>
+
+    <!-- CONTACTO DE PRENSA -->
+    <div class="press-contact">
+      <h4>Contacto para medios de comunicación</h4>
+      <div class="contact-line">
+        <strong>Dirección de Comunicación Corporativa</strong>
+        Laboratorios Kener® S.A. de C.V.<br>
+        Toluca, Estado de México
+      </div>
+      <div class="contact-line">
+        <strong>Relaciones Públicas e Institucionales</strong>
+        <a href="/cdn-cgi/l/email-protection#abdbd9cec5d8caebc7cac9c4d9c2cadfc4d9c2c4d8c0cec5ced985c8c4c685c6d3"><span class="__cf_email__" data-cfemail="c4b4b6a1aab7a584a8a5a6abb6ada5b0abb6adabb7afa1aaa1b6eaa7aba9eaa9bc">[email&#160;protected]</span></a><br>
+        Tel. (722) 200 · 0000 · Ext. 120
+      </div>
+      <div class="contact-line" style="grid-column:1/-1; padding-top:10px; border-top:1px solid var(--border); font-size:11px; color:var(--gray);">
+        Para uso editorial: Este comunicado puede ser reproducido total o parcialmente citando como fuente a Laboratorios Kener®. Las declaraciones y cifras contenidas en este documento son vigentes a la fecha de emisión.
+      </div>
+    </div>
+
+    <!-- NOTICIAS RELACIONADAS -->
+    <div class="related-section">
+      <h3>Noticias relacionadas</h3>
+      <div class="related-grid">
+        <a href="index.html#portafolio" class="related-card">
+          <div class="related-card-img">
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&q=80" alt="Médico en UCI" />
+          </div>
+          <div class="related-card-body">
+            <div class="related-card-tag">Especialidades</div>
+            <div class="related-card-title">Kener amplía su línea cardiovascular con soluciones de soporte hemodinámico avanzado</div>
+          </div>
+        </a>
+        <a href="index.html#quienes-somos" class="related-card">
+          <div class="related-card-img">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80" alt="Investigadora farmacéutica" />
+          </div>
+          <div class="related-card-body">
+            <div class="related-card-tag">Regulatorio</div>
+            <div class="related-card-title">COFEPRIS reconoce el modelo de farmacovigilancia activa de Laboratorios Kener</div>
+          </div>
+        </a>
+        <a href="index.html#eventos" class="related-card">
+          <div class="related-card-img">
+            <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?auto=format&fit=crop&w=400&q=80" alt="Hospital privado" />
+          </div>
+          <div class="related-card-body">
+            <div class="related-card-tag">Eventos</div>
+            <div class="related-card-title">Kener presente en el Congreso Nacional de Farmacia Hospitalaria 2026</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /article-wrap -->
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <img class="footer-logo-img" src="img/logo.jpg" alt="Laboratorios Kener" />
+      <p class="footer-copy">
+        <strong>Laboratorios Kener® S.A. de C.V.</strong><br>
+        Toluca, Estado de México · México<br>
+        Registro COFEPRIS vigente · © 2026 Todos los derechos reservados
+      </p>
+      <p class="footer-copy" style="text-align:right;">
+        <a href="index.html#contacto-medico" style="color:rgba(255,255,255,.85);text-decoration:none;font-weight:700;">
+          Farmacovigilancia →
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', function () {
+      this.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        toggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Copiar enlace al portapapeles
+    document.querySelector('.share-btn[title="Copiar enlace"]').addEventListener('click', function () {
+      navigator.clipboard.writeText(window.location.href).then(function () {
+        alert('Enlace copiado al portapapeles.');
+      });
+    });
+  </script>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"7d08aa42312543ed9fc846e774e645ef","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>

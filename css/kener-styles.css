@@ -1,0 +1,385 @@
+/* ════════════════════════════════════════════════════════════════════
+   KENER — HOJA DE ESTILOS DE LA GUÍA
+   Proyecto: Rediseño web Laboratorios Kener · Memento Studio
+   ════════════════════════════════════════════════════════════════════
+
+   QUÉ ES ESTE ARCHIVO
+   Contiene TODO el CSS propio de marca que usa guia-estilos-kener.html.
+   No toca ni redefine Bootstrap por completo: se carga DESPUÉS de
+   bootstrap.min.css en el <head>, así que estas reglas ganan la cascada
+   cuando comparten selector con Bootstrap (misma especificidad, orden
+   posterior) y además define clases propias para todo lo que Bootstrap
+   no resuelve (el símbolo K, los degradados, los íconos de especialidad,
+   el encuadre fotográfico, etc.).
+
+   CÓMO ESTÁ ORGANIZADO (en este orden, de arriba a abajo):
+     1. :root            → todos los tokens de marca (color, tipografía,
+                            radios, sombras). Es el único lugar que
+                            necesitas tocar para "retemar" el documento.
+     2. Base              → body, encabezados, contenedores.
+     3. Bootstrap →marca  → sobreescritura de .btn-primary, .bg-primary,
+                            .text-primary, .nav-link, .card, .progress...
+                            mismas clases de Bootstrap, colores de Kener.
+     4. Utilidades propias → .eyebrow, .section-title, .section-sub
+                            (usadas en cada sección del documento).
+     5. Componentes de marca → todo lo que Bootstrap no tiene: logo,
+                            hero degradado, swatches de color, tipografía,
+                            íconos de especialidad, marco fotográfico,
+                            espaciado, módulo de aplicación.
+
+   Para la guía completa de edición (qué cambiar y dónde), ver README.md
+   en el mismo directorio que este archivo.
+   ════════════════════════════════════════════════════════════════════ */
+
+
+/* ────────────────────────────────────────────────────────────────────
+   1. TOKENS DE MARCA
+   Fuente: Guia_Gráfica.pdf — secciones "03 · El color" y
+   "04 · La tipografía". Cambia un valor aquí y se actualiza en TODO
+   el documento (incluidas las utilidades de Bootstrap sobreescritas
+   más abajo, porque todas leen estas variables).
+   ──────────────────────────────────────────────────────────────────── */
+:root{
+  /* ===== Color — Paleta principal ===== */
+  --primary:       #005A7B; /* Orient — color principal, logotipo, CTAs */
+  --primary-soft:  #7EACBC; /* Soft blue/grey — wordmark, texto sobre oscuro */
+  --primary-slate: #6C89A3; /* uso de apoyo, degradados, fondos medios */
+  --primary-pale:  #B5CCD6; /* uso de apoyo, fondos claros, bordes */
+  --primary-strong:  #062a38; /* uso de apoyo, fondos claros, bordes */
+
+  /* ===== Color — Paleta secundaria (máx. 20% de la composición) ===== */
+  --sec-dark-blue:   #062a38;
+  --sec-jeans-blue:  #026689;
+  --sec-sky-blue: #00bfff;
+  --sec-light-sky:    #5BD6FF;
+  --sec-ice-blue:  #B9EDFF;
+  --sec-aquamarine:   #63FDD6;
+
+  /* ===== Degradados oficiales ("Degradados" en la Guía Gráfica) =====
+     Cada uno se construye combinando dos tonos de la paleta oficial
+     de arriba — nunca se introduce un color nuevo aquí. */
+  --grad-orient:   linear-gradient(140deg, var(--primary) 0%, var(--sec-sky-blue) 100%);
+  --grad-cielo:    linear-gradient(160deg, #FFFFFF 0%, var(--sec-light-sky) 50%);
+  --grad-ice:      linear-gradient(160deg, #FFFFFF 0%, var(--sec-ice-blue) 100%);
+  --grad-aqua:    linear-gradient(160deg, var(--primary) 0%, var(--sec-sky-blue) 50%, var(--sec-aquamarine) 100%);
+
+  /* ===== Neutros de sistema (derivados de la paleta oficial) =====
+     No están en el PDF; se derivan de --primary para tener texto y
+     fondos legibles. Si cambias --primary, revisa el contraste de
+     --ink e --ink-soft sobre --bg. */
+  --ink:      #062A38;
+  --ink-soft: #4C6F7D;
+  --bg:       #F3F9FB;
+  --surface:  #FFFFFF;
+  --line:     rgba(0,90,123,0.14);
+
+  /* ===== Tipografía — 2 familias Bricolage + Ubuntu  ===== */
+  @font-face {
+      font-family: 'Bricolage';
+      src: url('fonts/BricolageGrotesque-VariableFont.ttf') format('truetype');
+      font-weight: 100 900;
+    } 
+
+    @font-face {
+      font-family: 'Ubuntu';
+      src: url('fonts/Ubuntu-Regular.ttf') format('truetype');
+      font-weight: 300 400 500 700;
+    }
+    
+  --font-text-title: 'Bricolage', system-ui, sans-serif;
+  --font-text: 'Ubuntu', sans-serif;
+
+  /* ===== Radios y sombras ===== */
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --shadow-soft: 0 8px 24px rgba(6,42,56,0.08);
+  --shadow-mid:  0 20px 46px rgba(6,42,56,0.16);
+}
+
+
+/* ────────────────────────────────────────────────────────────────────
+   2. BASE
+   ──────────────────────────────────────────────────────────────────── */
+body{
+  font-family:var(--font-text);
+  background:var(--bg);
+  color:var(--ink);
+}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-text-title); font-weight:700; letter-spacing:-0.01em; color:var(--ink);}
+section{border-top:1px solid var(--line);}
+section:first-of-type{border-top:none;}
+.container-xxl{max-width:1200px;} /* ancho de línea cómodo para lectura; Bootstrap trae 1320px por defecto */
+
+.text-bricolage{font-family: var(--font-text-title);}
+.text-ubuntu{font-family: var(--font-text);}
+
+/* ────────────────────────────────────────────────────────────────────
+   3. SOBREESCRITURA DE UTILIDADES BOOTSTRAP → PALETA DE MARCA
+   Mismo nombre de clase que Bootstrap, mismo comportamiento (hover,
+   focus, disabled...), pero con los colores de Kener. Cualquier
+   componente nuevo de Bootstrap que agregues (ej. otro .btn-primary
+   o .badge) hereda esto automáticamente sin tocar nada más.
+   ──────────────────────────────────────────────────────────────────── */
+.btn-primary{ 
+  --bs-btn-bg:var(--primary); 
+  --bs-btn-border-color:var(--primary);
+  --bs-btn-hover-bg:var(--sec-jeans-blue); 
+  --bs-btn-hover-border-color:var(--sec-jeans-blue);
+  --bs-btn-active-bg:var(--sec-jeans-blue); 
+  --bs-btn-active-border-color:var(--sec-jeans-blue);
+  --bs-btn-disabled-bg:var(--primary); 
+  --bs-btn-disabled-border-color:var(--primary); 
+  font-weight:500;}
+.btn-outline-primary{ 
+  --bs-btn-color:var(--primary); 
+  --bs-btn-border-color:var(--primary);
+  --bs-btn-hover-bg:var(--primary); 
+  --bs-btn-hover-border-color:var(--primary);
+  --bs-btn-active-bg:var(--primary); 
+  --bs-btn-active-border-color:var(--primary); 
+  font-weight:500;}
+.btn-outline-secondary{ 
+  --bs-btn-color:var(--primary-soft); 
+  --bs-btn-border-color:var(--primary-soft);
+  --bs-btn-hover-bg:var(--primary-soft); 
+  --bs-btn-hover-border-color:var(--primary-soft); 
+  font-weight:500;}
+.btn-secondary{ 
+  --bs-btn-bg:var(--primary-soft); 
+  --bs-btn-border-color:var(--primary-soft); 
+  --bs-btn-color:#FFFFFF; 
+    --bs-btn-hover-bg:var(--primary-slate); 
+  --bs-btn-hover-border-color:var(--primary-slate); 
+  font-weight:500;}
+.btn{font-family:var(--font-text); font-size:14.5px;}
+
+/* .btn-gradient no es de Bootstrap: es la variante degradada para CTAs
+   destacados (ver README.md § Componentes propios). */
+.btn-gradient{background:var(--grad-orient); color:#fff; border:none; font-weight:500; box-shadow:0 10px 22px rgba(0,90,123,.28);}
+.btn-gradient:hover{color:#fff; filter:brightness(1.08);}
+
+.text-primary{color:var(--primary) !important;}
+.text-sky{color:var(--sec-sky-blue) !important;}
+.bg-primary{background-color:var(--primary) !important;}
+.bg-grad{background-color: var(--grad-orient) !important;}
+.bg-grad-aqua{background-color: var(--grad-aqua)!important;}
+.bg-primary-pale{background-color:var(--primary-pale) !important;}
+.bg-card-primary{background: var(--grad-cielo)!important;}
+.bg-card-secondary{background: var(--grad-ice)!important;}
+.bg-aqua{background-color: var(--sec-aquamarine)!important;}
+.bg-sky{background-color: var(--sec-sky-blue)!important;}
+.border-primary{border-color:var(--primary) !important;}
+.border-aqua{border: 1px solid var(--sec-aquamarine)!important;}
+.border-sky{border: 1px solid var(--sec-sky-blue)!important;}
+.text-bg-primary{background-color:var(--primary) !important; color:#fff !important;}
+.nav-link{color:var(--ink-soft); font-weight:500; font-size:14px;}
+.nav-link:hover, .nav-link.active{color:var(--primary);}
+.navbar-toggler{border-color:var(--line);}
+.navbar-toggler:focus{box-shadow:0 0 0 .2rem rgba(0,90,123,.2);}
+.card-border-grad{border-bottom:5px solid var(--primary) !important; }
+
+  /* Vivid background to help the glass effect stand out */
+.glass-bg {background: linear-gradient(135deg, var(--primary) 0%, var(--sec-sky)100%);}
+.gradient-text {
+  background-image: linear-gradient(45deg, var(--grad-aqua));
+  background-clip: text;
+  -webkit-background-clip: text; 
+  color: transparent;
+  display: inline-block; 
+}
+
+/* Core Glassmorphism Card Style */
+.glass-card {background: rgba(255, 255, 255, 0.4) !important; backdrop-filter: blur(4px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);border: 1px solid rgba(255, 255, 255, 0.25) !important;border-radius: 16px;}
+.alert-aqua{border-radius: 16px; border-left: 4px solid var(--sec-aquamarine);}
+.border-left-aqua{border-radius: 16px; border-left: 4px solid var(--sec-aquamarine);}
+.border-left-sky{border-radius: 16px; border-left: 4px solid var(--sec-sky-blue);}
+
+.background-image{background-image: url("assets/biofuturism-cells.jpg");/*background-color: var(--primary-pale)*/}
+.progress{background-color:var(--bg);}
+
+/*Form Fields*/
+.label-text{ color: var(--primary-pale); font-size: 12px;}
+
+.field input, .field select, .field textarea{
+    width: 100%;
+    font-family: var(--font-text);
+    font-size: 14.5px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, .07);
+    outline: none;
+    transition: border-color .15s ease;
+}
+option{
+  width: 100%;
+    font-family: var(--font-text);
+    font-size: 14.5px;
+    color: var(--sec-dark-blue);
+    border: 1px solid var(--sec-sky-blue);
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, .07);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--sec-sky-blue);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   4. UTILIDADES PROPIAS DE LA GUÍA
+   Se repiten en cada sección del documento (eyebrow = etiqueta
+   numerada "01 · Identidad verbal", section-title, section-sub).
+   ──────────────────────────────────────────────────────────────────── */
+.eyebrow{
+  font-family:var(--font-text); font-size:12px; font-weight:500;
+  letter-spacing:0.12em; text-transform:uppercase; color:var(--primary);
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.eyebrow::before{content:""; width:22px; height:4px; background:var(--grad-aqua); display:inline-block; border-radius: 2px;}
+.section-title em{font-style:normal; font-weight:300; color:var(--ink-soft);}
+.section-sub{color:var(--ink-soft); max-width:640px; font-weight:300;}
+
+
+/* ────────────────────────────────────────────────────────────────────
+   5. COMPONENTES DE MARCA
+   Elementos sin equivalente directo en Bootstrap. Agrupados por la
+   sección del documento donde aparecen — usa buscar (Ctrl/Cmd+F) el
+   nombre de sección en mayúsculas para saltar directo.
+   ──────────────────────────────────────────────────────────────────── */
+
+/* — Logotipo (navbar, sección "Logotipo") — */
+.logo-mark{display:flex; align-items:center; gap:10px;}
+.wordmark{font-weight:700; letter-spacing:.14em; color:var(--primary-soft);}
+.logo-panel{border-radius:var(--r-lg); padding:44px; min-height:220px;}
+
+/* — Hero (portada) — */
+.hero-visual{
+  border-radius:var(--r-lg);
+  background:var(--grad-ice);
+  position:relative; overflow:hidden; min-height:380px;
+  display:flex; flex-direction:column; justify-content:space-between; padding:28px;
+}
+.hero-visual::before{content:""; position:absolute; inset:0; background-image:var(--grad-bio); opacity:.35; mix-blend-mode:screen;}
+.dna-svg{position:absolute; right:-30px; top:-10px; width:220px; height:420px; opacity:.28;}
+.tag-primary{
+  position:relative; align-self:flex-start; z-index: 1;
+  background: rgba(255,255,255,.18); backdrop-filter:blur(8px);
+  border:1px solid var(--sec-aquamarine); border-radius:50px;
+  padding:4px 16px; font-size:11px; font-weight:500; color:var(--primary);
+  display:flex; align-items:center; gap:8px;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+.tag-position-50{
+  position: relative; bottom: 50px;
+}
+.tag-primary::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--sec-aquamarine);}
+
+
+
+
+.photo-wrap{position:relative;z-index:1}
+.photo-frame{border-radius:var(--r-lg);height:480px;width:480px;overflow:hidden;position:relative;box-shadow:0 24px 50px rgba(0,15,25,.5)}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+
+.float-chip{position:absolute;left:-18px;bottom:-18px;}
+.float-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--sec-aquamarine)}
+.float-chip span{font-family:var(--font-text);font-size:11.5px;color:#fff}
+
+
+.hero-quote{position:relative; color:var(--primary);}
+.hero-quote p{font-size:20px; font-weight:500; line-height:1.35; margin-bottom:10px;}
+.hero-quote span{font-size:11px; font-weight:300; letter-spacing:.08em; text-transform:uppercase; color:var(--primary);}
+
+/* — Identidad (tarjetas de valores ADN) — */
+.adn-pill{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-md); padding:16px 14px; text-align:center;}
+.adn-pill .n{font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--primary); margin-bottom:4px;}
+.adn-pill .d{font-size:11px; color:var(--ink-soft); font-weight:300; line-height:1.4;}
+
+/* — Color: swatches —
+   .swatch-card es el patrón compartido por la paleta secundaria Y los
+   degradados (mismo diseño de tarjeta: franja de color + pie con info).
+   .swatch-main es la variante más grande para la paleta principal. */
+.swatch-card{border-radius:var(--r-md); overflow:hidden; box-shadow:var(--shadow-soft); background:var(--surface); height:100%;}
+.swatch-card .fill{height:76px;}
+.swatch-card .info{padding:8px 10px; font-size:10.5px; color:var(--ink-soft); font-weight:400; text-align:center; line-height:1.5;}
+.swatch-card .info b{display:block; color:var(--ink); font-weight:500; font-size:11px;}
+
+.swatch-main .fill{height:130px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px;}
+.swatch-main .info{padding:14px 16px; font-size:11px; color:var(--ink-soft); font-weight:300; line-height:1.6; text-align:left;}
+.swatch-main .info b{display:block; color:var(--ink); font-weight:500; font-size:12px;}
+
+/* — Tipografía: specimen de fuente y escala — */
+.type-specimen{border-radius:var(--r-lg); box-shadow:var(--shadow-soft);}
+.type-label{font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.1em; color:var(--primary); margin-bottom:12px;}
+.weight-list div{font-size:19px; color:var(--ink);}
+.weight-list div.i{font-style:italic;}
+.alphabet{font-size:22px; color:var(--ink-soft); letter-spacing:.02em; word-break:break-word;}
+.scale-row{border-bottom:1px solid var(--line);}
+.scale-row:last-child{border-bottom:none;}
+.scale-meta{font-size:12px; color:var(--ink-soft); white-space:nowrap; font-weight:300;}
+
+/* — Iconografía: blobs de especialidad (adaptación digital de los
+   "Identificadores" 3D de la Guía Gráfica) — */
+.icon-blob{
+  width:76px; height:76px; margin:0 auto 14px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:inset 0 -10px 16px rgba(0,0,0,0.12), inset 0 6px 10px rgba(255,255,255,0.35);
+}
+.icon-blob svg{width:32px; height:32px;}
+
+/* — Fotografía: marco de encuadre de curvas + textura biofuturista — */
+.photo-frame{
+  border-radius:var(--r-lg); overflow:hidden; height:320px; position:relative;
+  background:var(--grad-profundo); box-shadow:var(--shadow-mid);
+  clip-path: path('M0,40 C0,18 18,0 40,0 L280,0 C302,0 320,18 320,40 L320,240 C320,290 290,320 240,320 L40,320 C18,320 0,302 0,280 Z');
+}
+.photo-frame::after{
+  position:absolute; bottom:18px; left:24px; right:24px;
+  font-size:11px; color:rgba(255,255,255,.75); font-weight:300;
+}
+.photo-frame .bio-texture{position:absolute; inset:0; background-image:var(--grad-bio); opacity:.7; filter:blur(6px);}
+.photo-notes li{font-size:13.5px; color:var(--ink-soft); font-weight:300; margin-bottom:14px; padding-left:20px; position:relative;}
+.photo-notes li::before{content:"—"; position:absolute; left:0; color:var(--primary);}
+
+/* — Confianza: puntito decorativo de certificaciones — */
+.cert-dot{width:8px; height:8px; border-radius:50%; background:var(--sec-sky); flex-shrink:0;}
+
+/* — Espaciado y radios: bloques de muestra de la escala — */
+.space-block{background:var(--primary); border-radius:6px;}
+.space-label{font-size:12px; color:var(--ink-soft); width:60px; font-weight:300;}
+
+/* — Aplicación: módulo de homepage de ejemplo — */
+.app-mock{border-radius:var(--r-lg); overflow:hidden;}
+.app-hero-visual{border-radius:var(--r-lg); background:var(--grad-ice); padding:14px;}
+.app-esp-card{background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border-radius:var(--r-md); padding:16px 12px; text-align:center;}
+.app-esp-card .icon-blob{width:46px; height:46px; margin:0 auto 8px;}
+.app-esp-card .icon-blob svg{width:20px; height:20px;}
+
+/* — Footer — */
+footer{color:var(--ink-soft);}
+
+
+/*Especialidades*/
+.esp-analgesia{background-color:#007279;}
+.esp-anestesia{background-color:#59c3e3;}
+.esp-antihemorragico{background-color:#782700;}
+.esp-antivirales{background-color: #b38514;}
+.esp-antimicotico{background-color: #fda3c2;}
+.esp-cardiovascular{background-color: #e1261d;}
+.esp-gastrointestinal{background-color:#f08019;}
+.esp-hematopoyeticos{background-color: #881337;}
+.esp-infectologia{background-color: #00aca6;}
+.esp-inmunologicos{background-color:#00af68;}
+.esp-oftalmologia{background-color:#f49a69;}
+.esp-oncologia{background-color:#7e3a8e;}
+.esp-SNC{background-color:#3f2683;}
+.esp-urgencias{background-color:#ab182d;}
+
+
+
+
+
