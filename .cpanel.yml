@@ -1,0 +1,11 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/stockupc/public_html/kener.memento.studio/
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R design-system $DEPLOYPATH
+    - /bin/cp -R fonts $DEPLOYPATH
+    - /bin/cp -R img $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp nota-prensa.html $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
