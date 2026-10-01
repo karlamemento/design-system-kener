@@ -49,7 +49,7 @@
 
   /* ===== Color — Paleta secundaria (máx. 20% de la composición) ===== */
   --sec-dark-blue:   #062a38;
-  --sec-jeans-blue:  #026689;
+  --sec-jeans-blue:  #1a8db5;
   --sec-sky-blue: #00bfff;
   --sec-light-sky:    #5BD6FF;
   --sec-ice-blue:  #B9EDFF;
@@ -178,6 +178,7 @@ section:first-of-type{border-top:none;}
 .navbar-toggler{border-color:var(--line);}
 .navbar-toggler:focus{box-shadow:0 0 0 .2rem rgba(0,90,123,.2);}
 .card-border-grad{border-bottom:5px solid var(--primary) !important; }
+.page-link{color: var(--primary) !important;}
 
   /* Vivid background to help the glass effect stand out */
 .glass-bg {background: linear-gradient(135deg, var(--primary) 0%, var(--sec-sky)100%);}
@@ -195,8 +196,9 @@ section:first-of-type{border-top:none;}
 .alert-aqua{border-radius: 16px; border-left: 4px solid var(--sec-aquamarine);}
 .border-left-aqua{border-radius: 16px; border-left: 4px solid var(--sec-aquamarine);}
 .border-left-sky{border-radius: 16px; border-left: 4px solid var(--sec-sky-blue);}
+.border-bottom-primary{border-radius: 16px; border-bottom: 4px solid var(--primary);}
 
-.background-image{background-image: url("assets/biofuturism-cells.jpg");/*background-color: var(--primary-pale)*/}
+.background-image{background-image: url("../img/biofuturism-cells.jpg");/*background-color: var(--primary-pale)*/}
 .progress{background-color:var(--bg);}
 
 /*Form Fields*/
