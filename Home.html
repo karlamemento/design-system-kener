@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratorios Kener — Soluciones farmacéuticas de alta especialidad</title>
+<meta name="description" content="Laboratorio farmacéutico mexicano desde 1989. Soluciones de alta especialidad para el sector hospitalario, con cumplimiento COFEPRIS.">
+<link rel="icon" type="image/jpeg" href="img/favicon.jpg">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<!-- Orden importa: tokens/marca → estilos de la home -->
+<link href="css/kener-styles.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+ <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg py-2 border-bottom k-nav" aria-label="Principal">
+        <div class="container-xxl">
+            <a class="navbar-brand" href="index.html"><img src="img/logo/logo%20kener-01.png" alt="Laboratorios Kener"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navMain">
+            <ul class="navbar-nav mx-lg-auto gap-lg-3 my-3 my-lg-0 align-items-lg-center">
+                <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Especialidades</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Quiénes somos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Kener Academy</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Noticias / Prensa</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-portal" href="#" target="_blank" rel="noopener">Portal Proveedores <i class="bi bi-box-arrow-up-right small"></i></a></li><!-- TODO: URL del portal externo -->
+            </ul>
+            <a href="#" class="btn btn-gradient rounded-pill px-4">Farmacovigilancia <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+        </div>
+    </nav>
+ </header>
+
+<main id="inicio" >
+<!-- ══ HERO ══ -->
+ 
+ <div class="hero" >
+  <div class="container-xxl" ><svg class="hero-dna" viewBox="0 0 120 280" aria-hidden="true"><g fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round"><path d="M20 10 C60 40 60 60 20 90 C-20 120 -20 140 20 170 C60 200 60 220 20 250" opacity="0.6"></path><path d="M100 10 C60 40 60 60 100 90 C140 120 140 140 100 170 C60 200 60 220 100 250" opacity="0.6"></path><path d="M20 10 L100 10M23 40 L97 40M28 70 L92 70M20 90 L100 90M28 120 L92 120M23 150 L97 150M20 170 L100 170M28 200 L92 200M23 230 L97 230M20 250 L100 250" opacity="0.35"></path></g></svg>
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <div class="eyebrow">Laboratorio mexicano · Desde 1989</div>
+          <h1 class="mb-4">Soluciones farmacéuticas especializadas <span class="fs-2 d-block">para el entorno hospitalario.</span></h1>
+          <p class="mb-4">Somos un laboratorio farmacéutico mexicano que combina experiencia, conocimiento y nuevas capacidades para responder con precisión a las necesidades de una salud hospitalaria en constante evolución.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#contacto" class="btn btn-primary rounded-pill px-4 py-2">Contacto clínico <i class="bi bi-arrow-down-short"></i></a>
+            <a href="#especialidades" class="btn btn-outline-primary rounded-pill px-4 py-2">Explora nuestras especialidades <i class="bi bi-arrow-right-short"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+              <div class="col-6">
+                  <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4 element-z-index t-top">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="bg-white text-primary border-sky shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                        <i class="bi bi-capsule"></i>
+                      </div>
+                      <div class="fw-bold">
+                        <h5 class="card-title mb-1 fs-6">+1000</h5>
+                        <p class="mb-0 small opacity-75 fs-bold">Productos especializados</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="frame m-0"><img src="img/laboratorio-360x980.png" alt="Profesional de laboratorio analizando una muestra"></div>
+              </div>
+              <div class="col-6">
+                  <div class="frame alt m-0"><img src="img/doctore-en-quirofano-360x980.png" alt="Equipo médico en quirófano"></div>
+                  <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4 element-z-index t-bot">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="bg-white text-primary border-aqua shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                        <i class="bi bi-h-circle-fill"></i>
+                      </div>
+                      <div class="fw-bold">
+                        <h5 class="card-title mb-1 fs-6">+140</h5>
+                        <p class="mb-0 small opacity-75 fs-bold">Hospitales atendidos</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+ </div>
+
+<!-- ══ CERTIFICACIONES Y ESTÁNDARES ══ -->
+<section id="sec-certificaciones"class="pb-5 padding-section" aria-labelledby="t-cert">
+  <div class="container-xxl ">
+    <div class="eyebrow">Certificaciones</div>
+    <div class="card-rounded-white shadow-sm p-4 mt-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-3"><h2 id="t-cert" class="fs-5 mb-1">Nuestra experiencia nos respalda</h2><p class="small mb-0 text-muted">Certificaciones y normas que respaldan cada lote.</p></div>
+        <!-- TODO: reemplazar los sellos por los logotipos oficiales (img/certificaciones/) -->
+         <div class="col-lg-9"><div class="row row-cols-2 row-cols-md-4 g-3">
+          <div class="col d-flex align-items-center gap-3"><span class="seal" aria-hidden="true">COFE<br>PRIS</span><span class="small fw-medium">Certificación COFEPRIS en todos los procesos</span></div>
+          <div class="col d-flex align-items-center gap-3"><img src="img/bpf-gvp-mra9napg.png" width="64px" height="64px" alt="BPF"><span class="small fw-medium">Buenas Prácticas de Fabricación (BPF)</span></div>
+          <div class="col d-flex align-items-center gap-3"><img src="img/iso-9001-mra9bkpv.avif" width="72px" height="72px" alt="ISO-9001"><span class="small fw-medium">Gestión de calidad</span></div>
+          <div class="col d-flex align-items-center gap-3"><img src="img/isoiec_17025-mra9fup5.png" width="128px" height="64px" alt="ISO-/IEC"></span><span class="small fw-medium">Laboratorio acreditado</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ÁREAS TERAPÉUTICAS ══ -->
+<section id="sec-especialidades" class="padding-section bg-white" aria-labelledby="t-esp">
+  <div class="container-xxl">
+    <div class="eyebrow">Áreas terapéuticas</div>
+    <h2 id="t-esp" class="k-h2">Soluciones terapéuticas de vanguardia</h2>
+    <p class="k-lead mb-5">Cada área terapéutica representa una oportunidad para profundizar en el conocimiento, desarrollar soluciones relevantes y mantenernos cerca de las necesidades de la práctica médica.    </p>
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="card bg-card-secondary border-0 shadow-sm rounded-4 p-5 my-4">
+          <h3 class="mb-2">Urgencias</h3>
+          <p class="text-muted mb-4" style="max-width:340px">Soluciones farmacéuticas para contextos clínicos que requieren atención oportuna y capacidad de respuesta.</p>
+          <div class="text-end">
+            <img src="img/Iconos-Kener_1/icono-urgencias-v1.png" alt="">
+            <a href="#urgencias" class="link-primary d-block">Ver medicamentos <i class="bi bi-arrow-right-short"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card bg-card-secondary border-0 shadow-sm rounded-4 p-5 my-4">
+          <h3 class="mb-2">Analgesia</h3>
+          <p class="text-muted mb-4" style="max-width:340px">Soluciones farmacéuticas para contextos clínicos que requieren atención oportuna y capacidad de respuesta.</p>
+          <div class="text-end">
+            <img src="img/Iconos-Kener_1/icono-analgesia-v1.png" alt="">
+            <a href="#analgesia" class="link-primary d-block">Ver medicamentos <i class="bi bi-arrow-right-short"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card bg-card-secondary border-0 shadow-sm rounded-4 p-5 my-4">
+          <h3 class="mb-2">Antiinfecciosos</h3>
+          <p class="text-muted mb-4" style="max-width:340px">Soluciones farmacéuticas para contextos clínicos que requieren atención oportuna y capacidad de respuesta.</p>
+          <div class="text-end">
+            <img src="img/Iconos-Kener_1/icono-antinfecciosos-v1.png" alt="">
+            <a href="#analgecia" class="link-primary d-block">Ver medicamentos <i class="bi bi-arrow-right-short"></i></a>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="text-center mt-5"><a href="especialidades.html" class="btn btn-outline-primary rounded-pill px-4">Ver todas las especialidades <i class="bi bi-arrow-right-short"></i></a></div>
+  </div>
+</section>
+
+<!-- ══ CONFIANZA══ -->
+<section id="sec-confianza" class="pb-5 padding-section" aria-labelledby="t-cert" >
+  <div class="container-xxl ">
+    <div class="eyebrow">Confianza</div>
+      <div class="row g-4 align-items-center">
+        <div class="col d-flex align-items-center span-border"><div class="p-2"><i class="bi bi-calendar-check-fill fs-2 text-primary p-2"></i></div><div><h4>Desde 1989</h4><p>Experiencia en el sector salud mexicano</p></div></div>
+        <div class="col d-flex align-items-center span-border"><div class="p-2"><i class="bi bi-heart-pulse-fill fs-2 text-primary p-2"></i></div><div><h4>Especialidad hospitalaria</h4><p>Soluciones en distintas áreas terapéuticas.</p></div></div>
+        <div class="col d-flex align-items-center span-border"><div class="p-2"><i class="bi bi-patch-check-fill fs-2 text-primary p-2"></i></div><div><h4>Calidad y cumplimiento</h4><p>Procesos y estándares sujetos a regulación sanitaria.</p></div></div>
+        <div class="col d-flex align-items-center"><div class="p-2"><i class="bi bi-person-check-fill fs-2 text-primary p-2"></i></i></div><div><h4>Presencia nacional</h4><p>Capacidad de atención dentro del mercado mexicano.</p></div></div>
+      </div>
+  </div>
+</section>
+
+<!-- ══ LOGROS Y RESULTADOS ══ -->
+<section id="logros" class="padding-section" aria-labelledby="t-logros">
+  <div class="container-xxl">
+    <div class="eyebrow">Logros y resultados</div>
+    <h2 id="t-logros">Capacidades que respaldan nuestra evolución</h2>
+    <p class="k-lead mb-5">Combinamos experiencia, talento, manufactura y presencia nacional para responder a las necesidades de un entorno hospitalario cada vez más exigente.</p>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n">+140</div><h3>Productos registrados</h3><p class="small text-muted mb-0">Con registro sanitario COFEPRIS vigente.</p></div></div>
+      <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n">+1000</div><h3>hospitales públicos y privados</h3><p class="small text-muted mb-0">Atendidos con distribución a nivel nacional.</p></div></div>
+      <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n">+500</div><h3>Colaboradores</h3><p class="small text-muted mb-0">Al servicio de la salud hospitalaria en México.</p></div></div>
+    </div>
+    <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-3 mt-5 mb-0" aria-label="Instituciones que confían en Kener">
+      <li class="tag-primary"><span class="dot"></span><span>Hospital Ángeles</span></li>
+      <li class="tag-primary"><span class="dot"></span><span>Médica Sur</span></li>
+      <li class="tag-primary"><span class="dot"></span><span>Christus Muguerza</span></li>
+      <li class="tag-primary"><span class="dot"></span><span>TecSalud</span></li>
+      <li class="tag-primary"><span class="dot"></span><span>Centro Médico ABC</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ QUIÉNES SOMOS ══ -->
+<section class="padding-section" id="quienes-somos">
+  <div class="container-xxl">
+    <div class="eyebrow">Quiénes somos</div>
+    <h2>Más de tres décadas impulsando la salud en México</h2>
+      <p>Laboratorios Kener combina experiencia, innovación y manufactura nacional para ofrecer un portafolio farmacéutico de alta calidad, a la altura de las exigencias del sector hospitalario privado y de los profesionales de la salud comprometidos con la excelencia clínica.</p>
+    <div class="row g-5 padding-section">
+      <div class="col-lg-6">
+        <div class="team-photo"><img src="img/team-people-laboratory.jpg" alt="Equipo de Laboratorios Kener en planta"></div>
+      </div>
+      <div class="col-lg-6">
+        <ol class="timeline">
+          <li><b>1960</b><p class="mb-0">Fundación de Grupo Kener naciendo con el compromiso de ofrecer soluciones farmacéuticas de calidad para el sector salud.</p></li>
+          <li><b>1999</b><p class="mb-0">Expansión y reubicación de nuestras instalaciones en Toluca, optimizando operaciones y mejorando nuestra logística.</p></li>
+          <li><b>2024</b><p class="mb-0">Incorporación a Grupo Vazol, que amplía la capacidad de manufactura y distribución.</p></li>
+          <li><b>2025</b><p class="mb-0">Kener inicia una vez más, una etapa de rápido crecimiento y expansión de planta productiva con la mayor y mejor tecnología disponible a nivel mundial.</p></li>
+          <li><b>2026</b><p class="mb-0">Inauguración de nuevas oficinas corporativas, para fomentar una cultura y talento de excelencia.</p></li>
+        </ol>
+      </div>
+    </div>
+    <div class="row row-cols-2 row-cols-md-4 g-4 mt-4">
+      <div class="col value"><div class="ic"><i class="bi bi-lightbulb-fill"></i></div><h3>Innovación</h3><p class="small text-muted">Nuevas capacidades para necesidades clínicas que cambian.</p></div>
+      <div class="col value"><div class="ic"><i class="bi bi-award-fill"></i></div><h3>Calidad</h3><p class="small text-muted">Trazabilidad lote a lote en cada proceso.</p></div>
+      <div class="col value"><div class="ic"><i class="bi bi-lightning-fill"></i></div><h3>Eficiencia</h3><p class="small text-muted">Respuesta oportuna para el entorno hospitalario.</p></div>
+      <div class="col value"><div class="ic"><i class="bi bi-heart-pulse-fill"></i></div><h3>Honestidad</h3><p class="small text-muted">Información clara y sustentada.</p></div>
+    </div>
+    <div class="text-center mt-5"><a href="quienes-somos.html" class="btn btn-outline-primary rounded-pill px-4">Saber más <i class="bi bi-arrow-right-short"></i></a></div>
+  </div>
+</section>
+
+<!-- ══ CTA PORTAFOLIO / CATÁLOGO ══ -->
+<section class="cta-cat" aria-labelledby="t-cat">
+  <div class="container-xxl">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8">
+        <h3 id="t-cat" class="fs-3 mb-2 text-white">Conoce las soluciones farmacéuticas que respaldan nuestra especialización.</h3>
+        <p class="mb-0 text-white" style="max-width:620px;opacity:.85">Consulta presentaciones, formulaciones y fichas técnicas de nuestro portafolio. Acceso exclusivo para profesionales de la salud. </p>
+        <small class="text-white">Puedes consultar el portafolio completo de Kener mediante un breve registro de acceso.</small>
+      </div>
+      <div class="col-lg-4 text-lg-end"><a href="catalogo-medico.html" class="btn btn-light rounded-pill px-4 py-2"><i class="bi bi-download me-1"></i> Descargar catálogo</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONOCIMIENTO · SALA DE PRENSA ══ -->
+<section id="prensa" class="padding-section" aria-labelledby="t-prensa">
+  <div class="container-xxl">
+    <div class="eyebrow">Sala de prensa</div>
+    <h2 id="t-prensa" class="k-h2">Ciencia que avanza con la vida</h2>
+    <p>Un espacio para explorar las ideas, hallazgos y conversaciones para acercar conocimiento relevante a quienes hacen avanzar la práctica médica y el entorno hospitalario.</p>
+    <div class="row g-4 mt-3">
+      <div class="col-md-4">
+        <div class="k-card news">
+          <img src="img/investigacion-blog.png" alt="Investigación en formulaciones cardiovasculares">
+        <span class="tag-primary"><span class="dot"></span><span>Comunicado oficial</span></span>
+        <div class="body"><small class="text-muted">Septiembre 2026</small>
+          <h3 class="mt-1">Apex: conocimiento que conecta a la comunidad médica.</h3>
+          <p class="small text-muted">La expansión responde a la creciente demanda de medicamentos de uso hospitalario.</p>
+          <div class="text-end"><a href="noticias.html" class="link-primary">Leer más <i class="bi bi-arrow-right-short"></i></a></div>
+        </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="k-card news">
+            <img src="img/researcher-analyzing-samples-under-microscope-in-l-2026-09-23-07-21-56-utc.jpg" alt="Investigación en formulaciones cardiovasculares">
+          <span class="tag-primary"><span class="dot"></span><span>Investigación</span></span>
+          <div class="body"><small class="text-muted">Octubre 2026</small>
+            <h3 class="mt-1">Fibrinólisis: comprender un proceso clave en el equilibrio hemostático.</h3>
+            <p class="small text-muted">La expansión responde a la creciente demanda de medicamentos de uso hospitalario.</p>
+            <div class="text-end"><a href="noticias.html" class="link-primary">Leer más <i class="bi bi-arrow-right-short"></i></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="k-card news">
+            <img src="img/quirofano-hospital.jpg" alt="Investigación en formulaciones cardiovasculares">
+          <span class="tag-primary"><span class="dot"></span><span>Reconocimiento</span></span>
+          <div class="body"><small class="text-muted">Julio 2026</small>
+            <h3 class="mt-1">El hospital que sigue: conocimiento, especialización y nuevas capacidades.</h3>
+            <p class="small text-muted">La expansión responde a la creciente demanda de medicamentos de uso hospitalario.</p>
+            <div class="text-end"><a href="noticias.html" class="link-primary">Leer más <i class="bi bi-arrow-right-short"></i></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5"><a href="noticias.html" class="btn btn-outline-primary rounded-pill px-4">Ver todas las noticias <i class="bi bi-arrow-right-short"></i></a></div>
+  </div>
+</section>
+
+<!-- ══ AGENDA CIENTÍFICA ══ -->
+<section id="eventos" class="padding-section k-band pt-5" aria-labelledby="t-agenda">
+  <div class="container-xxl">
+    <div class="eyebrow">Agenda científica</div>
+    <h2 id="t-agenda">Próximos encuentros con la comunidad médica</h2>
+    <!-- TODO: fechas y títulos reales (CPT "Eventos") -->
+    <div class="row g-4 mt-3">
+      <div class="col-md-4">
+        <div class="k-card event">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="date">21<small>Oct</small></div><span class="tag-secondary"><span class="dot"></span><span>Congreso nacional</span></span>
+          </div>
+          <h3 class="fs-6 mb-0">Congreso Mexicano de Medicina Interna</h3>
+          <p class="small text-muted mb-0">Sesión científica sobre formulaciones hospitalarias de alta especialidad. Ciudad de México.</p>
+          <a href="eventos.html" class="link-primary mt-auto text-end">Ver detalles <i class="bi bi-arrow-right-short"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="k-card event">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="date">12<small>Nov</small></div><span class="tag-secondary"><span class="dot"></span><span>Simposio</span></span>
+          </div>
+          <h3 class="fs-6 mb-0">Simposio de Oncología Hospitalaria</h3>
+          <p class="small text-muted mb-0">Evidencia clínica de nuestras formulaciones en oncología de alta complejidad. Guadalajara.</p>
+          <a href="eventos.html" class="link-primary mt-auto text-end">Ver detalles <i class="bi bi-arrow-right-short"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="k-card event">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="date">02<small>Dic</small></div><span class="tag-secondary"><span class="dot"></span><span>Webinar médico</span></span>
+          </div>
+          <h3 class="fs-6 mb-0">Farmacovigilancia activa en el entorno hospitalario</h3>
+          <p class="small text-muted mb-0">Sesión virtual sobre protocolos de seguridad y reporte de eventos adversos.</p>
+          <a href="eventos.html" class="link-primary mt-auto text-end">Ver detalles <i class="bi bi-arrow-right-short"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5"><a href="eventos.html" class="btn btn-outline-primary rounded-pill px-4">Ver agenda completa <i class="bi bi-arrow-right-short"></i></a></div>
+  </div>
+</section>
+
+<!-- ══ CONTACTO CLÍNICO ══ -->
+<section id="contacto" class="padding-section" aria-labelledby="t-contacto">
+  <div class="container-xxl">
+    <div class="eyebrow">Contacto</div>
+    <div class="row g-4 mt-2">
+      <div class="col-lg-6">
+        <div class="contact-info">
+          <h2 id="contacto" class="text-white">Exploremos hasta dónde podemos avanzar juntos.</h2>
+          <p style="opacity:.85">Reunimos experiencia, capacidades y conocimiento para participar en distintos retos del entorno farmacéutico, hospitalario y de salud. Si quieres conocer más sobre nuestras soluciones, establecer una relación comercial o explorar oportunidades de colaboración, estamos listos para escucharte.</p>    
+          <a class="contact-item mt-4" data-bs-toggle="collapse" href="#form-consulta-clinica" role="button" aria-expanded="true" aria-controls="form-consulta-clinica">
+            <i class="bi bi-envelope-fill"></i><span><small>Dirección médica</small>
+            <b>contacto@laboratorios-kener.com.mx</b><p class="mb-0 fw-bold">Enviar consulta clínica</p></span>
+          </a>
+          <a class="contact-item mt-4" data-bs-toggle="collapse" href="#form-nuevos-negocios" role="button" aria-expanded="false" aria-controls="form-nuevos-negocios">
+            <i class="bi bi-people-fill"></i><span><small>Nuevos Negocios</small><b>nuevosnegocios@laboratorios-kener.com.mx</b></span>
+          </a>
+          <a class="contact-item mt-4" data-bs-toggle="collapse" href="#form-clientes" role="button" aria-expanded="false" aria-controls="form-clientes">
+              <i class="bi bi-person-vcard-fill"></i><span><small>Clientes</small><b>Enviar soliciud</b></span>
+          </a>
+          <a class="contact-item mt-4" href="#farmacovigilancia"><i class="bi bi-shield-fill-plus"></i><span><small>Farmacovigilancia</small><b>Reportar un evento adverso</b></span></a>
+          <a class="contact-item mt-4" href="tel:800536376669"><i class="bi bi-telephone-fill"></i><span><small>Línea directa</small><b>800 KENER MX (536 376 69)</b></span></a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div id="contenedorFormularios">
+          <form id="form-consulta-clinica" class="k-card collapse k-form show" action="#" method="post" data-bs-parent="#contenedorFormularios"><!-- Se sustituye por shortcode de Contact Form 7 -->
+              <span class="tag-primary mb-3"><span class="dot"></span><span>Consulta clínica</span></span>
+              <h3 class="fs-3 mb-3">Envíe su consulta</h3>
+              <div class="row g-3">
+                <div class="col-12"><label for="f-nombre">Nombre</label><input id="f-nombre" class="form-control" type="text" autocomplete="name" placeholder="Dr. / Dra. Nombre Apellido" required></div>
+                <div class="col-md-6"><label for="f-cedula">Cédula profesional</label><input id="f-cedula" class="form-control" type="text" required></div>
+                <div class="col-md-6"><label for="f-esp">Especialidad</label><select id="f-esp" class="form-select"><option>Cardiología</option><option>Anestesiología</option><option>Infectología</option><option>Oncología</option><option>Medicina interna</option><option>Otra</option></select></div>
+                <div class="col-12"><label for="f-inst">Institución</label><input id="f-inst" class="form-control" type="text" autocomplete="organization" placeholder="Hospital o clínica"></div>
+                <div class="col-md-6"><label for="f-tel">Teléfono</label><input id="f-tel" class="form-control" type="tel" autocomplete="tel"></div>
+                <div class="col-md-6"><label for="f-mail">Correo electrónico</label><input id="f-mail" class="form-control" type="email" autocomplete="email" required></div>
+                <div class="col-12"><label for="f-tipo">Motivo de consulta</label><select id="f-tipo" class="form-select">
+                  <option>Información de producto</option>
+                  <option>Información general</option>
+                  <option>Portafolio y soluciones</option>
+                  <option>Instituciones y hospitales</option>
+                  <option>Nuevos negocios</option>
+                  <option>Manufactura / desarrollo</option>
+                  <option>Alianzas y colaboración</option>
+                  <option>Prensa y comunicación</option>
+                  <option>Otro</option>
+                </select></div>
+                <div class="col-12"><label for="f-msg">Mensaje</label><textarea id="f-msg" class="form-control" rows="4" placeholder="Describa su consulta"></textarea></div>
+                <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="f-aviso" required><label class="form-check-label text-none" for="f-aviso" style="text-transform:none;letter-spacing:0;font-weight:300;font-size:13px">He leído y acepto el <a href="aviso-de-privacidad.html" class="k-link">aviso de privacidad</a></label></div></div>
+                <div class="col-12 text-center"><button type="submit" class="btn btn-primary rounded-pill px-5">Enviar consulta</button><p class="small text-muted mt-3 mb-0">¿Detectó una reacción adversa? <a href="farmacovigilancia.html" class="k-link">Repórtela aquí</a>.</p></div>
+              </div>
+          </form>
+          <form id="form-clientes" class="k-card k-form collapse" action="#" method="post" data-bs-parent="#contenedorFormularios"><!-- Se sustituye por shortcode de Contact Form 7 -->
+              <span class="tag-primary mb-3"><span class="dot"></span><span>Clientes</span></span>
+                <h3 class="fs-3 mb-3">Clientes</h3>
+                  <div class="row g-3">
+                    <div class="col-12"><label for="f-nombre">Nombre</label><input id="f-nombre" class="form-control" type="text" autocomplete="name" placeholder="Dr. / Dra. Nombre Apellido" required></div>
+                    <div class="col-12"><label for="f-inst">Institución</label><input id="f-inst" class="form-control" type="text" autocomplete="organization" placeholder="Hospital o clínica"></div>
+                    <div class="col-md-6"><label for="f-tel">Teléfono</label><input id="f-tel" class="form-control" type="tel" autocomplete="tel"></div>
+                    <div class="col-md-6"><label for="f-mail">Correo electrónico</label><input id="f-mail" class="form-control" type="email" autocomplete="email" required></div>
+                    <div class="col-12"><label for="f-tipo">Servicio</label><select id="f-tipo" class="form-select">
+                      <option>Cotización</option>
+                      <option>Solicitud de información</option>
+                      <option>Visita de ejecutivo</option>
+                      <option>Otro</option>
+                      </select></div>
+                    <div class="col-12"><label for="f-msg">Mensaje</label><textarea id="f-msg" class="form-control" rows="4" placeholder="Describa su consulta"></textarea></div>
+                    <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="f-aviso" required><label class="form-check-label text-none" for="f-aviso" style="text-transform:none;letter-spacing:0;font-weight:300;font-size:13px">He leído y acepto el <a href="aviso-de-privacidad.html" class="k-link">aviso de privacidad</a></label></div></div>
+                    <div class="col-12 text-center"><button type="submit" class="btn btn-primary rounded-pill px-5">Enviar consulta</button><p class="small text-muted mt-3 mb-0">¿Detectó una reacción adversa? <a href="farmacovigilancia.html" class="k-link">Repórtela aquí</a>.</p></div>
+                  </div>
+          </form>
+          <form id="form-nuevos-negocios" class="k-card k-form collapse" action="#" method="post" data-bs-parent="#contenedorFormularios"><!-- Se sustituye por shortcode de Contact Form 7 -->
+              <span class="tag-primary mb-3"><span class="dot"></span><span>Nuevos Negocios</span></span>
+                <h3 class="fs-3 mb-3">Nuevos negocios</h3>
+                  <div class="row g-3">
+                    <div class="col-12"><label for="f-nombre">Nombre</label><input id="f-nombre" class="form-control" type="text" autocomplete="name" placeholder="Dr. / Dra. Nombre Apellido" required></div>
+                    <div class="col-12"><label for="f-inst">Institución</label><input id="f-inst" class="form-control" type="text" autocomplete="organization" placeholder="Hospital o clínica"></div>
+                    <div class="col-md-6"><label for="f-tel">Teléfono</label><input id="f-tel" class="form-control" type="tel" autocomplete="tel"></div>
+                    <div class="col-md-6"><label for="f-mail">Correo electrónico</label><input id="f-mail" class="form-control" type="email" autocomplete="email" required></div>
+                    <div class="col-12"><label for="f-tipo">Tipo de negocio o propuesta</label><select id="f-tipo" class="form-select">
+                      <option>Maquila de productos</option>
+                      <option>Desarrollo de nuevos productos</option>
+                      <option>Estrategia de Co-Marketing</option>
+                      <option>Licenciamientos In/Out</option>
+                      <option>Otro</option>
+                      </select></div>
+                    <div class="col-12"><label for="f-msg">Mensaje</label><textarea id="f-msg" class="form-control" rows="4" placeholder="Describa su consulta"></textarea></div>
+                    <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="f-aviso" required><label class="form-check-label text-none" for="f-aviso" style="text-transform:none;letter-spacing:0;font-weight:300;font-size:13px">He leído y acepto el <a href="aviso-de-privacidad.html" class="k-link">aviso de privacidad</a></label></div></div>
+                    <div class="col-12 text-center"><button type="submit" class="btn btn-primary rounded-pill px-5">Enviar consulta</button><p class="small text-muted mt-3 mb-0">¿Detectó una reacción adversa? <a href="farmacovigilancia.html" class="k-link">Repórtela aquí</a>.</p></div>
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ¿QUÉ NECESITAS ENCONTRAR EN KENER? ══ -->
+<section class="padding-section" aria-labelledby="t-find">
+  <div class="container-xxl">
+    <h2 id="t-find" class="fs-4 mb-3">¿Qué necesitas encontrar en Kener?</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+      <div class="col"><a class="finder k-card" href="#especialidades"><i class="bi bi-lungs-fill fs-3"></i> Productos de especialidad <i class="bi bi-arrow-up-right"></i></a></div>
+      <div class="col"><a class="finder k-card" href="#capacidades"><i class="bi bi-hospital-fill fs-3"></i>Capacidades para instituciones y hospitales <i class="bi bi-arrow-up-right"></i></a></div>
+      <div class="col"><a class="finder k-card" href="#nuevos-negocios"><i class="bi bi-people-fill fs-3"></i>Nuevos negocios <i class="bi bi-arrow-up-right"></i></a></div>
+      <div class="col"><a class="finder k-card" href="farmacovigilancia.html"><i class="bi bi-shield-fill-plus fs-3"></i>Farmacovigilancia: reportar un evento <i class="bi bi-arrow-up-right"></i></a></div>
+    </div>
+  </div>
+</section>
+</main>
+<!-- ══ FOOTER ══ -->
+<footer class="k-footer">
+  <div class="container-xxl">
+    <div class="row g-4">
+      <div class="col-6 col-lg-3"><h4>Conoce Kener</h4><ul><li><a href="quienes-somos.html">Quiénes somos</a></li><li><a href="especialidades.html">Especialidades</a></li><li><a href="portafolio.html">Portafolio</a></li><li><a href="eventos.html">Eventos</a></li><li><a href="noticias.html">Noticias / Prensa</a></li></ul></div>
+      <div class="col-6 col-lg-3"><h4>Atención</h4><ul><li><a href="#contacto">Contacto clínico</a></li><li><a href="farmacovigilancia.html">Farmacovigilancia</a></li><li><a href="bolsa-de-trabajo.html">Bolsa de trabajo</a></li><li><a href="#" target="_blank" rel="noopener">Portal de proveedores</a></li><li><a href="aviso-de-privacidad.html">Aviso de privacidad</a></li></ul></div>
+      <div class="col-lg-6 text-lg-end">
+        <img src="img/logo/logo%20kener-01.png" alt="Laboratorios Kener" style="height:56px;width:auto" class="mb-3">
+        <div class="social"><a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a><a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></div>
+      </div>
+    </div>
+  </div>
+  <div class="k-legal">
+    <div class="container-xxl d-flex flex-wrap justify-content-between gap-2">
+      <span>© 2026 Laboratorios Kener®. Todos los derechos reservados.</span>
+      <span><!-- TODO: logotipo Vazol --> Parte de Grupo Vazol</span>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
