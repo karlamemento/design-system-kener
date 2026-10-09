@@ -2,92 +2,92 @@
    KENER — HOJA DE ESTILOS DE LA GUÍA
    Proyecto: Rediseño web Laboratorios Kener · Memento Studio
    ════════════════════════════════════════════════════════════════════
+   Se carga DESPUÉS de bootstrap.min.css: estas reglas ganan la cascada
+   cuando comparten selector y se definen clases propias para lo que
+   Bootstrap no resuelve.
 
-   QUÉ ES ESTE ARCHIVO
-   Contiene TODO el CSS propio de marca que usa guia-estilos-kener.html.
-   No toca ni redefine Bootstrap por completo: se carga DESPUÉS de
-   bootstrap.min.css en el <head>, así que estas reglas ganan la cascada
-   cuando comparten selector con Bootstrap (misma especificidad, orden
-   posterior) y además define clases propias para todo lo que Bootstrap
-   no resuelve (el símbolo K, los degradados, los íconos de especialidad,
-   el encuadre fotográfico, etc.).
+   ORDEN DEL ARCHIVO
+     0. @font-face       → fuentes locales (SIEMPRE fuera de :root)
+     1. :root            → tokens de marca (color, tipografía, radios)
+     2. Base
+     3. Bootstrap → marca (sobreescrituras)
+     4. Utilidades propias (.eyebrow, .section-title, .section-sub)
+     5. Componentes de marca
 
-   CÓMO ESTÁ ORGANIZADO (en este orden, de arriba a abajo):
-     1. :root            → todos los tokens de marca (color, tipografía,
-                            radios, sombras). Es el único lugar que
-                            necesitas tocar para "retemar" el documento.
-     2. Base              → body, encabezados, contenedores.
-     3. Bootstrap →marca  → sobreescritura de .btn-primary, .bg-primary,
-                            .text-primary, .nav-link, .card, .progress...
-                            mismas clases de Bootstrap, colores de Kener.
-     4. Utilidades propias → .eyebrow, .section-title, .section-sub
-                            (usadas en cada sección del documento).
-     5. Componentes de marca → todo lo que Bootstrap no tiene: logo,
-                            hero degradado, swatches de color, tipografía,
-                            íconos de especialidad, marco fotográfico,
-                            espaciado, módulo de aplicación.
-
-   Para la guía completa de edición (qué cambiar y dónde), ver README.md
-   en el mismo directorio que este archivo.
+   CORRECCIONES v1.4
+     - @font-face estaba anidado dentro de :root (CSS inválido, no cargaba).
+     - Variables que no existían: --grad-bio y --grad-profundo (ahora
+       definidas con la paleta oficial) y --sec-sky (era --sec-sky-blue).
+     - Gradientes asignados a background-color o anidados dentro de otro
+       gradiente (.bg-grad, .bg-grad-aqua, .gradient-text, .glass-bg).
    ════════════════════════════════════════════════════════════════════ */
 
 
 /* ────────────────────────────────────────────────────────────────────
+   0. FUENTES — rutas relativas a ESTE archivo (css/ → ../fonts/).
+   Ubuntu no es variable: necesita un archivo por peso.
+   ──────────────────────────────────────────────────────────────────── */
+@font-face{
+  font-family:'Bricolage';
+  src:url('../fonts/BricolageGrotesque-VariableFont.ttf') format('truetype');
+  font-weight:200 800; font-display:swap;
+}
+@font-face{font-family:'Ubuntu'; src:url('../fonts/Ubuntu-Light.ttf') format('truetype');   font-weight:300; font-display:swap;}
+@font-face{font-family:'Ubuntu'; src:url('../fonts/Ubuntu-Regular.ttf') format('truetype'); font-weight:400; font-display:swap;}
+@font-face{font-family:'Ubuntu'; src:url('../fonts/Ubuntu-Medium.ttf') format('truetype');  font-weight:500; font-display:swap;}
+@font-face{font-family:'Ubuntu'; src:url('../fonts/Ubuntu-Bold.ttf') format('truetype');    font-weight:700; font-display:swap;}
+
+
+/* ────────────────────────────────────────────────────────────────────
    1. TOKENS DE MARCA
-   Fuente: Guia_Gráfica.pdf — secciones "03 · El color" y
-   "04 · La tipografía". Cambia un valor aquí y se actualiza en TODO
-   el documento (incluidas las utilidades de Bootstrap sobreescritas
-   más abajo, porque todas leen estas variables).
+   Fuente: Guia_Gráfica.pdf — "03 · El color" y "04 · La tipografía".
    ──────────────────────────────────────────────────────────────────── */
 :root{
   /* ===== Color — Paleta principal ===== */
   --primary:       #005A7B; /* Orient — color principal, logotipo, CTAs */
   --primary-soft:  #7EACBC; /* Soft blue/grey — wordmark, texto sobre oscuro */
-  --primary-slate: #6C89A3; /* uso de apoyo, degradados, fondos medios */
-  --primary-pale:  #B5CCD6; /* uso de apoyo, fondos claros, bordes */
-  --primary-strong:  #062a38; /* uso de apoyo, fondos claros, bordes */
+  --primary-slate: #6C89A3; /* apoyo, degradados, fondos medios */
+  --primary-pale:  #B5CCD6; /* apoyo, fondos claros, bordes */
+  --primary-strong:#062a38; /* apoyo, fondos oscuros */
 
   /* ===== Color — Paleta secundaria (máx. 20% de la composición) ===== */
-  --sec-dark-blue:   #062a38;
-  --sec-jeans-blue:  #1a8db5;
-  --sec-sky-blue: #00bfff;
-  --sec-light-sky:    #5BD6FF;
-  --sec-ice-blue:  #B9EDFF;
-  --sec-aquamarine:   #63FDD6;
+  --sec-dark-blue:  #062a38;
+  --sec-jeans-blue: #1a8db5;
+  --sec-sky-blue:   #00bfff;
+  --sec-light-sky:  #5BD6FF;
+  --sec-ice-blue:   #B9EDFF;
+  --sec-aquamarine: #63FDD6;
 
-  /* ===== Degradados oficiales ("Degradados" en la Guía Gráfica) =====
-     Cada uno se construye combinando dos tonos de la paleta oficial
-     de arriba — nunca se introduce un color nuevo aquí. */
-  --grad-orient:   linear-gradient(140deg, var(--primary) 0%, var(--sec-sky-blue) 100%);
-  --grad-cielo:    linear-gradient(160deg, #FFFFFF 0%, var(--sec-light-sky) 50%);
-  --grad-ice:      linear-gradient(160deg, #FFFFFF 0%, var(--sec-ice-blue) 100%);
-  --grad-aqua:    linear-gradient(160deg, var(--primary) 0%, var(--sec-sky-blue) 50%, var(--sec-aquamarine) 100%);
+  /* ===== Degradados oficiales — solo tonos de la paleta ===== */
+  --grad-orient: linear-gradient(140deg, var(--primary) 0%, var(--sec-sky-blue) 100%);
+  --grad-cielo:  linear-gradient(160deg, #FFFFFF 0%, var(--sec-light-sky) 50%);
+  --grad-ice:    linear-gradient(160deg, #FFFFFF 0%, var(--sec-ice-blue) 100%);
+  --grad-aqua:   linear-gradient(160deg, var(--primary) 0%, var(--sec-sky-blue) 50%, var(--sec-aquamarine) 100%);
 
-  /* ===== Neutros de sistema (derivados de la paleta oficial) =====
-     No están en el PDF; se derivan de --primary para tener texto y
-     fondos legibles. Si cambias --primary, revisa el contraste de
-     --ink e --ink-soft sobre --bg. */
+  /* Auxiliares de fondo (antes sin definir). Textura biofuturista suave
+     y fondo profundo para marcos fotográficos. */
+  --grad-bio:      radial-gradient(circle at 18% 22%, var(--sec-aquamarine) 0%, transparent 42%),
+                   radial-gradient(circle at 82% 74%, var(--sec-sky-blue) 0%, transparent 48%);
+  --grad-profundo: linear-gradient(160deg, var(--sec-dark-blue) 0%, var(--primary) 100%);
+
+  /* ===== Degradado continuo alternado (Blanco -> Ice Blue -> Blanco -> Ice Blue) ===== */
+  --grad-ice-alternate: linear-gradient(
+    135deg,
+    #FFFFFF 0%,
+    var(--sec-ice-blue) 25%,
+    #FFFFFF 100%
+  );
+
+  /* ===== Neutros de sistema (derivados de la paleta oficial) ===== */
   --ink:      #062A38;
   --ink-soft: #4C6F7D;
   --bg:       #F3F9FB;
   --surface:  #FFFFFF;
   --line:     rgba(0,90,123,0.14);
 
-  /* ===== Tipografía — 2 familias Bricolage + Ubuntu  ===== */
-  @font-face {
-      font-family: 'Bricolage';
-      src: url('fonts/BricolageGrotesque-VariableFont.ttf') format('truetype');
-      font-weight: 100 900;
-    } 
-
-    @font-face {
-      font-family: 'Ubuntu';
-      src: url('fonts/Ubuntu-Regular.ttf') format('truetype');
-      font-weight: 300 400 500 700;
-    }
-    
-  --font-text-title: 'Bricolage', system-ui, sans-serif;
-  --font-text: 'Ubuntu', sans-serif;
+  /* ===== Tipografía — Bricolage + Ubuntu ===== */
+  --font-text-title:'Bricolage Grotesque','Bricolage',system-ui,sans-serif;
+  --font-text:'Ubuntu',system-ui,sans-serif;
 
   /* ===== Radios y sombras ===== */
   --r-sm: 10px;
@@ -101,220 +101,203 @@
 /* ────────────────────────────────────────────────────────────────────
    2. BASE
    ──────────────────────────────────────────────────────────────────── */
-body{
-  font-family:var(--font-text);
-  background:var(--bg);
-  color:var(--ink);
+   html {
+  min-height: 100%;
 }
+
+body{
+  font-family:var(--font-text); 
+  /* Aplicación del degradado alternado */
+  background-image: var(--grad-ice-alternate);
+  
+  /* Mantiene el degradado fijo y continuo a lo largo de toda la pantalla y el scroll */
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color:var(--ink); 
+  min-height: 100vh;}
 h1,h2,h3,h4,h5,h6{font-family:var(--font-text-title); font-weight:700; letter-spacing:-0.01em; color:var(--ink);}
 section{border-top:1px solid var(--line);}
 section:first-of-type{border-top:none;}
-.container-xxl{max-width:1200px;} /* ancho de línea cómodo para lectura; Bootstrap trae 1320px por defecto */
+.container-xxl{max-width:1200px;}
 
-.text-bricolage{font-family: var(--font-text-title);}
-.text-ubuntu{font-family: var(--font-text);}
+.text-bricolage{font-family:var(--font-text-title);}
+.text-ubuntu{font-family:var(--font-text);}
+
 
 /* ────────────────────────────────────────────────────────────────────
    3. SOBREESCRITURA DE UTILIDADES BOOTSTRAP → PALETA DE MARCA
-   Mismo nombre de clase que Bootstrap, mismo comportamiento (hover,
-   focus, disabled...), pero con los colores de Kener. Cualquier
-   componente nuevo de Bootstrap que agregues (ej. otro .btn-primary
-   o .badge) hereda esto automáticamente sin tocar nada más.
    ──────────────────────────────────────────────────────────────────── */
-.btn-primary{ 
-  --bs-btn-bg:var(--primary); 
+.btn-primary{
+  --bs-btn-bg:var(--primary);
   --bs-btn-border-color:var(--primary);
-  --bs-btn-hover-bg:var(--sec-jeans-blue); 
+  --bs-btn-hover-bg:var(--sec-jeans-blue);
   --bs-btn-hover-border-color:var(--sec-jeans-blue);
-  --bs-btn-active-bg:var(--sec-jeans-blue); 
+  --bs-btn-active-bg:var(--sec-jeans-blue);
   --bs-btn-active-border-color:var(--sec-jeans-blue);
-  --bs-btn-disabled-bg:var(--primary); 
-  --bs-btn-disabled-border-color:var(--primary); 
+  --bs-btn-disabled-bg:var(--primary);
+  --bs-btn-disabled-border-color:var(--primary);
   font-weight:500;}
-.btn-outline-primary{ 
-  --bs-btn-color:var(--primary); 
+.btn-outline-primary{
+  --bs-btn-color:var(--primary);
   --bs-btn-border-color:var(--primary);
-  --bs-btn-hover-bg:var(--primary); 
+  --bs-btn-hover-bg:var(--primary);
   --bs-btn-hover-border-color:var(--primary);
-  --bs-btn-active-bg:var(--primary); 
-  --bs-btn-active-border-color:var(--primary); 
+  --bs-btn-active-bg:var(--primary);
+  --bs-btn-active-border-color:var(--primary);
   font-weight:500;}
-.btn-outline-secondary{ 
-  --bs-btn-color:var(--primary-soft); 
+.btn-outline-secondary{
+  --bs-btn-color:var(--primary-soft);
   --bs-btn-border-color:var(--primary-soft);
-  --bs-btn-hover-bg:var(--primary-soft); 
-  --bs-btn-hover-border-color:var(--primary-soft); 
+  --bs-btn-hover-bg:var(--primary-soft);
+  --bs-btn-hover-border-color:var(--primary-soft);
   font-weight:500;}
-.btn-secondary{ 
-  --bs-btn-bg:var(--primary-soft); 
-  --bs-btn-border-color:var(--primary-soft); 
-  --bs-btn-color:#FFFFFF; 
-    --bs-btn-hover-bg:var(--primary-slate); 
-  --bs-btn-hover-border-color:var(--primary-slate); 
+.btn-secondary{
+  --bs-btn-bg:var(--primary-soft);
+  --bs-btn-border-color:var(--primary-soft);
+  --bs-btn-color:#FFFFFF;
+  --bs-btn-hover-bg:var(--primary-slate);
+  --bs-btn-hover-border-color:var(--primary-slate);
   font-weight:500;}
 .btn{font-family:var(--font-text); font-size:14.5px;}
 
-/* .btn-gradient no es de Bootstrap: es la variante degradada para CTAs
-   destacados (ver README.md § Componentes propios). */
+/* .btn-gradient no es de Bootstrap: CTA destacado sobre fondos oscuros. */
 .btn-gradient{background:var(--grad-orient); color:#fff; border:none; font-weight:500; box-shadow:0 10px 22px rgba(0,90,123,.28);}
 .btn-gradient:hover{color:#fff; filter:brightness(1.08);}
 
 .text-primary{color:var(--primary) !important;}
 .text-sky{color:var(--sec-sky-blue) !important;}
 .bg-primary{background-color:var(--primary) !important;}
-.bg-grad{background-color: var(--grad-orient) !important;}
-.bg-grad-aqua{background-color: var(--grad-aqua)!important;}
+.bg-grad{background:var(--grad-orient) !important;}          /* antes: background-color */
+.bg-grad-aqua{background:var(--grad-aqua) !important;}       /* antes: background-color */
 .bg-primary-pale{background-color:var(--primary-pale) !important;}
-.bg-card-primary{background: var(--grad-cielo)!important;}
-.bg-card-secondary{background: var(--grad-ice)!important;}
-.bg-aqua{background-color: var(--sec-aquamarine)!important;}
-.bg-sky{background-color: var(--sec-sky-blue)!important;}
+.bg-card-primary{background:var(--grad-cielo) !important;}
+.bg-card-secondary{background:var(--grad-ice) !important;}
+.bg-aqua{background-color:var(--sec-aquamarine) !important;}
+.bg-sky{background-color:var(--sec-sky-blue) !important;}
+.bg-ice{background: var(--grad-ice);}
 .border-primary{border-color:var(--primary) !important;}
-.border-aqua{border: 1px solid var(--sec-aquamarine)!important;}
-.border-sky{border: 1px solid var(--sec-sky-blue)!important;}
+.border-aqua{border:2px solid var(--sec-aquamarine) !important;}
+.border-sky{border:2px solid var(--sec-sky-blue) !important;}
 .text-bg-primary{background-color:var(--primary) !important; color:#fff !important;}
 .nav-link{color:var(--ink-soft); font-weight:500; font-size:14px;}
 .nav-link:hover, .nav-link.active{color:var(--primary);}
 .navbar-toggler{border-color:var(--line);}
 .navbar-toggler:focus{box-shadow:0 0 0 .2rem rgba(0,90,123,.2);}
-.card-border-grad{border-bottom:5px solid var(--primary) !important; }
-.page-link{color: var(--primary) !important;}
+.card-border-grad{border-bottom:5px solid var(--primary) !important;}
+.page-link{color:var(--primary) !important;}
+.link-primary{color:var(--primary) !important; text-decoration-color:var(--primary) !important ;}
 
-  /* Vivid background to help the glass effect stand out */
-.glass-bg {background: linear-gradient(135deg, var(--primary) 0%, var(--sec-sky)100%);}
-.gradient-text {
-  background-image: linear-gradient(45deg, var(--grad-aqua));
-  background-clip: text;
-  -webkit-background-clip: text; 
-  color: transparent;
-  display: inline-block; 
+/* Fondo vívido para que el efecto glass destaque (antes: var(--sec-sky)100%) */
+.glass-bg{background:linear-gradient(135deg, var(--primary) 0%, var(--sec-sky-blue) 100%);}
+.gradient-text{
+  background-image:var(--grad-aqua);                         /* antes: gradient anidado */
+  background-clip:text; -webkit-background-clip:text;
+  color:transparent; display:inline-block;
 }
 
-/* Core Glassmorphism Card Style */
-.glass-card {background: rgba(255, 255, 255, 0.4) !important; backdrop-filter: blur(4px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);border: 1px solid rgba(255, 255, 255, 0.25) !important;border-radius: 16px;}
-.alert-aqua{border-radius: 16px; border-left: 4px solid var(--sec-aquamarine);}
-.border-left-aqua{border-radius: 16px; border-left: 4px solid var(--sec-aquamarine);}
-.border-left-sky{border-radius: 16px; border-left: 4px solid var(--sec-sky-blue);}
-.border-bottom-primary{border-radius: 16px; border-bottom: 4px solid var(--primary);}
+/* Glassmorphism */
+.glass-card{background:rgba(255,255,255,0.4) !important; backdrop-filter:blur(10px) saturate(120%);
+  -webkit-backdrop-filter:blur(10px) saturate(120%); border:1px solid rgba(255,255,255,0.25) !important; border-radius:16px;}
+.alert-aqua{border-radius:16px; border-left:4px solid var(--sec-aquamarine);}
+.border-left-aqua{border-radius:16px; border-left:4px solid var(--sec-aquamarine);}
+.border-left-sky{border-radius:16px; border-left:4px solid var(--sec-sky-blue);}
+.border-bottom-primary{border-radius:16px; border-bottom:4px solid var(--primary);}
 
-.background-image{background-image: url("../img/biofuturism-cells.jpg");/*background-color: var(--primary-pale)*/}
+.background-image{background-image:url("../img/biofuturism-cells.jpg");}
 .progress{background-color:var(--bg);}
 
-/*Form Fields*/
-.label-text{ color: var(--primary-pale); font-size: 12px;}
-
+/* Campos de formulario (sobre fondo oscuro) */
+.label-text{color:var(--primary-pale); font-size:12px;}
 .field input, .field select, .field textarea{
-    width: 100%;
-    font-family: var(--font-text);
-    font-size: 14.5px;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, .2);
-    border-radius: 10px;
-    padding: 12px 14px;
-    background: rgba(255, 255, 255, .07);
-    outline: none;
-    transition: border-color .15s ease;
+  width:100%; font-family:var(--font-text); font-size:14.5px; color:#fff;
+  border:1px solid rgba(255,255,255,.2); border-radius:10px; padding:12px 14px;
+  background:rgba(255,255,255,.07); outline:none; transition:border-color .15s ease;
 }
 option{
-  width: 100%;
-    font-family: var(--font-text);
-    font-size: 14.5px;
-    color: var(--sec-dark-blue);
-    border: 1px solid var(--sec-sky-blue);
-    border-radius: 10px;
-    padding: 12px 14px;
-    background: rgba(255, 255, 255, .07);
+  width:100%; font-family:var(--font-text); font-size:14.5px; color:var(--sec-dark-blue);
+  border:1px solid var(--sec-sky-blue); border-radius:10px; padding:12px 14px;
+  background:rgba(255,255,255,.07);
 }
-.field input:focus, .field select:focus, .field textarea:focus {
-    border-color: var(--sec-sky-blue);
-}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--sec-sky-blue);}
+
 
 /* ────────────────────────────────────────────────────────────────────
    4. UTILIDADES PROPIAS DE LA GUÍA
-   Se repiten en cada sección del documento (eyebrow = etiqueta
-   numerada "01 · Identidad verbal", section-title, section-sub).
    ──────────────────────────────────────────────────────────────────── */
 .eyebrow{
   font-family:var(--font-text); font-size:12px; font-weight:500;
   letter-spacing:0.12em; text-transform:uppercase; color:var(--primary);
   display:flex; align-items:center; gap:10px; margin-bottom:16px;
 }
-.eyebrow::before{content:""; width:22px; height:4px; background:var(--grad-aqua); display:inline-block; border-radius: 2px;}
+.eyebrow::before{content:""; width:22px; height:4px; background:var(--grad-aqua); display:inline-block; border-radius:2px;}
 .section-title em{font-style:normal; font-weight:300; color:var(--ink-soft);}
 .section-sub{color:var(--ink-soft); max-width:640px; font-weight:300;}
+.padding-section{padding:88px 0;}
 
 
 /* ────────────────────────────────────────────────────────────────────
    5. COMPONENTES DE MARCA
-   Elementos sin equivalente directo en Bootstrap. Agrupados por la
-   sección del documento donde aparecen — usa buscar (Ctrl/Cmd+F) el
-   nombre de sección en mayúsculas para saltar directo.
    ──────────────────────────────────────────────────────────────────── */
 
-/* — Logotipo (navbar, sección "Logotipo") — */
+/* — Logotipo — */
 .logo-mark{display:flex; align-items:center; gap:10px;}
 .wordmark{font-weight:700; letter-spacing:.14em; color:var(--primary-soft);}
 .logo-panel{border-radius:var(--r-lg); padding:44px; min-height:220px;}
+.k-card{background:rgba(255,255,255,.78); backdrop-filter:blur(10px); border:1px solid #fff; border-radius:var(--r-lg); box-shadow:var(--shadow-soft);}
 
 /* — Hero (portada) — */
 .hero-visual{
-  border-radius:var(--r-lg);
-  background:var(--grad-ice);
+  border-radius:var(--r-lg); background:var(--grad-ice);
   position:relative; overflow:hidden; min-height:380px;
   display:flex; flex-direction:column; justify-content:space-between; padding:28px;
 }
-.hero-visual::before{content:""; position:absolute; inset:0; background-image:var(--grad-bio); opacity:.35; mix-blend-mode:screen;}
+.hero-visual::before{content:""; position:absolute; inset:0; background-image:var(--grad-bio); opacity:.35; mix-blend-mode:screen; pointer-events:none;}
 .dna-svg{position:absolute; right:-30px; top:-10px; width:220px; height:420px; opacity:.28;}
 .tag-primary{
-  position:relative; align-self:flex-start; z-index: 1;
-  background: rgba(255,255,255,.18); backdrop-filter:blur(8px);
+  position:relative; align-self:flex-start; z-index:1;
+  background:rgba(99,253,214,.18); backdrop-filter:blur(8px);
   border:1px solid var(--sec-aquamarine); border-radius:50px;
   padding:4px 16px; font-size:11px; font-weight:500; color:var(--primary);
   display:flex; align-items:center; gap:8px;
-  text-transform: uppercase; letter-spacing: 1px;
+  text-transform:uppercase; letter-spacing:1px;
 }
-
-.tag-position-50{
-  position: relative; bottom: 50px;
+.tag-secondary{
+  position:relative; align-self:flex-start; z-index:1;
+  background:rgba(0,191,255,.18); backdrop-filter:blur(8px);
+  border:1px solid var(--sec-sky-blue); border-radius:50px;
+  padding:4px 16px; font-size:11px; font-weight:500; color:var(--primary);
+  display:flex; align-items:center; gap:8px;
+  text-transform:uppercase; letter-spacing:1px;
 }
+.tag-position-50{position:relative; bottom:50px;}
 .tag-primary::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--sec-aquamarine);}
+.tag-secondary::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--sec-sky-blue);}
 
-
-
-
-.photo-wrap{position:relative;z-index:1}
-.photo-frame{border-radius:var(--r-lg);height:480px;width:480px;overflow:hidden;position:relative;box-shadow:0 24px 50px rgba(0,15,25,.5)}
-.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
-
-.float-chip{position:absolute;left:-18px;bottom:-18px;}
-.float-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--sec-aquamarine)}
-.float-chip span{font-family:var(--font-text);font-size:11.5px;color:#fff}
-
+.photo-wrap{position:relative; z-index:1;}
+.float-chip{position:absolute; left:-18px; bottom:-18px;}
+.float-chip .dot{width:8px; height:8px; border-radius:50%; background:var(--sec-aquamarine);}
+.float-chip span{font-family:var(--font-text); font-size:11.5px; color:#fff;}
 
 .hero-quote{position:relative; color:var(--primary);}
 .hero-quote p{font-size:20px; font-weight:500; line-height:1.35; margin-bottom:10px;}
 .hero-quote span{font-size:11px; font-weight:300; letter-spacing:.08em; text-transform:uppercase; color:var(--primary);}
 
-/* — Identidad (tarjetas de valores ADN) — */
+/* — Identidad (tarjetas ADN) — */
 .adn-pill{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-md); padding:16px 14px; text-align:center;}
 .adn-pill .n{font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--primary); margin-bottom:4px;}
 .adn-pill .d{font-size:11px; color:var(--ink-soft); font-weight:300; line-height:1.4;}
 
-/* — Color: swatches —
-   .swatch-card es el patrón compartido por la paleta secundaria Y los
-   degradados (mismo diseño de tarjeta: franja de color + pie con info).
-   .swatch-main es la variante más grande para la paleta principal. */
+/* — Color: swatches — */
 .swatch-card{border-radius:var(--r-md); overflow:hidden; box-shadow:var(--shadow-soft); background:var(--surface); height:100%;}
 .swatch-card .fill{height:76px;}
 .swatch-card .info{padding:8px 10px; font-size:10.5px; color:var(--ink-soft); font-weight:400; text-align:center; line-height:1.5;}
 .swatch-card .info b{display:block; color:var(--ink); font-weight:500; font-size:11px;}
-
 .swatch-main .fill{height:130px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px;}
 .swatch-main .info{padding:14px 16px; font-size:11px; color:var(--ink-soft); font-weight:300; line-height:1.6; text-align:left;}
 .swatch-main .info b{display:block; color:var(--ink); font-weight:500; font-size:12px;}
 
-/* — Tipografía: specimen de fuente y escala — */
+/* — Tipografía — */
 .type-specimen{border-radius:var(--r-lg); box-shadow:var(--shadow-soft);}
 .type-label{font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.1em; color:var(--primary); margin-bottom:12px;}
 .weight-list div{font-size:19px; color:var(--ink);}
@@ -324,8 +307,7 @@ option{
 .scale-row:last-child{border-bottom:none;}
 .scale-meta{font-size:12px; color:var(--ink-soft); white-space:nowrap; font-weight:300;}
 
-/* — Iconografía: blobs de especialidad (adaptación digital de los
-   "Identificadores" 3D de la Guía Gráfica) — */
+/* — Iconografía: blobs de especialidad — */
 .icon-blob{
   width:76px; height:76px; margin:0 auto 14px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
@@ -333,28 +315,25 @@ option{
 }
 .icon-blob svg{width:32px; height:32px;}
 
-/* — Fotografía: marco de encuadre de curvas + textura biofuturista — */
+/* — Fotografía: marco de curvas + textura biofuturista — */
 .photo-frame{
-  border-radius:var(--r-lg); overflow:hidden; height:320px; position:relative;
+  border-radius:var(--r-lg); overflow:hidden; position:relative;
   background:var(--grad-profundo); box-shadow:var(--shadow-mid);
-  clip-path: path('M0,40 C0,18 18,0 40,0 L280,0 C302,0 320,18 320,40 L320,240 C320,290 290,320 240,320 L40,320 C18,320 0,302 0,280 Z');
+  height:480px; width:480px; max-width:100%;
 }
-.photo-frame::after{
-  position:absolute; bottom:18px; left:24px; right:24px;
-  font-size:11px; color:rgba(255,255,255,.75); font-weight:300;
-}
+.photo-frame img{width:100%; height:100%; object-fit:cover; display:block;}
 .photo-frame .bio-texture{position:absolute; inset:0; background-image:var(--grad-bio); opacity:.7; filter:blur(6px);}
 .photo-notes li{font-size:13.5px; color:var(--ink-soft); font-weight:300; margin-bottom:14px; padding-left:20px; position:relative;}
 .photo-notes li::before{content:"—"; position:absolute; left:0; color:var(--primary);}
 
-/* — Confianza: puntito decorativo de certificaciones — */
-.cert-dot{width:8px; height:8px; border-radius:50%; background:var(--sec-sky); flex-shrink:0;}
+/* — Confianza — */
+.cert-dot{width:8px; height:8px; border-radius:50%; background:var(--sec-sky-blue); flex-shrink:0;}   /* antes: --sec-sky */
 
-/* — Espaciado y radios: bloques de muestra de la escala — */
+/* — Espaciado y radios — */
 .space-block{background:var(--primary); border-radius:6px;}
 .space-label{font-size:12px; color:var(--ink-soft); width:60px; font-weight:300;}
 
-/* — Aplicación: módulo de homepage de ejemplo — */
+/* — Aplicación: módulo de homepage — */
 .app-mock{border-radius:var(--r-lg); overflow:hidden;}
 .app-hero-visual{border-radius:var(--r-lg); background:var(--grad-ice); padding:14px;}
 .app-esp-card{background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border-radius:var(--r-md); padding:16px 12px; text-align:center;}
@@ -365,23 +344,117 @@ option{
 footer{color:var(--ink-soft);}
 
 
-/*Especialidades*/
+/* — Especialidades — */
 .esp-analgesia{background-color:#007279;}
 .esp-anestesia{background-color:#59c3e3;}
 .esp-antihemorragico{background-color:#782700;}
-.esp-antivirales{background-color: #b38514;}
-.esp-antimicotico{background-color: #fda3c2;}
-.esp-cardiovascular{background-color: #e1261d;}
+.esp-antivirales{background-color:#b38514;}
+.esp-antimicotico{background-color:#fda3c2;}
+.esp-cardiovascular{background-color:#e1261d;}
 .esp-gastrointestinal{background-color:#f08019;}
-.esp-hematopoyeticos{background-color: #881337;}
-.esp-infectologia{background-color: #00aca6;}
+.esp-hematopoyeticos{background-color:#881337;}
+.esp-infectologia{background-color:#00aca6;}
 .esp-inmunologicos{background-color:#00af68;}
 .esp-oftalmologia{background-color:#f49a69;}
 .esp-oncologia{background-color:#7e3a8e;}
 .esp-SNC{background-color:#3f2683;}
 .esp-urgencias{background-color:#ab182d;}
 
+/* ────────────────────────────────────────────────────────────────────
+   6. Páginas Web
+   ──────────────────────────────────────────────────────────────────── *
+/*Home page*/
+/* NAV */
+.hero-bg{background:var(--grad-ice);}
+.k-nav{background:rgba(243,249,251,.86); backdrop-filter:blur(14px);}
+.k-nav .navbar-brand img{height:46px; width:auto;}
+.k-nav .nav-link-portal{background:rgba(0,90,123,.08); border-radius:50px; padding-inline:14px!important;}
+.k-link:hover{color:var(--sec-jeans-blue);}
 
+/* HERO — marcos de curvas*/
+.hero{padding:56px 0 72px; position:relative; overflow:hidden; padding:56px 0 72px; position:relative; overflow:hidden; }
+.hero h1{font-size:clamp(2.4rem,5vw,3.6rem); line-height:1.05; letter-spacing:-.02em; font-weight:700;}
+.hero h1 span{font-weight:300; color:var(--primary);}
+.frame{position:relative; overflow:hidden; border-radius:150px 150px 150px 150px; height:540px; box-shadow:var(--shadow-mid);}
+.frame.alt{border-radius:26px 150px 26px 150px; margin-top:56px;}
+.frame img{width:100%; height:100%; object-fit:cover; display:block;}
+.frame .tag-primary{position:absolute; background:rgba(255,255,255,.88); box-shadow:var(--shadow-soft);}
+.t-top{top:22px; left:55%; transform:translateX(-50%); white-space:nowrap;}
+.t-bot{bottom:22px; left:85%; transform:translateX(-50%); white-space:nowrap;}
+.element-z-index{position: absolute; z-index: 1;}
+.hero-dna{position:absolute;top:-40px;left:-20px;width:260px;height:640px;opacity:1;pointer-events:none}
 
+/* CERTIFICACIONES */
+.seal{width:68px; height:68px; flex:none; border-radius:50%; border:2px solid var(--primary); color:var(--primary); display:grid; place-content:center; text-align:center; font:700 11px/1.1 var(--font-text-title); box-shadow:inset 0 0 0 4px #fff, inset 0 0 0 5px var(--primary-pale);}
+.seal small{display:block; font-size:9px; font-weight:500;}
+.card-rounded-white{background:rgba(255,255,255,.78); backdrop-filter:blur(10px); border:1px solid #fff; border-radius:var(--r-lg);}
 
+/* CONFIANZA */
+.span-border{border-right: 2px solid var(--primary-soft);}
 
+/* ESPECIALIDADES */
+.card-esp{padding:36px; display:flex; flex-direction:column; justify-content:space-between; background:var(--grad-ice); border:1px solid #fff; border-radius:var(--r-lg); box-shadow:var(--shadow-soft);}
+.bg-card-secondary img{width:min(260px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
+.esp-row{display:flex; align-items:center; gap:18px; padding:18px 22px; border-radius:var(--r-md); border-bottom:5px solid var(--primary); transition:transform .2s, box-shadow .2s; color:inherit; text-decoration:none;}
+.esp-row:hover{transform:translateY(-3px); box-shadow:var(--shadow-mid); color:inherit;}
+.esp-row img{width:84px; height:84px; object-fit:contain; flex:none;}
+.esp-row h3{font-size:1.2rem; margin:6px 0 2px;}
+
+/* LOGROS */
+.stat{padding:32px 24px; text-align:center; height:100%;}
+.stat .n{font:800 4rem/1 var(--font-text-title); letter-spacing:-.04em; color:var(--primary);}
+.stat h3{font-size:1.05rem; margin:10px 0 6px;}
+
+/* QUIÉNES SOMOS */
+.team-photo{border-radius:26px 150px 26px 26px; overflow:hidden; box-shadow:var(--shadow-mid); aspect-ratio:4/4.4;}
+.team-photo img{width:100%; height:100%; object-fit:cover;}
+
+.timeline{list-style:none; margin:0; padding:0 0 0 30px; border-left:2px solid var(--primary);}
+.timeline li{position:relative; padding-bottom:26px;}
+.timeline li::before{content:""; position:absolute; left:-39px; top:4px; width:16px; height:16px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 5px var(--bg);}
+.timeline b{font:700 1.05rem var(--font-text-title); color:var(--sec-sky-blue);}
+.value{text-align:center;}
+.value .ic{width:72px; height:72px; margin:0 auto 12px; border-radius:50%; border:1.5px solid var(--sec-sky-blue); display:grid; place-items:center; font-size:1.6rem; color:var(--primary); background:#fff;}
+.value h3{font-size:1.05rem;}
+
+/* CTA CATÁLOGO */
+.cta-cat{background:linear-gradient(120deg,var(--sec-dark-blue),var(--primary) 55%,var(--sec-jeans-blue)); color:#fff; padding:56px 0;}
+.cta-cat .btn-gradient{border:1px solid rgba(255,255,255,.45);}
+
+/* NOTICIAS Y AGENDA */
+.news{overflow:hidden; height:100%; display:flex; flex-direction:column; border-radius:var(--r-lg); border-bottom:4px solid var(--sec-aquamarine);}
+.news img{width:100%; height:190px; object-fit:cover;}
+.news .tag-primary{margin:16px 0 0 20px;}
+.news .body{padding:12px 24px 24px; display:flex; flex-direction:column; flex:1;}
+.news h3{font-size:1.05rem; line-height:1.3;}
+.news .k-link{margin-top:auto; padding-top:12px;}
+.event{padding:24px; height:100%; display:flex; flex-direction:column; gap:10px; border-left:4px solid var(--sec-sky-blue);}
+.date{width:62px; padding:8px 0; border-radius:12px; background:var(--primary); color:#fff; text-align:center; font:800 1.6rem/1 var(--font-text-title);}
+.date small{display:block; font:500 10px var(--font-text); letter-spacing:.1em; text-transform:uppercase;}
+
+/* CONTACTO CLÍNICO */
+.contact-info{border-radius:var(--r-lg); color:#fff; padding:44px 40px; height:100%; background:linear-gradient(rgba(0,90,123,.93),rgba(0,90,123,.93));}
+.contact-item{display:flex; gap:14px; align-items:center; padding:14px 18px; margin-top:14px; border-radius:var(--r-md); background:#fff; color:var(--ink); text-decoration:none;}
+.contact-item i{width:42px; height:42px; flex:none; display:grid; place-items:center; border-radius:10px; background:var(--primary); color:#fff; font-size:1.1rem;}
+.contact-item small{display:block; color:var(--ink-soft);}
+.contact-item b{font-weight:500;}
+.k-form{padding:36px;}
+.k-form label{font-size:12px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--primary); margin-bottom:4px;}
+.k-form .form-control,.k-form .form-select{border:1.5px solid var(--primary-pale); border-radius:10px; font-size:14.5px; padding:10px 14px; background-color:rgba(255,255,255,.9);}
+.k-form .form-control:focus,.k-form .form-select:focus{border-color:var(--primary); box-shadow:0 0 0 .2rem rgba(0,90,123,.15);}
+.k-form .form-check-input:checked{background-color:var(--primary); border-color:var(--primary);}
+
+/* ¿QUÉ NECESITAS ENCONTRAR? */
+.finder{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 22px; border-radius:var(--r-md); text-decoration:none; color:var(--ink); height:100%; font-weight:500; transition:background .2s;}
+.finder:hover{background:#fff; color:var(--primary);}
+.finder i{color:var(--primary);}
+
+/* FOOTER */
+.k-footer{border-top:1px solid var(--line); padding:56px 0 0; background:#fff;}
+.k-footer h4{font-size:1rem; color:var(--primary);}
+.k-footer ul{list-style:none; padding:0; margin:0;}
+.k-footer li{margin-bottom:8px;}
+.k-footer a{color:var(--ink-soft); text-decoration:none;}
+.k-footer a:hover{color:var(--primary);}
+.k-footer .social a{width:40px; height:40px; display:inline-grid; place-items:center; border-radius:10px; background:var(--bg); color:var(--primary); margin-right:6px;}
+.k-legal{background:var(--primary); color:rgba(255,255,255,.8); padding:18px 0; margin-top:48px; font-size:13px;}
