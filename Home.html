@@ -37,7 +37,8 @@
   <main id="inicio" >
   <!-- ══ HERO ══ -->
   <div class="hero" >
-    <div class="container-xxl" ><svg class="hero-dna" viewBox="0 0 120 280" aria-hidden="true"><g fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round"><path d="M20 10 C60 40 60 60 20 90 C-20 120 -20 140 20 170 C60 200 60 220 20 250" opacity="0.6"></path><path d="M100 10 C60 40 60 60 100 90 C140 120 140 140 100 170 C60 200 60 220 100 250" opacity="0.6"></path><path d="M20 10 L100 10M23 40 L97 40M28 70 L92 70M20 90 L100 90M28 120 L92 120M23 150 L97 150M20 170 L100 170M28 200 L92 200M23 230 L97 230M20 250 L100 250" opacity="0.35"></path></g></svg>
+    <div class="container-xxl" >
+      <svg class="hero-dna" viewBox="0 0 120 280" aria-hidden="true"><g fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round"><path d="M20 10 C60 40 60 60 20 90 C-20 120 -20 140 20 170 C60 200 60 220 20 250" opacity="0.6"></path><path d="M100 10 C60 40 60 60 100 90 C140 120 140 140 100 170 C60 200 60 220 100 250" opacity="0.6"></path><path d="M20 10 L100 10M23 40 L97 40M28 70 L92 70M20 90 L100 90M28 120 L92 120M23 150 L97 150M20 170 L100 170M28 200 L92 200M23 230 L97 230M20 250 L100 250" opacity="0.35"></path></g></svg>
         <div class="row g-5 align-items-center">
           <div class="col-lg-6">
             <div class="eyebrow">Laboratorio mexicano · Desde 1989</div>
@@ -49,15 +50,15 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="row g-3">
-                <div class="col-6">
+            <div class="row g-3 position-relative">
+                <div class="col-6 ">
                     <div class="glass-card glass-bg shadow-sm text-primary p-2 my-4 element-z-index t-top">
                       <div class="d-flex align-items-center gap-3">
                         <div class="bg-white text-primary border-sky shadow-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
                           <i class="bi bi-capsule"></i>
                         </div>
                         <div class="fw-bold">
-                          <h5 class="card-title mb-1 fs-6">+1000</h5>
+                          <span class="card-title mb-1 fs-6">+1000</span>
                           <p class="mb-0 small opacity-75 fs-bold">Productos especializados</p>
                         </div>
                       </div>
@@ -72,7 +73,7 @@
                           <i class="bi bi-h-circle-fill"></i>
                         </div>
                         <div class="fw-bold">
-                          <h5 class="card-title mb-1 fs-6">+140</h5>
+                          <span class="card-title mb-1 fs-6">+140</span>
                           <p class="mb-0 small opacity-75 fs-bold">Hospitales atendidos</p>
                         </div>
                       </div>
@@ -165,17 +166,36 @@
       <h2 id="t-logros">Capacidades que respaldan nuestra evolución</h2>
       <p class="k-lead mb-5">Combinamos experiencia, talento, manufactura y presencia nacional para responder a las necesidades de un entorno hospitalario cada vez más exigente.</p>
       <div class="row g-4 justify-content-center">
-        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n">+140</div><h3>Productos registrados</h3><p class="small text-muted mb-0">Con registro sanitario COFEPRIS vigente.</p></div></div>
-        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n">+1000</div><h3>hospitales públicos y privados</h3><p class="small text-muted mb-0">Atendidos con distribución a nivel nacional.</p></div></div>
-        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n">+500</div><h3>Colaboradores</h3><p class="small text-muted mb-0">Al servicio de la salud hospitalaria en México.</p></div></div>
+        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n" data-target="140">+0</div><h3>Productos registrados</h3><p class="small text-muted mb-0">Con registro sanitario COFEPRIS vigente.</p></div></div>
+        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n" data-target="1000">+0</div><h3>hospitales públicos y privados</h3><p class="small text-muted mb-0">Atendidos con distribución a nivel nacional.</p></div></div>
+        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n" data-target="500">+0</div><h3>Colaboradores</h3><p class="small text-muted mb-0">Al servicio de la salud hospitalaria en México.</p></div></div>
       </div>
-      <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-3 mt-5 mb-0" aria-label="Instituciones que confían en Kener">
-        <li class="tag-primary"><span class="dot"></span><span>Hospital Ángeles</span></li>
-        <li class="tag-primary"><span class="dot"></span><span>Médica Sur</span></li>
-        <li class="tag-primary"><span class="dot"></span><span>Christus Muguerza</span></li>
-        <li class="tag-primary"><span class="dot"></span><span>TecSalud</span></li>
-        <li class="tag-primary"><span class="dot"></span><span>Centro Médico ABC</span></li>
-      </ul>
+      <div class="logo-marquee-container" aria-label="Instituciones que confían en Kener">
+  <div class="logo-marquee-track">
+    <!-- Grupo 1 de logos -->
+    <ul class="logo-marquee-list list-unstyled d-flex align-items-center gap-5 mb-0">
+      <li><img src="img/hospital_angeles-mrafkaiv.png" alt="Hospital Ángeles" width="128" height="auto"></li>
+      <li><img src="img/abc-logo-mrafksny.webp" alt="Centro Médico ABC" width="auto" height="100"></li>
+      <li><img src="img/medicasur-logo-mrafm44k.png" alt="Médica Sur" width="128" height="auto"></li>
+      <li><img src="img/logo-tecsalud-mrafllbt.webp" alt="TecSalud" width="128" height="auto"></li>
+      <li><img src="img/imss_logosimbolo-mraff2tm.png" alt="IMSS" width="auto" height="100"></li>
+      <li><img src="img/issste_logo-mrafel0m.png" alt="ISSSTE" width="128" height="auto"></li>
+      <li><img src="img/logo_petroleos_mexicanos-mrafjlhw.png" alt="PEMEX" width="128" height="auto"></li>
+    </ul>
+    
+    <!-- Grupo 2 de logos (Duplicado exacto para crear el efecto continuo sin cortes) -->
+    <ul class="logo-marquee-list list-unstyled d-flex align-items-center gap-5 mb-0" aria-hidden="true">
+      <li><img src="img/hospital_angeles-mrafkaiv.png" alt="" width="128" height="auto"></li>
+      <li><img src="img/abc-logo-mrafksny.webp" alt="" width="auto" height="100"></li>
+      <li><img src="img/medicasur-logo-mrafm44k.png" alt="" width="128" height="auto"></li>
+      <li><img src="img/logo-tecsalud-mrafllbt.webp" alt="" width="128" height="auto"></li>
+      <li><img src="img/imss_logosimbolo-mraff2tm.png" alt="" width="auto" height="100"></li>
+      <li><img src="img/issste_logo-mrafel0m.png" alt="" width="128" height="auto"></li>
+      <li><img src="img/logo_petroleos_mexicanos-mrafjlhw.png" alt="" width="128" height="auto"></li>
+    </ul>
+  </div>
+</div>
+      
     </div>
   </section>
 
@@ -190,12 +210,28 @@
           <div class="team-photo"><img src="img/team-people-laboratory.jpg" alt="Equipo de Laboratorios Kener en planta"></div>
         </div>
         <div class="col-lg-6">
-          <ol class="timeline">
-            <li><b>1960</b><p class="mb-0">Fundación de Grupo Kener naciendo con el compromiso de ofrecer soluciones farmacéuticas de calidad para el sector salud.</p></li>
-            <li><b>1999</b><p class="mb-0">Expansión y reubicación de nuestras instalaciones en Toluca, optimizando operaciones y mejorando nuestra logística.</p></li>
-            <li><b>2024</b><p class="mb-0">Incorporación a Grupo Vazol, que amplía la capacidad de manufactura y distribución.</p></li>
-            <li><b>2025</b><p class="mb-0">Kener inicia una vez más, una etapa de rápido crecimiento y expansión de planta productiva con la mayor y mejor tecnología disponible a nivel mundial.</p></li>
-            <li><b>2026</b><p class="mb-0">Inauguración de nuevas oficinas corporativas, para fomentar una cultura y talento de excelencia.</p></li>
+          <!-- Agregamos la clase 'timeline-section' o limpiamos la etiqueta -->
+          <ol class="timeline list-unstyled">
+            <li>
+              <b>1960</b>
+              <p class="mb-0">Fundación de Grupo Kener naciendo con el compromiso de ofrecer soluciones farmacéuticas de calidad para el sector salud.</p>
+            </li>
+            <li>
+              <b>1999</b>
+              <p class="mb-0">Expansión y reubicación de nuestras instalaciones en Toluca, optimizando operaciones y mejorando nuestra logística.</p>
+            </li>
+            <li>
+              <b>2024</b>
+              <p class="mb-0">Incorporación a Grupo Vazol, que amplía la capacidad de manufactura y distribución.</p>
+            </li>
+            <li>
+              <b>2025</b>
+              <p class="mb-0">Kener inicia una vez más, una etapa de rápido crecimiento y expansión de planta productiva con la mayor y mejor tecnología disponible a nivel mundial.</p>
+            </li>
+            <li>
+              <b>2026</b>
+              <p class="mb-0">Inauguración de nuevas oficinas corporativas, para fomentar una cultura y talento de excelencia.</p>
+            </li>
           </ol>
         </div>
       </div>
@@ -439,5 +475,6 @@
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>

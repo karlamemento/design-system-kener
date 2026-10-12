@@ -379,10 +379,27 @@ footer{color:var(--ink-soft);}
 .frame.alt{border-radius:26px 150px 26px 150px; margin-top:56px;}
 .frame img{width:100%; height:100%; object-fit:cover; display:block;}
 .frame .tag-primary{position:absolute; background:rgba(255,255,255,.88); box-shadow:var(--shadow-soft);}
-.t-top{top:22px; left:55%; transform:translateX(-50%); white-space:nowrap;}
-.t-bot{bottom:22px; left:85%; transform:translateX(-50%); white-space:nowrap;}
+.t-top{top:28px; left: -50px;; white-space:nowrap;}
+.t-bot{bottom:28px; right: -50px;  white-space:nowrap;}
 .element-z-index{position: absolute; z-index: 1;}
-.hero-dna{position:absolute;top:-40px;left:-20px;width:260px;height:640px;opacity:1;pointer-events:none}
+.hero-dna{position:absolute;top:-40px;left:-20px;width:300px;height:840px;opacity:0.5;pointer-events:none;
+perspective: 1000px;
+  transform-style: preserve-3d;
+  
+  /* Aplicamos la animación infinita */
+  animation: dnaRotate 8s linear infinite;
+}
+
+
+/* Definición de la animación de giro continuo */
+@keyframes dnaRotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
 
 /* CERTIFICACIONES */
 .seal{width:68px; height:68px; flex:none; border-radius:50%; border:2px solid var(--primary); color:var(--primary); display:grid; place-content:center; text-align:center; font:700 11px/1.1 var(--font-text-title); box-shadow:inset 0 0 0 4px #fff, inset 0 0 0 5px var(--primary-pale);}
@@ -458,3 +475,336 @@ footer{color:var(--ink-soft);}
 .k-footer a:hover{color:var(--primary);}
 .k-footer .social a{width:40px; height:40px; display:inline-grid; place-items:center; border-radius:10px; background:var(--bg); color:var(--primary); margin-right:6px;}
 .k-legal{background:var(--primary); color:rgba(255,255,255,.8); padding:18px 0; margin-top:48px; font-size:13px;}
+
+/* =========================================================
+   ANIMACIONES Y TRANSICIONES SUAVES — LABORATORIOS KENER
+   ========================================================= */
+
+:root {
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-slow: 700ms;
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Desplazamiento suave entre anclas */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* Entrada elegante de la portada */
+@keyframes kener-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes kener-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes kener-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+@keyframes kener-image-reveal {
+  from { opacity: 0; transform: scale(1.045); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes kener-dna-glow {
+  0%, 100% { opacity: .28; }
+  50%      { opacity: .52; }
+}
+
+.hero .eyebrow,
+.hero h1,
+.hero p,
+.hero .d-flex.flex-wrap,
+.hero .glass-card,
+.card-rounded-white {
+  animation: kener-fade-up 2000ms var(--motion-ease) both;
+}
+.hero h1 { animation-delay: 150ms; }
+.hero p { animation-delay: 190ms; }
+.hero .d-flex.flex-wrap { animation-delay: 270ms; }
+.hero .glass-card { animation-delay: 360ms; }
+.hero .glass-card.t-bot { animation-delay: 480ms; }
+
+.hero .frame img,
+.team-photo img {
+  animation: kener-image-reveal 1100ms var(--motion-ease) both;
+}
+.hero .frame img { transition: transform 850ms var(--motion-ease), filter 500ms ease; }
+.hero .frame:hover img,
+.team-photo:hover img {
+  transform: scale(1.045);
+  filter: saturate(1.06);
+}
+.hero .glass-card {
+  transition: transform 350ms var(--motion-ease), box-shadow 350ms ease;
+}
+
+.hero-dna { animation: dnaRotate 16s linear infinite, kener-dna-glow 5s ease-in-out infinite; }
+
+/* Navegación: subrayado animado y respuesta al hover */
+.k-nav .nav-link {
+  position: relative;
+  transition: color var(--motion-base) ease;
+}
+.k-nav .nav-link:not(.nav-link-portal)::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.18rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--sec-sky-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+.k-nav .nav-link:not(.nav-link-portal):hover::after,
+.k-nav .nav-link:not(.nav-link-portal).active::after {
+  transform: scaleX(1);
+}
+.k-nav .navbar-brand img {
+  transition: transform 350ms var(--motion-ease), opacity 250ms ease;
+}
+.k-nav .navbar-brand:hover img { transform: translateY(-2px); opacity: .9; }
+
+/* Botones y enlaces */
+.btn,
+.contact-item,
+.link-primary,
+.news a,
+.event a {
+  transition:
+    color var(--motion-base) ease,
+    background-color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease),
+    filter var(--motion-base) ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(6,42,56,.13); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn i,
+.link-primary i,
+.news a i,
+.event a i {
+  display: inline-block;
+  transition: transform 250ms var(--motion-ease);
+}
+.btn:hover i,
+.link-primary:hover i,
+.news a:hover i,
+.event a:hover i { transform: translateX(4px); }
+
+/* Tarjetas: elevación ligera, sin movimientos bruscos */
+.bg-card-secondary,
+.card-rounded-white,
+.k-card,
+.stat,
+.value .ic,
+.tag-primary,
+.tag-secondary,
+.seal {
+  transition:
+    transform 420ms var(--motion-ease),
+    box-shadow 420ms ease,
+    border-color 320ms ease,
+    background-color 320ms ease;
+}
+.bg-card-secondary:hover,
+.k-card:hover,
+.stat:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(6,42,56,.13);
+}
+.card-rounded-white:hover { box-shadow: var(--shadow-mid); }
+.bg-card-secondary img { transition: transform 500ms var(--motion-ease), filter 500ms ease; }
+.bg-card-secondary:hover img { transform: scale(1.06) rotate(-2deg); }
+.value:hover .ic { transform: translateY(-4px) rotate(-4deg); box-shadow: 0 12px 24px rgba(0,90,123,.12); }
+.seal:hover { transform: rotate(-5deg) scale(1.04); }
+
+/* Indicadores, chips y cifras */
+.tag-primary:hover,
+.tag-secondary:hover { transform: translateY(-2px); }
+.tag-primary .dot,
+.tag-secondary .dot,
+.tag-primary::before,
+.tag-secondary::before {
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+.tag-primary:hover::before,
+.tag-secondary:hover::before { transform: scale(1.22); box-shadow: 0 0 0 5px rgba(0,191,255,.12); }
+.stat .n { transition: color 300ms ease, transform 350ms var(--motion-ease); }
+.stat:hover .n { color: var(--sec-jeans-blue); transform: scale(1.04); }
+
+/* Noticias y eventos */
+.news img { transition: transform 700ms var(--motion-ease), filter 500ms ease; }
+.news:hover img { transform: scale(1.04); filter: saturate(1.08); }
+.news, .event { transition: transform 400ms var(--motion-ease), box-shadow 400ms ease; }
+.event:hover { transform: translateY(-5px); box-shadow: var(--shadow-mid); }
+.date { transition: transform 300ms var(--motion-ease), background-color 300ms ease; }
+.event:hover .date { transform: translateY(-2px) rotate(-3deg); background-color: var(--sec-jeans-blue); }
+
+/* Formulario: foco visible y feedback */
+.form-control,
+.form-select,
+.field input,
+.field select,
+.field textarea {
+  transition: border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--sec-sky-blue);
+  box-shadow: 0 0 0 .22rem rgba(0,191,255,.15);
+}
+.contact-item { transition: transform 300ms var(--motion-ease), box-shadow 300ms ease, background-color 300ms ease; }
+.contact-item:hover { transform: translateX(5px); box-shadow: 0 12px 28px rgba(6,42,56,.13); }
+.contact-item > i { transition: transform 300ms var(--motion-ease); }
+.contact-item:hover > i { transform: scale(1.08); }
+
+/* Animación opcional al entrar en pantalla, activada con IntersectionObserver */
+.js-motion .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms var(--motion-ease), transform 700ms var(--motion-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js-motion .reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accesibilidad: reduce movimiento si el usuario lo solicita */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+/* Animaciones sección Logros y Resultados */
+/* Contenedor principal que oculta el desbordamiento y añade fundidos laterales opcionales */
+.logo-marquee-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  display: flex;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  
+  /* Efecto de desvanecido estético en los bordes izquierdo y derecho (Opcional) */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Pista que contiene las dos listas de logos una al lado de la otra */
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  /* Cambia '25s' para ajustar la velocidad (mayor número = más lento y suave) */
+  animation: scrollMarquee 25s linear infinite;
+}
+
+/* Pausar la animación cuando el usuario pase el cursor por encima (Mejora de experiencia de usuario) */
+.logo-marquee-container:hover .logo-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Estilo de cada lista interna */
+.logo-marquee-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100%;
+  flex-shrink: 0;
+  gap: 3rem; /* Espaciado amplio y uniforme entre logos */
+}
+
+/* Estilo opcional para los logos (darles un toque elegante, escala de grises que recupera color al pasar el ratón) */
+.logo-marquee-list img {
+  max-height: 80px;
+  object-fit: contain;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.logo-marquee-list img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Animación de desplazamiento hacia la izquierda */
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Se desplaza exactamente el 50% (el ancho de una de las listas duplicadas) */
+    transform: translateX(-50%);
+  }
+}
+
+/*Animaciones sección Quiénes somos
+ Estructura general de la Timeline */
+.timeline {
+  list-style: none;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+
+/* Cada elemento de la lista (Estado inicial oculto) */
+.timeline li {
+  position: relative;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Estado final cuando el JS detecta que es visible en pantalla */
+.timeline li.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Punto indicador en cada año 
+.timeline li::after {
+  content: '';
+  position: absolute;
+  left: -1.32rem;
+  top: 0.25rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary, #005A7B);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 2px var(--primary-pale, #B5CCD6);
+  transition: background-color 0.3s ease;
+}*/
+
+/* Efecto hover opcional en los puntos */
+.timeline li:hover::after {
+  background-color: var(--sec-sky-blue, #00bfff);
+}
+
+/* Estilo para los años (etiquetas b) */
+.timeline b {
+  color: var(--primary, #005A7B);
+  font-size: 1.15rem;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
