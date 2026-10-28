@@ -106,11 +106,9 @@
 }
 
 body{
-  font-family:var(--font-text); 
-  /* Aplicación del degradado alternado */
+  font-family:var(--font-text);
+  /*Fondo degradado*/
   background-image: var(--grad-ice-alternate);
-  
-  /* Mantiene el degradado fijo y continuo a lo largo de toda la pantalla y el scroll */
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -122,7 +120,9 @@ section:first-of-type{border-top:none;}
 
 .text-bricolage{font-family:var(--font-text-title);}
 .text-ubuntu{font-family:var(--font-text);}
-
+.padding-container{padding: 80px 24px 80px 24px;}
+.padding-cta{padding: 8px 24px;}
+.padding-hero{padding: 24px 24px 80px 24px;}
 
 /* ────────────────────────────────────────────────────────────────────
    3. SOBREESCRITURA DE UTILIDADES BOOTSTRAP → PALETA DE MARCA
@@ -163,7 +163,6 @@ section:first-of-type{border-top:none;}
 /* .btn-gradient no es de Bootstrap: CTA destacado sobre fondos oscuros. */
 .btn-gradient{background:var(--grad-orient); color:#fff; border:none; font-weight:500; box-shadow:0 10px 22px rgba(0,90,123,.28);}
 .btn-gradient:hover{color:#fff; filter:brightness(1.08);}
-
 .text-primary{color:var(--primary) !important;}
 .text-sky{color:var(--sec-sky-blue) !important;}
 .bg-primary{background-color:var(--primary) !important;}
@@ -171,7 +170,7 @@ section:first-of-type{border-top:none;}
 .bg-grad-aqua{background:var(--grad-aqua) !important;}       /* antes: background-color */
 .bg-primary-pale{background-color:var(--primary-pale) !important;}
 .bg-card-primary{background:var(--grad-cielo) !important;}
-.bg-card-secondary{background:var(--grad-ice) !important;}
+.card-secondary{background:var(--bg); border:none;}
 .bg-aqua{background-color:var(--sec-aquamarine) !important;}
 .bg-sky{background-color:var(--sec-sky-blue) !important;}
 .bg-ice{background: var(--grad-ice);}
@@ -344,6 +343,7 @@ footer{color:var(--ink-soft);}
 
 
 /* — Especialidades — */
+.tag-esp{    position: absolute; top: 16px; left: 16px;}
 .esp-analgesia{background-color:#007279;}
 .esp-anestesia{background-color:#59c3e3;}
 .esp-antihemorragico{background-color:#782700;}
@@ -382,6 +382,7 @@ footer{color:var(--ink-soft);}
 .t-bot{bottom:28px; right: -50px;  white-space:nowrap;}
 .element-z-index{position: absolute; z-index: 1;}
 .hero-dna{position:absolute;top:-200px;left:-20px;width:300px;height:1080px;opacity:1;pointer-events:none;}
+.hero-dna-2{position:absolute;top:-200px;right:100px;width:300px;height:1080px;opacity:1;pointer-events:none;}
 .dna-2{
   position: absolute;
   width: 700px;
@@ -442,11 +443,28 @@ footer{color:var(--ink-soft);}
 
 /* ESPECIALIDADES */
 .card-esp{padding:36px; display:flex; flex-direction:column; justify-content:space-between; background:var(--grad-ice); border:1px solid #fff; border-radius:var(--r-lg); box-shadow:var(--shadow-soft);}
-.bg-card-secondary img{width:min(260px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
+.bg-card-primary img{width:min(260px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
+.card-secondary img{width:min(260px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
 .esp-row{display:flex; align-items:center; gap:18px; padding:18px 22px; border-radius:var(--r-md); border-bottom:5px solid var(--primary); transition:transform .2s, box-shadow .2s; color:inherit; text-decoration:none;}
 .esp-row:hover{transform:translateY(-3px); box-shadow:var(--shadow-mid); color:inherit;}
 .esp-row img{width:84px; height:84px; object-fit:contain; flex:none;}
 .esp-row h3{font-size:1.2rem; margin:6px 0 2px;}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px); /* Distancia que se desplaza hacia arriba */
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.flotante {
+    animation: flotar 3s ease-in-out infinite;
+}
 
 /* LOGROS */
 .stat{padding:32px 24px; text-align:center; height:100%;}
@@ -578,7 +596,7 @@ body {
   transition: transform 350ms var(--motion-ease), box-shadow 350ms ease;
 }
 
-.hero-dna { animation: dnaRotate 16s linear infinite, kener-dna-glow 5s ease-in-out infinite; }
+.hero-dna, .hero-dna-2 { animation: dnaRotate 16s linear infinite, kener-dna-glow 5s ease-in-out infinite; }
 
 /* Navegación: subrayado animado y respuesta al hover */
 .k-nav .nav-link {
@@ -636,7 +654,8 @@ body {
 .event a:hover i { transform: translateX(4px); }
 
 /* Tarjetas: elevación ligera, sin movimientos bruscos */
-.bg-card-secondary,
+.bg-card-primary,
+.card-secondary,
 .card-rounded-white,
 .k-card,
 .stat,
@@ -650,15 +669,16 @@ body {
     border-color 320ms ease,
     background-color 320ms ease;
 }
-.bg-card-secondary:hover,
+.bg-card-primary:hover,
+.card-secondary:hover,
 .k-card:hover,
 .stat:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   box-shadow: 0 20px 44px rgba(6,42,56,.13);
 }
 .card-rounded-white:hover { box-shadow: var(--shadow-mid); }
-.bg-card-secondary img { transition: transform 500ms var(--motion-ease), filter 500ms ease; }
-.bg-card-secondary:hover img { transform: scale(1.06) rotate(-2deg); }
+.bg-card-primary img, .card-secondary img { transition: transform 500ms var(--motion-ease), filter 500ms ease; }
+.bg-card-primary:hover img, .card-secondary:hover img{ transform: scale(1.2) rotate(-2deg); }
 .value:hover .ic { transform: translateY(-4px) rotate(-4deg); box-shadow: 0 12px 24px rgba(0,90,123,.12); }
 .seal:hover { transform: rotate(-5deg) scale(1.04); }
 
