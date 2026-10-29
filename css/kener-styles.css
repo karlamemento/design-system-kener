@@ -169,8 +169,9 @@ section:first-of-type{border-top:none;}
 .bg-grad{background:var(--grad-orient) !important;}          /* antes: background-color */
 .bg-grad-aqua{background:var(--grad-aqua) !important;}       /* antes: background-color */
 .bg-primary-pale{background-color:var(--primary-pale) !important;}
-.bg-card-primary{background:var(--grad-cielo) !important;}
+.card-primary{background:var(--grad-cielo) !important;}
 .card-secondary{background:var(--bg); border:none;}
+.card-secondary-lg{background:var(--bg); border:none;}
 .bg-aqua{background-color:var(--sec-aquamarine) !important;}
 .bg-sky{background-color:var(--sec-sky-blue) !important;}
 .bg-ice{background: var(--grad-ice);}
@@ -443,8 +444,9 @@ footer{color:var(--ink-soft);}
 
 /* ESPECIALIDADES */
 .card-esp{padding:36px; display:flex; flex-direction:column; justify-content:space-between; background:var(--grad-ice); border:1px solid #fff; border-radius:var(--r-lg); box-shadow:var(--shadow-soft);}
-.bg-card-primary img{width:min(260px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
 .card-secondary img{width:min(260px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
+.card-secondary-lg img{width:min(200px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
+.img-card{width:min(260px,70%); filter:drop-shadow(0 18px 28px rgba(0,90,123,.2));}
 .esp-row{display:flex; align-items:center; gap:18px; padding:18px 22px; border-radius:var(--r-md); border-bottom:5px solid var(--primary); transition:transform .2s, box-shadow .2s; color:inherit; text-decoration:none;}
 .esp-row:hover{transform:translateY(-3px); box-shadow:var(--shadow-mid); color:inherit;}
 .esp-row img{width:84px; height:84px; object-fit:contain; flex:none;}
@@ -654,8 +656,9 @@ body {
 .event a:hover i { transform: translateX(4px); }
 
 /* Tarjetas: elevación ligera, sin movimientos bruscos */
-.bg-card-primary,
+.card-primary,
 .card-secondary,
+.card-secondary-lg,
 .card-rounded-white,
 .k-card,
 .stat,
