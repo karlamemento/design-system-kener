@@ -117,6 +117,8 @@ body{
 h1,h2,h3,h4,h5,h6{font-family:var(--font-text-title); font-weight:700; letter-spacing:-0.01em; color:var(--ink);}
 section:first-of-type{border-top:none;}
 .container-xxl{max-width:1200px;}
+p{font-size: 18px;}
+
 
 .text-bricolage{font-family:var(--font-text-title);}
 .text-ubuntu{font-family:var(--font-text);}
@@ -158,7 +160,7 @@ section:first-of-type{border-top:none;}
   --bs-btn-hover-bg:var(--primary-slate);
   --bs-btn-hover-border-color:var(--primary-slate);
   font-weight:500;}
-.btn{font-family:var(--font-text); font-size:14.5px;}
+.btn{font-family:var(--font-text); font-size:16px;}
 
 /* .btn-gradient no es de Bootstrap: CTA destacado sobre fondos oscuros. */
 .btn-gradient{background:var(--grad-orient); color:#fff; border:none; font-weight:500; box-shadow:0 10px 22px rgba(0,90,123,.28);}
@@ -207,14 +209,14 @@ section:first-of-type{border-top:none;}
 .progress{background-color:var(--bg);}
 
 /* Campos de formulario (sobre fondo oscuro) */
-.label-text{color:var(--primary-pale); font-size:12px;}
+.label-text{color:var(--primary-pale); font-size:18px;}
 .field input, .field select, .field textarea{
-  width:100%; font-family:var(--font-text); font-size:14.5px; color:#fff;
+  width:100%; font-family:var(--font-text); font-size:18px; color:#fff;
   border:1px solid rgba(255,255,255,.2); border-radius:10px; padding:12px 14px;
   background:rgba(255,255,255,.07); outline:none; transition:border-color .15s ease;
 }
 option{
-  width:100%; font-family:var(--font-text); font-size:14.5px; color:var(--sec-dark-blue);
+  width:100%; font-family:var(--font-text); font-size:18px; color:var(--sec-dark-blue);
   border:1px solid var(--sec-sky-blue); border-radius:10px; padding:12px 14px;
   background:rgba(255,255,255,.07);
 }
@@ -225,7 +227,7 @@ option{
    4. UTILIDADES PROPIAS DE LA GUÍA
    ──────────────────────────────────────────────────────────────────── */
 .eyebrow{
-  font-family:var(--font-text); font-size:12px; font-weight:500;
+  font-family:var(--font-text); font-size:16px; font-weight:500;
   letter-spacing:0.12em; text-transform:uppercase; color:var(--primary);
   display:flex; align-items:center; gap:10px; margin-bottom:16px;
 }
@@ -257,7 +259,7 @@ option{
   position:relative; align-self:flex-start; z-index:1;
   background:rgba(99,253,214,.18); backdrop-filter:blur(8px);
   border:1px solid var(--sec-aquamarine); border-radius:50px;
-  padding:4px 16px; font-size:11px; font-weight:500; color:var(--primary);
+  padding:4px 16px; font-size:12px; font-weight:500; color:var(--primary);
   display:flex; align-items:center; gap:8px;
   text-transform:uppercase; letter-spacing:1px;
 }
@@ -265,7 +267,7 @@ option{
   position:relative; align-self:flex-start; z-index:1;
   background:rgba(0,191,255,.18); backdrop-filter:blur(8px);
   border:1px solid var(--sec-sky-blue); border-radius:50px;
-  padding:4px 16px; font-size:11px; font-weight:500; color:var(--primary);
+  padding:4px 16px; font-size:12px; font-weight:500; color:var(--primary);
   display:flex; align-items:center; gap:8px;
   text-transform:uppercase; letter-spacing:1px;
 }
@@ -276,35 +278,35 @@ option{
 .photo-wrap{position:relative; z-index:1;}
 .float-chip{position:absolute; left:-18px; bottom:-18px;}
 .float-chip .dot{width:8px; height:8px; border-radius:50%; background:var(--sec-aquamarine);}
-.float-chip span{font-family:var(--font-text); font-size:11.5px; color:#fff;}
+.float-chip span{font-family:var(--font-text); font-size:16px; color:#fff;}
 
 .hero-quote{position:relative; color:var(--primary);}
 .hero-quote p{font-size:20px; font-weight:500; line-height:1.35; margin-bottom:10px;}
-.hero-quote span{font-size:11px; font-weight:300; letter-spacing:.08em; text-transform:uppercase; color:var(--primary);}
+.hero-quote span{font-size:16px; font-weight:300; letter-spacing:.08em; text-transform:uppercase; color:var(--primary);}
 
 /* — Identidad (tarjetas ADN) — */
 .adn-pill{background:var(--bg); border:1px solid var(--line); border-radius:var(--r-md); padding:16px 14px; text-align:center;}
-.adn-pill .n{font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--primary); margin-bottom:4px;}
-.adn-pill .d{font-size:11px; color:var(--ink-soft); font-weight:300; line-height:1.4;}
+.adn-pill .n{font-size:16px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--primary); margin-bottom:4px;}
+.adn-pill .d{font-size:16px; color:var(--ink-soft); font-weight:300; line-height:1.4;}
 
 /* — Color: swatches — */
 .swatch-card{border-radius:var(--r-md); overflow:hidden; box-shadow:var(--shadow-soft); background:var(--surface); height:100%;}
 .swatch-card .fill{height:76px;}
-.swatch-card .info{padding:8px 10px; font-size:10.5px; color:var(--ink-soft); font-weight:400; text-align:center; line-height:1.5;}
-.swatch-card .info b{display:block; color:var(--ink); font-weight:500; font-size:11px;}
-.swatch-main .fill{height:130px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px;}
-.swatch-main .info{padding:14px 16px; font-size:11px; color:var(--ink-soft); font-weight:300; line-height:1.6; text-align:left;}
-.swatch-main .info b{display:block; color:var(--ink); font-weight:500; font-size:12px;}
+.swatch-card .info{padding:8px 10px; font-size:14px; color:var(--ink-soft); font-weight:400; text-align:center; line-height:1.5;}
+.swatch-card .info b{display:block; color:var(--ink); font-weight:500; font-size:14px;}
+.swatch-main .fill{height:130px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:16px;}
+.swatch-main .info{padding:16px 16px; font-size:14px; color:var(--ink-soft); font-weight:300; line-height:1.6; text-align:left;}
+.swatch-main .info b{display:block; color:var(--ink); font-weight:500; font-size:16px;}
 
 /* — Tipografía — */
 .type-specimen{border-radius:var(--r-lg); box-shadow:var(--shadow-soft);}
 .type-label{font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.1em; color:var(--primary); margin-bottom:12px;}
 .weight-list div{font-size:19px; color:var(--ink);}
 .weight-list div.i{font-style:italic;}
-.alphabet{font-size:22px; color:var(--ink-soft); letter-spacing:.02em; word-break:break-word;}
+.alphabet{font-size:24px; color:var(--ink-soft); letter-spacing:.02em; word-break:break-word;}
 .scale-row{border-bottom:1px solid var(--line);}
 .scale-row:last-child{border-bottom:none;}
-.scale-meta{font-size:12px; color:var(--ink-soft); white-space:nowrap; font-weight:300;}
+.scale-meta{font-size:16px; color:var(--ink-soft); white-space:nowrap; font-weight:300;}
 
 /* — Iconografía: blobs de especialidad — */
 .icon-blob{
@@ -322,7 +324,7 @@ option{
 }
 .photo-frame img{width:100%; height:100%; object-fit:cover; display:block;}
 .photo-frame .bio-texture{position:absolute; inset:0; background-image:var(--grad-bio); opacity:.7; filter:blur(6px);}
-.photo-notes li{font-size:13.5px; color:var(--ink-soft); font-weight:300; margin-bottom:14px; padding-left:20px; position:relative;}
+.photo-notes li{font-size:16x; color:var(--ink-soft); font-weight:300; margin-bottom:14px; padding-left:20px; position:relative;}
 .photo-notes li::before{content:"—"; position:absolute; left:0; color:var(--primary);}
 
 /* — Confianza — */
@@ -330,7 +332,7 @@ option{
 
 /* — Espaciado y radios — */
 .space-block{background:var(--primary); border-radius:6px;}
-.space-label{font-size:12px; color:var(--ink-soft); width:60px; font-weight:300;}
+.space-label{font-size:16px; color:var(--ink-soft); width:60px; font-weight:300;}
 
 /* — Aplicación: módulo de homepage — */
 .app-mock{border-radius:var(--r-lg); overflow:hidden;}
@@ -436,7 +438,7 @@ footer{color:var(--ink-soft);}
 
 /* CERTIFICACIONES */
 .seal{width:68px; height:68px; flex:none; border-radius:50%; border:2px solid var(--primary); color:var(--primary); display:grid; place-content:center; text-align:center; font:700 11px/1.1 var(--font-text-title); box-shadow:inset 0 0 0 4px #fff, inset 0 0 0 5px var(--primary-pale);}
-.seal small{display:block; font-size:9px; font-weight:500;}
+.seal small{display:block; font-size:12px; font-weight:500;}
 .card-rounded-white{background:rgba(255,255,255,.78); backdrop-filter:blur(10px); border:1px solid #fff; border-radius:var(--r-lg);}
 
 /* CONFIANZA */
@@ -507,8 +509,8 @@ footer{color:var(--ink-soft);}
 .contact-item small{display:block; color:var(--ink-soft);}
 .contact-item b{font-weight:500;}
 .k-form{padding:36px;}
-.k-form label{font-size:12px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--primary); margin-bottom:4px;}
-.k-form .form-control,.k-form .form-select{border:1.5px solid var(--primary-pale); border-radius:10px; font-size:14.5px; padding:10px 14px; background-color:rgba(255,255,255,.9);}
+.k-form label{font-size:14px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--primary); margin-bottom:4px;}
+.k-form .form-control,.k-form .form-select{border:1.5px solid var(--primary-pale); border-radius:10px; font-size:14px; padding:10px 14px; background-color:rgba(255,255,255,.9);}
 .k-form .form-control:focus,.k-form .form-select:focus{border-color:var(--primary); box-shadow:0 0 0 .2rem rgba(0,90,123,.15);}
 .k-form .form-check-input:checked{background-color:var(--primary); border-color:var(--primary);}
 
@@ -525,7 +527,7 @@ footer{color:var(--ink-soft);}
 .k-footer a{color:var(--ink-soft); text-decoration:none;}
 .k-footer a:hover{color:var(--primary);}
 .k-footer .social a{width:40px; height:40px; display:inline-grid; place-items:center; border-radius:10px; background:var(--bg); color:var(--primary); margin-right:6px;}
-.k-legal{background:var(--primary); color:rgba(255,255,255,.8); padding:18px 0; margin-top:48px; font-size:13px;}
+.k-legal{background:var(--primary); color:rgba(255,255,255,.8); padding:18px 0; margin-top:48px; font-size:16px;}
 
 /* =========================================================
    ANIMACIONES Y TRANSICIONES SUAVES — LABORATORIOS KENER
