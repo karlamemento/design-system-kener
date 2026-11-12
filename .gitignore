@@ -16,3 +16,6 @@ desktop.ini
 style-guide-kener.html
 home-ai.html
 css/kener-home.css
+
+# Respaldos locales de versiones anteriores (no se suben al repositorio)
+.backup-motion/

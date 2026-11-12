@@ -1,0 +1,303 @@
+/* ════════════════════════════════════════════════════════════════════
+   KENER — CAPA DE MOVIMIENTO (kener-motion.css)
+   Proyecto: Rediseño web Laboratorios Kener · Memento Studio
+   ════════════════════════════════════════════════════════════════════
+   Se carga DESPUÉS de kener-styles.css. Trabaja junto con
+   js/kener-motion.js y reutiliza los tokens --motion-* de la hoja base.
+
+   PRINCIPIOS
+     - Movimiento con propósito: guía la lectura, no decora.
+     - Una sola curva de marca (--motion-ease) + una curva de "telón"
+       (--motion-curtain) para intro y máscaras.
+     - Todo estado oculto depende de html.js-motion: sin JS o con
+       "reducir movimiento" el contenido se ve completo y estático.
+     - Se usan las propiedades individuales translate / scale para no
+       pisar los transform de hover que ya existen en kener-styles.css.
+
+   ÍNDICE
+     1. Tokens de movimiento
+     2. Intro de marca (primera visita de la sesión)
+     3. Header inteligente + barra de progreso de lectura
+     4. Titulares: revelado por palabra (split text)
+     5. Revelados al hacer scroll (fade / rise / line / mask)
+     6. Parallax y flotación
+     7. Micro-interacciones: botones magnéticos y spotlight en tarjetas
+     8. Timeline con progreso
+     9. Fondos vivos (CTA)
+    10. Accesibilidad
+   ════════════════════════════════════════════════════════════════════ */
+
+
+/* 1. TOKENS ─────────────────────────────────────────────────────────── */
+:root{
+  --motion-curtain: cubic-bezier(.76, 0, .24, 1);
+  --motion-soft: cubic-bezier(.25, .7, .3, 1);   /* arranque gradual, frenado largo: entradas suaves */
+  --motion-reveal: 1250ms;
+  --motion-mask: 1400ms;
+  --motion-word-step: 32ms;
+}
+
+
+/* 2. INTRO DE MARCA ─────────────────────────────────────────────────
+   Panel claro con el logotipo que se levanta como telón. Solo aparece
+   la primera vez por sesión (lo decide el script inline del <head>).   */
+html.js-motion body::before,
+html.js-motion body::after{
+  content:""; position:fixed; inset:0; pointer-events:none;
+}
+html.js-motion body::before{
+  z-index:2000;
+  background:var(--grad-ice);
+  transform:translateY(-101%);
+  transition:transform 900ms var(--motion-curtain);
+}
+html.js-motion body::after{
+  z-index:2001;
+  background:url("../img/logo/Logo%20Kener%20(2).svg") center / min(220px, 46vw) auto no-repeat;
+  opacity:0;
+  transition:opacity 380ms ease, transform 500ms var(--motion-ease);
+}
+html.k-intro body{overflow:hidden;}
+html.k-intro body::before{transform:none; transition:none;}
+html.k-intro body::after{animation:kener-fade-up 800ms var(--motion-ease) 120ms both;}
+html.k-intro-out body::after{animation:none; opacity:0; transform:translateY(-18px);}
+
+
+/* 3. HEADER INTELIGENTE ─────────────────────────────────────────────
+   Se oculta al bajar (más espacio de lectura) y vuelve al subir.       */
+.js-motion header.sticky-top{
+  transition:transform 520ms var(--motion-ease);
+  will-change:transform;
+}
+.js-motion header.sticky-top.k-header-hidden{transform:translateY(-100%);}
+.js-motion header.sticky-top .k-nav{transition:box-shadow 400ms ease, background-color 400ms ease;}
+.js-motion header.sticky-top.k-header-scrolled .k-nav{
+  background:rgba(243,249,251,.94);
+  box-shadow:0 10px 30px rgba(6,42,56,.07);
+}
+.k-progress{
+  position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--grad-aqua);
+  transform:scaleX(var(--k-progress, 0)); transform-origin:left center;
+  pointer-events:none;
+}
+
+
+/* 4. TITULARES — SPLIT TEXT ─────────────────────────────────────────
+   Cada palabra sube desde una máscara, con un escalonado corto.        */
+.js-motion .k-split .k-w{
+  display:inline-block; overflow:hidden; vertical-align:top;
+  padding-bottom:.12em; margin-bottom:-.12em;   /* no recorta descendentes */
+}
+/* Las palabras heredan siempre del contenedor real (evita que reglas
+   como ".hero h1 span" afecten a los span del split) */
+.k-split .k-w,
+.k-split .k-wi{font-weight:inherit; color:inherit; font-size:inherit;}
+.js-motion .k-split .k-wi{
+  display:inline-block;
+  translate:0 55%;
+  opacity:0;
+  transition:
+    translate var(--motion-reveal) var(--motion-soft),
+    opacity calc(var(--motion-reveal) * .8) var(--motion-soft);
+  transition-delay:calc(var(--split-delay, 0ms) + var(--i, 0) * var(--motion-word-step));
+}
+.js-motion .k-split.is-visible .k-wi{translate:0 0; opacity:1;}
+
+
+/* 5. REVELADOS AL SCROLL ────────────────────────────────────────────
+   La regla base .reveal-on-scroll vive en kener-styles.css. Aquí se
+   añaden variantes a través de data-reveal.                            */
+.js-motion .reveal-on-scroll[data-reveal="fade"]{translate:none;}
+.js-motion .reveal-on-scroll[data-reveal="rise"]{translate:0 24px;}
+.js-motion .reveal-on-scroll[data-reveal="rise"].is-visible{translate:0 0;}
+
+/* Eyebrow: la barra de degradado se dibuja de izquierda a derecha */
+.js-motion .eyebrow.reveal-on-scroll::before{
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform 900ms var(--motion-ease) calc(var(--reveal-delay, 0ms) + 120ms);
+}
+.js-motion .eyebrow.reveal-on-scroll.is-visible::before{transform:scaleX(1);}
+
+/* Máscara de imagen: el marco aparece y la foto se descubre de abajo
+   hacia arriba mientras se asienta (zoom 1.18 → 1).                    */
+.js-motion [data-reveal="mask"]{
+  opacity:0;
+  transition:opacity 600ms ease var(--reveal-delay, 0ms);
+}
+.js-motion [data-reveal="mask"] > img{
+  clip-path:inset(100% 0 0 0);
+  scale:1.18;
+  transition:
+    clip-path var(--motion-mask) var(--motion-curtain) var(--reveal-delay, 0ms),
+    scale 1700ms var(--motion-ease) var(--reveal-delay, 0ms),
+    transform 850ms var(--motion-ease) 0ms,
+    filter 500ms ease 0ms;
+}
+.js-motion [data-reveal="mask"].is-visible{opacity:1;}
+.js-motion [data-reveal="mask"].is-visible > img{
+  clip-path:inset(0 0 0 0);
+  scale:var(--k-img-scale, 1);
+}
+
+/* Las animaciones de entrada por @keyframes de kener-styles.css se
+   sustituyen por este sistema (evita animaciones dobles y libera el
+   transform de hover de las fotos, que el fill-mode "both" bloqueaba). */
+.js-motion .hero .eyebrow,
+.js-motion .hero h1,
+.js-motion .hero p,
+.js-motion .hero .d-flex.flex-wrap,
+.js-motion .hero .glass-card,
+.js-motion .card-rounded-white,
+.js-motion .hero .frame img,
+.js-motion .team-photo img{animation:none;}
+
+/* Tarjetas de especialidad: el ícono se eleva en lugar de girar */
+.js-motion .card-secondary:hover img{transform:translateY(-6px) scale(1.06);}
+
+
+/* 6. PARALLAX Y FLOTACIÓN ──────────────────────────────────────────── */
+.js-motion [data-parallax]{will-change:translate;}
+.js-motion .team-photo{--k-img-scale:1.12;}          /* margen para el parallax interno */
+.js-motion .team-photo:hover img{transform:scale(1.03);}
+
+/* Chips de vidrio del hero: flotación lenta, desfasada entre sí */
+.js-motion .hero .glass-card > .d-flex{animation:kener-float 6s ease-in-out infinite;}
+.js-motion .hero .glass-card.t-bot > .d-flex{animation-duration:7s; animation-delay:-2.5s;}
+
+
+/* Hero v2: el video entra con un zoom lento que se asienta */
+.js-motion .hero-video-media{scale:1.04; transition:scale 3200ms var(--motion-soft);}
+.js-motion .hero-video.is-entered .hero-video-media{scale:1;}
+
+
+/* 7. MICRO-INTERACCIONES ─────────────────────────────────────────────
+   Botones magnéticos (solo puntero fino) y luz que sigue al cursor.    */
+.js-motion .k-magnetic{transform:translate3d(var(--mx, 0px), var(--my, 0px), 0);}
+.js-motion .k-magnetic:hover{transform:translate3d(var(--mx, 0px), calc(var(--my, 0px) - 2px), 0);}
+.js-motion .k-magnetic:active{transform:translate3d(var(--mx, 0px), var(--my, 0px), 0) scale(.98);}
+
+.js-motion .k-spot{position:relative; isolation:isolate;}
+.js-motion .k-spot::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background:radial-gradient(420px circle at var(--sx, 50%) var(--sy, 50%), rgba(0,191,255,.10), transparent 62%);
+  opacity:0; transition:opacity 450ms ease;
+}
+.js-motion .k-spot:hover::after{opacity:1;}
+.js-motion .finder.bg-primary.k-spot::after{
+  background:radial-gradient(360px circle at var(--sx, 50%) var(--sy, 50%), rgba(99,253,214,.22), transparent 62%);
+}
+
+
+/* 8. TIMELINE CON PROGRESO ───────────────────────────────────────────
+   La línea se "llena" con el scroll y cada hito se enciende al pasar.  */
+.js-motion .timeline{position:relative;}
+.js-motion .timeline::after{
+  content:""; position:absolute; left:-2px; top:0; bottom:0; width:2px;
+  background:linear-gradient(to bottom, var(--sec-sky-blue), var(--sec-aquamarine));
+  transform:scaleY(var(--tl, 0)); transform-origin:top center;
+  border-radius:2px;
+}
+.js-motion .timeline li::before{transition:background-color 400ms ease, box-shadow 400ms ease, scale 400ms var(--motion-ease);}
+.js-motion .timeline li.is-active::before{
+  background:var(--sec-sky-blue);
+  box-shadow:0 0 0 5px var(--bg), 0 0 0 9px rgba(0,191,255,.18);
+  scale:1.1;
+}
+
+
+/* 9. FONDOS VIVOS ───────────────────────────────────────────────────── */
+.js-motion .cta-cat{
+  background-size:220% 220%;
+  animation:kener-grad-drift 18s ease-in-out infinite alternate;
+}
+@keyframes kener-grad-drift{
+  from{background-position:0% 50%;}
+  to  {background-position:100% 50%;}
+}
+
+
+/* 10. ACCESIBILIDAD ────────────────────────────────────────────────────
+   El script inline no añade .js-motion si el usuario pide reducir
+   movimiento; esto es una segunda red de seguridad.                    */
+@media (prefers-reduced-motion: reduce){
+  html.js-motion body::before,
+  html.js-motion body::after{display:none;}
+  .js-motion .k-split .k-wi,
+  .js-motion [data-reveal="mask"] > img{translate:none; clip-path:none; scale:none;}
+  .js-motion [data-reveal="mask"]{opacity:1;}
+}
+
+
+/* 11. HÉLICE DE ADN DE FONDO ──────────────────────────────────────────
+   Generada por js/kener-motion.js (módulo 8) a partir del vector del
+   Hero v1. Fija a la derecha, detrás del contenido, con fundido arriba
+   y abajo. --dna-o la controla el script (0 sobre el hero de video). */
+.k-dna{
+  position:fixed; top:0; right:clamp(-40px, calc((100vw - 1200px) / 2 - 170px), 24px);
+  width:clamp(150px, 16vw, 240px); height:100vh; height:100lvh;
+  z-index:-1; pointer-events:none;
+  opacity:0;
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+          mask-image:linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  filter:drop-shadow(0 0 6px rgba(0,191,255,.25));
+  contain:strict;
+}
+.k-dna.is-ready{opacity:calc(var(--dna-o, 1) * .9); transition:opacity 300ms linear;}
+.k-dna path, .k-dna circle{vector-effect:non-scaling-stroke;}
+@media (max-width: 991.98px){
+  .k-dna.is-ready{opacity:calc(var(--dna-o, 1) * .45);}
+  .k-dna{right:-60px; width:150px;}
+}
+@media print{ .k-dna{display:none;} }
+
+
+/* 12. ENTRADA DEL HERO v2 ──────────────────────────────────────────────
+   Pre-ocultado: evita que el contenido del hero se vea un instante antes
+   de que cargue el script (se libera con html.k-motion-ready).
+   Cada elemento tiene su propia entrada:
+     eyebrow  → la barra se dibuja y el texto se cierra (letter-spacing)
+     h1       → palabras desde máscara (sección 4)
+     párrafo  → sube y se enfoca (blur → nítido)
+     botones  → suben y crecen ligeramente, escalonados
+     controles→ aparecen al final                                         */
+html.js-motion:not(.k-motion-ready) .hero-video-content,
+html.js-motion:not(.k-motion-ready) .hero > .container-xxl,
+html.js-motion:not(.k-motion-ready) .hero-scroll-cue,
+html.js-motion:not(.k-motion-ready) .hero-video-toggle{opacity:0;}
+
+.js-motion .hero-video-content .eyebrow.reveal-on-scroll{
+  letter-spacing:.2em; translate:none;
+  transition:opacity 1100ms var(--motion-soft), letter-spacing 1600ms var(--motion-soft);
+  transition-delay:var(--reveal-delay, 0ms);
+}
+.js-motion .hero-video-content .eyebrow.reveal-on-scroll.is-visible{letter-spacing:.12em;}
+
+.js-motion .reveal-on-scroll[data-reveal="blur"]{
+  translate:0 10px; filter:blur(3px);
+  transition:opacity 1200ms var(--motion-soft), translate 1300ms var(--motion-soft), filter 1100ms var(--motion-soft);
+  transition-delay:var(--reveal-delay, 0ms);
+}
+.js-motion .reveal-on-scroll[data-reveal="blur"].is-visible{translate:0 0; filter:blur(0);}
+
+.js-motion .reveal-on-scroll[data-reveal="pop"]{
+  translate:0 10px; scale:.98;
+  transition:opacity 1000ms var(--motion-soft), translate 1200ms var(--motion-soft), scale 1200ms var(--motion-soft);
+  transition-delay:var(--reveal-delay, 0ms);
+}
+.js-motion .reveal-on-scroll[data-reveal="pop"].is-visible{translate:0 0; scale:1;}
+
+.js-motion .hero-scroll-cue.reveal-on-scroll,
+.js-motion .hero-video-toggle.reveal-on-scroll{translate:0 8px;}
+.js-motion .hero-scroll-cue.reveal-on-scroll.is-visible,
+.js-motion .hero-video-toggle.reveal-on-scroll.is-visible{translate:0 0;}
+
+
+/* Hero de páginas internas (p. ej. Especialidades): la ilustración entra
+   con un fundido y un ligero asentamiento, y luego conserva su flotación. */
+.js-motion .reveal-on-scroll[data-reveal="soft"]{
+  translate:0 14px; scale:.97;
+  transition:opacity 1400ms var(--motion-soft), translate 1600ms var(--motion-soft), scale 1600ms var(--motion-soft);
+  transition-delay:var(--reveal-delay, 0ms);
+}
+.js-motion .reveal-on-scroll[data-reveal="soft"].is-visible{translate:0 0; scale:1;}

@@ -1,52 +1,40 @@
-/*Animaciones sección: Logros y Resultados*/
+/*Animaciones sección: Logros y Resultados
+  Contador con desaceleración (easeOutExpo) y separador de miles.
+  Con "reducir movimiento" muestra la cifra final de inmediato. */
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".stat .n");
-  const speed = 200; // Cuanto menor sea el número, más rápido avanzará el contador
+  const duration = 2200; // ms de la animación completa
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fmt = n => "+" + Math.round(n).toLocaleString("es-MX");
+  const easeOutExpo = t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
-  const animateCounters = (counter) => {
+  const animateCounter = (counter) => {
     const target = +counter.getAttribute("data-target");
-    let count = 0;
-    
-    // Calcula el incremento según la velocidad deseada
-    const inc = target / speed;
-
-    const updateCount = () => {
-      count += inc;
-      if (count < target) {
-        // Muestra el número entero actual con el signo "+"
-        counter.innerText = "+" + Math.ceil(count);
-        setTimeout(updateCount, 15);
-      } else {
-        // Asegura de mostrar el número final exacto
-        counter.innerText = "+" + target;
-      }
+    if (reduce) { counter.innerText = fmt(target); return; }
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      counter.innerText = fmt(target * easeOutExpo(t));
+      if (t < 1) requestAnimationFrame(tick);
     };
-
-    updateCount();
+    requestAnimationFrame(tick);
   };
 
-  // Usamos Intersection Observer para que la animación inicie solo cuando sean visibles en pantalla
-  const observerOptions = {
-    root: null,
-    threshold: 0.3 // Se activa cuando el 30% de la sección es visible
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
+  // Intersection Observer: inicia solo cuando la tarjeta es visible
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target.querySelector(".n");
-        if (counter && !counter.classList.contains("counted")) {
-          counter.classList.add("counted");
-          animateCounters(counter);
-        }
+      if (!entry.isIntersecting) return;
+      const counter = entry.target.querySelector(".n");
+      if (counter && !counter.classList.contains("counted")) {
+        counter.classList.add("counted");
+        // pequeño retraso para que coincida con la entrada de la tarjeta
+        setTimeout(() => animateCounter(counter), 250);
       }
+      obs.unobserve(entry.target);
     });
-  }, observerOptions);
+  }, { root: null, threshold: 0.4 });
 
-  // Observa cada tarjeta de estadísticas
-  document.querySelectorAll(".stat").forEach(stat => {
-    observer.observe(stat);
-  });
+  document.querySelectorAll(".stat").forEach(stat => observer.observe(stat));
 });
 
 /*Animaciones sección: Quiénes somos*/
@@ -74,4 +62,69 @@ document.addEventListener("DOMContentLoaded", () => {
   item.style.transitionDelay = `${index * 0.15}s`;
   observer.observe(item);
   });
+});
+/*Hero v2: video de fondo
+  - Entra con fade solo cuando realmente empieza a reproducirse.
+  - Si falla (Drive bloquea, red lenta, formato no soportado) se queda
+    el póster: la portada nunca se ve vacía.
+  - Botón de pausa accesible; se pausa solo al salir de pantalla.
+  - Con "reducir movimiento" no descarga el video hasta que el usuario
+    pulse reproducir. */
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector("[data-hero-video]");
+  if (!hero) return;
+  const video = hero.querySelector("video");
+  const btn = hero.querySelector(".hero-video-toggle");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const src = video.getAttribute("src");
+  const FALLBACK_AFTER = 9000; // ms sin reproducir → se queda el póster
+  let userPaused = reduce;
+  let fallbackTimer;
+
+  const setButton = (paused) => {
+    if (!btn) return;
+    btn.setAttribute("aria-pressed", String(paused));
+    btn.setAttribute("aria-label", paused ? "Reproducir video de fondo" : "Pausar video de fondo");
+    btn.innerHTML = `<i class="bi ${paused ? "bi-play-fill" : "bi-pause-fill"}" aria-hidden="true"></i>`;
+  };
+  const fallback = () => { if (!hero.classList.contains("is-playing")) hero.classList.add("is-fallback"); };
+  const tryPlay = () => {
+    const p = video.play();
+    if (p && p.catch) p.catch(() => {});
+    clearTimeout(fallbackTimer);
+    fallbackTimer = setTimeout(fallback, FALLBACK_AFTER);
+  };
+
+  video.addEventListener("playing", () => {
+    clearTimeout(fallbackTimer);
+    hero.classList.remove("is-fallback");
+    hero.classList.add("is-playing");
+  });
+  video.addEventListener("error", fallback);
+
+  if (reduce) {
+    video.removeAttribute("autoplay");
+    video.removeAttribute("src");
+    video.load();
+    setButton(true);
+  } else {
+    tryPlay();
+  }
+
+  btn && btn.addEventListener("click", () => {
+    userPaused = !userPaused;
+    if (userPaused) { video.pause(); }
+    else {
+      if (!video.getAttribute("src")) { video.src = src; }
+      hero.classList.remove("is-fallback");
+      tryPlay();
+    }
+    setButton(userPaused);
+  });
+
+  // Ahorra batería/CPU: pausa cuando el hero sale de pantalla
+  new IntersectionObserver(([entry]) => {
+    if (userPaused || hero.classList.contains("is-fallback")) return;
+    entry.isIntersecting ? video.play().catch(() => {}) : video.pause();
+  }, { threshold: 0.05 }).observe(hero);
 });
