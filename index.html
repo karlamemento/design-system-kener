@@ -13,7 +13,7 @@
 <link href="css/kener-styles.css" rel="stylesheet">
 <link href="css/kener-motion.css" rel="stylesheet">
 <!-- Prioridad al póster del hero: es lo primero que se ve mientras llega el video -->
-<link rel="preload" as="image" href="img/hero-laboratorio-poster.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-kener-poster.jpg" fetchpriority="high">
 <!-- Movimiento: activa los estados iniciales antes del primer pintado.
      Respeta "reducir movimiento"; si kener-motion.js no carga, el contenido se muestra igual. -->
 <script>
@@ -32,18 +32,26 @@
   <header class="sticky-top">
       <nav class="navbar navbar-expand-lg py-2 border-bottom k-nav" aria-label="Principal">
           <div class="container-fluid px-4 py-2">
-              <a class="navbar-brand" href="/index.html"><img src="img/logo/Logo Kener (2).svg" alt="Laboratorios Kener"></a>
+              <a class="navbar-brand" href="index.html"><img src="img/logo/Logo Kener (2).svg" alt="Laboratorios Kener"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
               <div class="collapse navbar-collapse" id="navMain">
               <ul class="navbar-nav mx-lg-auto gap-lg-3 my-3 my-lg-0 align-items-lg-center">
-                  <li class="nav-item"><a class="nav-link active" href="/index.html" aria-current="page">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Inicio</a></li>
                   <li class="nav-item"><a class="nav-link" href="pages/especialidades.html">Especialidades</a></li>
                   <li class="nav-item"><a class="nav-link" href="#">Quiénes somos</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Kener Academy</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Nuevo Negocios</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Talento Kener</a></li>
-                  <li class="nav-item"><a class="nav-link nav-link-portal" href="pages/login.html" >Iniciar Sesión <i class="bi bi-box-arrow-in-right"></i></a></li>
-                  <li class="nav-item"><a class="nav-link nav-link-portal" href="https://kener-proveedores.com.mx/usuario/login" target="_blank" rel="noopener">Portal Proveedores <i class="bi bi-box-arrow-up-right small"></i></a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+                  <!-- "dropdown" en el <li> es obligatorio: posiciona el menú justo debajo de "Contacto" -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navContacto" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contacto</a>
+                    <ul class="dropdown-menu k-dropdown" aria-labelledby="navContacto">
+                      <li><a class="dropdown-item" href="#">Clientes</a></li>
+                      <li><a class="dropdown-item" href="#">Nuevos Negocios</a></li>
+                      <li><a class="dropdown-item" href="#">Talento Kener</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item k-dropdown-portal" href="https://kener-proveedores.com.mx/usuario/login" target="_blank" rel="noopener">Portal Proveedores <i class="bi bi-box-arrow-up-right small"></i></a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link nav-link-portal" href="pages/login.html">Iniciar Sesión <i class="bi bi-box-arrow-in-right"></i></a></li>
               </ul>
               <a href="#" class="btn btn-gradient rounded-pill px-4">Farmacovigilancia <i class="bi bi-arrow-right-short"></i></a>
               </div>
@@ -106,17 +114,18 @@
   ══ FIN HERO v1 ══ -->
 
   <!-- ══ HERO v2 — una columna centrada con video de fondo ══
-       Video local: img/hero-laboratorio-18s.mp4 (H.264 1080p, sin audio, 1.8 MB, 18 s).
-       Tramo 0:36–0:55 del original, con fundido cruzado de 1.5 s entre final e
-       inicio para un bucle sin salto; faststart para que arranque antes de descargarse.
-       Original: img/scientist-uses-microscope-in-brightly-lit-laboratory-compress.mp4
+       Video local: img/hero-kener.mp4 (H.264 1920×1080, sin audio, 3.3 MB, 14 s).
+       Montaje del video institucional (img/video-kener-web.mp4) con tramos SIN
+       textos sobreimpresos: 0:50–1:00 (microscopio, Petri, cuarto limpio, tubos)
+       + 1:37–1:43 (pasillo de planta, maquinaria, reactor), con fundidos y
+       cierre en bucle sin salto. Franjas negras laterales del original recortadas.
        Si el video no carga o el usuario pide "reducir movimiento", se muestra
-       el póster img/hero-laboratorio-poster.jpg (primer cuadro del video). -->
+       el póster img/hero-kener-poster.jpg (primer cuadro del clip). -->
   <div class="hero hero-video" data-hero-video>
     <div class="hero-video-media" aria-hidden="true">
       <video class="hero-video-el" autoplay muted loop playsinline preload="auto"
-             poster="img/hero-laboratorio-poster.jpg"
-             src="img/hero-laboratorio-18s.mp4"></video>
+             poster="img/hero-kener-poster.jpg"
+             src="img/hero-kener.mp4"></video>
     </div>
     <div class="hero-video-overlay" aria-hidden="true"></div>
     <div class="container-xxl padding-container hero-video-content">
@@ -124,7 +133,6 @@
         <div class="col-lg-10 col-xl-9 text-center">
           <div class="eyebrow justify-content-center">Laboratorio mexicano · Desde 1960</div>
           <h1 class="mb-4">Soluciones farmacéuticas especializadas <span class="fs-2 d-block">para el entorno hospitalario.</span></h1>
-          <p class="mb-4 mx-auto">Somos un laboratorio farmacéutico mexicano que combina experiencia, conocimiento y nuevas capacidades para responder con precisión a las necesidades de una salud hospitalaria en constante evolución.</p>
           <div class="d-flex flex-wrap gap-3 justify-content-center">
             <a href="#contacto" class="btn btn-light rounded-pill px-4 py-2">Contacto clínico <i class="bi bi-arrow-down-short"></i></a>
             <a href="pages/especialidades.html" class="btn btn-outline-light rounded-pill px-4 py-2">Explora nuestras especialidades <i class="bi bi-arrow-right-short"></i></a>
@@ -139,12 +147,40 @@
       <span></span>
     </a>
   </div>
+  <!-- ══ VIDEO ══
+       Video institucional comprimido: img/video-kener-web.mp4 (1920×1080, con audio,
+       27.9 MB; original de 148 MB). preload="none" + póster: no descarga nada hasta
+       que el usuario pulsa reproducir, y nunca se ve una pantalla negra. -->
+  <section id="sec-video" aria-label="Video institucional">
+  <div class="container-xxl padding-container">
+    <div class="eyebrow">Video</div>
+    <div class="row g-4" style="min-height: 400px;">
+      <!-- Se agregaron d-flex y align-items-center aquí -->
+      <div class="col-12 col-lg-6 d-flex align-items-center">
+        <p class="mb-0 mx-auto">Somos un laboratorio farmacéutico mexicano que combina experiencia, conocimiento y nuevas capacidades para responder con precisión a las necesidades de una salud hospitalaria en constante evolución.</p>
+      </div>
+      <div class="col-12 col-lg-6 d-flex align-items-center">
+        <div class="k-video" data-k-video>
+          <video class="k-video-el" width="1920" height="1080" preload="none" playsinline
+                 poster="img/video-kener-poster.jpg">
+            <source src="img/video-kener-web.mp4" type="video/mp4">
+          </video>
+          <button class="k-video-play" type="button" aria-label="Reproducir video institucional de Laboratorios Kener">
+            <i class="bi bi-play-fill" aria-hidden="true"></i>
+            <span>Ver video <small>2:10</small></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <!-- ══ CERTIFICACIONES Y ESTÁNDARES ══ -->
   <section id="sec-certificaciones"class="pb-5" aria-labelledby="t-cert">
     <div class="container-xxl padding-container">
       <div class="eyebrow">Certificaciones</div>
-      <div class="card-rounded-white shadow-sm p-4 mt-5">
+      <div class="p-4 mt-5">
         <div class="row g-4 align-items-center">
           <div class="col-lg-3"><h2 id="t-cert" class="fs-5 mb-1">Nuestra experiencia nos respalda</h2><p class="small mb-0 text-muted">Certificaciones y normas que respaldan cada lote.</p></div>
           <!-- TODO: reemplazar los sellos por los logotipos oficiales (img/certificaciones/) -->
@@ -208,7 +244,7 @@
     <div class="container-xxl padding-container">
       <div class="eyebrow">Confianza</div>
         <div class="row g-4 align-items-center">
-          <div class="col d-flex align-items-center span-border"><div class="p-2"><i class="bi bi-calendar-check-fill fs-2 text-primary p-2"></i></div><div><h4>Desde 1960</h4><p>Experiencia en el sector salud mexicano</p></div></div>
+          <div class="col d-flex align-items-center span-border"><div class="p-2"><i class="bi bi-calendar-check-fill fs-2 text-primary p-2"></i></div><div><h4>Desde 1960</h4><p>Experiencia en el sector salud mexicano.</p></div></div>
           <div class="col d-flex align-items-center span-border"><div class="p-2"><i class="bi bi-heart-pulse-fill fs-2 text-primary p-2"></i></div><div><h4>Especialidad hospitalaria</h4><p>Soluciones en distintas áreas terapéuticas.</p></div></div>
           <div class="col d-flex align-items-center span-border"><div class="p-2"><i class="bi bi-patch-check-fill fs-2 text-primary p-2"></i></div><div><h4>Calidad y cumplimiento</h4><p>Procesos y estándares sujetos a regulación sanitaria.</p></div></div>
           <div class="col d-flex align-items-center"><div class="p-2"><i class="bi bi-person-check-fill fs-2 text-primary p-2"></i></i></div><div><h4>Presencia nacional</h4><p>Capacidad de atención dentro del mercado mexicano.</p></div></div>
@@ -223,7 +259,7 @@
       <h2 id="t-logros">Capacidades que respaldan nuestra evolución</h2>
       <p class="k-lead mb-5">Combinamos experiencia, talento, manufactura y presencia nacional para responder a las necesidades de un entorno hospitalario cada vez más exigente.</p>
       <div class="row g-4 justify-content-center">
-        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n" data-target="140">+0</div><h3>Productos registrados</h3><p class="small text-muted mb-0">Con registro sanitario COFEPRIS vigente.</p></div></div>
+        <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n" data-target="88">+0</div><h3>Productos registrados</h3><p class="small text-muted mb-0">Con registro sanitario COFEPRIS vigente.</p></div></div>
         <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n" data-target="1000">+0</div><h3>hospitales públicos y privados</h3><p class="small text-muted mb-0">Atendidos con distribución a nivel nacional.</p></div></div>
         <div class="col-md-4"><div class="card-rounded-white shadow-sm stat"><div class="n" data-target="500">+0</div><h3>Colaboradores</h3><p class="small text-muted mb-0">Al servicio de la salud hospitalaria en México.</p></div></div>
       </div>
@@ -292,11 +328,12 @@
           </ol>
         </div>
       </div>
-      <div class="row row-cols-2 row-cols-md-4 g-4 mt-4">
-        <div class="col value"><div class="ic"><i class="bi bi-lightbulb-fill"></i></div><h3>Innovación</h3><p class=" text-muted">Nuevas capacidades para necesidades clínicas que cambian.</p></div>
-        <div class="col value"><div class="ic"><i class="bi bi-award-fill"></i></div><h3>Calidad</h3><p class="text-muted">Trazabilidad lote a lote en cada proceso.</p></div>
-        <div class="col value"><div class="ic"><i class="bi bi-lightning-fill"></i></div><h3>Eficiencia</h3><p class="text-muted">Respuesta oportuna para el entorno hospitalario.</p></div>
-        <div class="col value"><div class="ic"><i class="bi bi-heart-pulse-fill"></i></div><h3>Honestidad</h3><p class="text-muted">Información clara y sustentada.</p></div>
+      <div class="row g-4 mt-4">
+        <div class="col-lg-4 col-sm-6 value"><div class="ic"><i class="bi bi-lightbulb-fill"></i></div><h3>Innovación</h3><p class=" text-muted">Nuevas capacidades para necesidades clínicas que cambian.</p></div>
+        <div class="col-lg-4 col-sm-6 value"><div class="ic"><i class="bi bi-award-fill"></i></div><h3>Calidad</h3><p class="text-muted">Trazabilidad lote a lote en cada proceso.</p></div>
+        <div class="col-lg-4 col-sm-6 value"><div class="ic"><i class="bi bi-lightning-fill"></i></div><h3>Eficiencia</h3><p class="text-muted">Respuesta oportuna para el entorno hospitalario.</p></div>
+        <div class="col-lg-4 col-sm-6 value"><div class="ic"><i class="bi bi-heart-pulse-fill"></i></div><h3>Honestidad</h3><p class="text-muted">Información clara y sustentada.</p></div>
+        <div class="col-lg-4 col-sm-6 value"><div class="ic"><i class="bi bi-briefcase-fill"></i></div><h3>Trabajo</h3><p class="text-muted">Trabajamos de forma colaborativa y constructiva.</p></div>
       </div>
       <div class="text-center mt-5"><a href="quienes-somos.html" class="btn btn-outline-primary rounded-pill px-4">Saber más <i class="bi bi-arrow-right-short"></i></a></div>
     </div>
@@ -419,13 +456,18 @@
         <div class="col-lg-6">
           <a class="contact-item mt-4" data-bs-toggle="collapse" href="#form-consulta-clinica" role="button" aria-expanded="true" aria-controls="form-consulta-clinica">
               <i class="bi bi-envelope-fill"></i><span><small>Dirección médica</small>
-              <b>contacto@laboratorios-kener.com.mx</b></span>
+              <b>contacto@kener.com.mx</b></span>
             </a>
             <a class="contact-item mt-4" data-bs-toggle="collapse" href="#form-nuevos-negocios" role="button" aria-expanded="false" aria-controls="form-nuevos-negocios">
-              <i class="bi bi-people-fill"></i><span><small>Nuevos Negocios</small><b>nuevosnegocios@laboratorios-kener.com.mx</b></span>
+              <i class="bi bi-people-fill"></i><span><small>Nuevos Negocios</small><b>nuevosnegocios@kener.com.mx</b></span>
             </a>
             <a class="contact-item mt-4" href="#"><i class="bi bi-shield-fill-plus"></i><span><small>Farmacovigilancia</small><b>Reportar un evento adverso</b></span></a>
-            <a class="contact-item mt-4" href="tel:800536376669"><i class="bi bi-telephone-fill"></i><span><small>Línea directa</small><b>800 KENER MX (536 376 69)</b></span></a>
+            <div class="contact-item mt-4" href="tel:800536376669"><i class="bi bi-telephone-fill"></i>
+              <span><small>Línea directa</small>
+                <a href="mailto:farmacovigilancia.com.mx" class="d-block"><b>farmacovigilancia@kener.com.mx</b></a>
+                <a href="tel:5550954940" class="d-block"><b>(55) 50 95 49 40</b></a>
+                <a href="tel:8005353637" class="d-block"><b>(800) LF KENER (5353637)</b></a>
+              </span></div>
           <div id="contenedorFormularios" class="d-none">
             <form id="form-consulta-clinica" class="k-card k-form collapse  show" action="#" method="post" data-bs-parent="#contenedorFormularios"><!-- Se sustituye por shortcode de Contact Form 7 -->
                 <span class="tag-primary mb-3"><span class="dot"></span><span>Consulta clínica</span></span>

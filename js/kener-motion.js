@@ -39,7 +39,8 @@
     introMax: 1200,           // ms máximos: ya no espera a imágenes ni video
     staggerStep: 110,         // ms entre elementos que entran juntos
     magneticStrength: 0.22,
-    headerHideAfter: 420      // px de scroll antes de ocultar el header
+    headerHide: false,        // false = el header queda siempre visible (decisión 20/11/2026)
+    headerHideAfter: 420      // px de scroll antes de ocultar el header (solo si headerHide: true)
   };
 
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -122,6 +123,7 @@
     markReveal($$('#sec-certificaciones .card-rounded-white'));
     markReveal($$('#sec-certificaciones .row-cols-md-4 > .col'), 'fade');
     markReveal($$('#sec-confianza .row > .col'));
+    markReveal($$('#sec-video .row > [class*="col-"]'));
     markReveal($$('#sec-especialidades .row > [class*="col-"]'));
     markReveal($$('#logros .row > [class*="col-"], .logo-marquee-container'));
     markReveal($$('#quienes-somos .value'));
@@ -333,12 +335,15 @@
     const vh = window.innerHeight;
     const max = Math.max(1, root.scrollHeight - vh);
 
-    // Header: sombra al despegar, se oculta al bajar y vuelve al subir
+    // Header: sombra al despegar del borde superior (y, si headerHide está
+    // activo, se oculta al bajar y vuelve al subir)
     if (header) {
       const menuOpen = !!$('.navbar-collapse.show, .navbar-collapse.collapsing', header);
       header.classList.toggle('k-header-scrolled', y > 8);
-      if (!menuOpen && y > CONFIG.headerHideAfter && y > lastY + 2) header.classList.add('k-header-hidden');
-      else if (y < lastY - 2 || y <= CONFIG.headerHideAfter || menuOpen) header.classList.remove('k-header-hidden');
+      if (CONFIG.headerHide) {
+        if (!menuOpen && y > CONFIG.headerHideAfter && y > lastY + 2) header.classList.add('k-header-hidden');
+        else if (y < lastY - 2 || y <= CONFIG.headerHideAfter || menuOpen) header.classList.remove('k-header-hidden');
+      }
     }
     if (progressBar) progressBar.style.setProperty('--k-progress', (y / max).toFixed(4));
 

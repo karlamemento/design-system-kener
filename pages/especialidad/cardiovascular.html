@@ -16,19 +16,27 @@
     <!-- ══ NAV ══ -->
   <header class="sticky-top">
       <nav class="navbar navbar-expand-lg py-2 border-bottom k-nav" aria-label="Principal">
-          <div class="container-fluid">
+          <div class="container-fluid px-4 py-2">
               <a class="navbar-brand" href="../../index.html"><img src="../../img/logo/Logo Kener (2).svg" alt="Laboratorios Kener"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
               <div class="collapse navbar-collapse" id="navMain">
               <ul class="navbar-nav mx-lg-auto gap-lg-3 my-3 my-lg-0 align-items-lg-center">
-                  <li class="nav-item"><a class="nav-link " href="../../index.html" aria-current="page">Inicio</a></li>
-                  <li class="nav-item"><a class="nav-link active" href="../especialidades.html">Especialidades</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../../index.html">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="../../pages/especialidades.html">Especialidades</a></li>
                   <li class="nav-item"><a class="nav-link" href="#">Quiénes somos</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Kener Academy</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Nuevo Negocios</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Talento Kener</a></li>  
-                  <li class="nav-item"><a class="nav-link nav-link-portal" href="../login.html" >Iniciar Sesión <i class="bi bi-box-arrow-in-right"></i></a></li>
-                  <li class="nav-item"><a class="nav-link nav-link-portal" href="https://kener-proveedores.com.mx/usuario/login" target="_blank" rel="noopener">Portal Proveedores <i class="bi bi-box-arrow-up-right small"></i></a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+                  <!-- "dropdown" en el <li> es obligatorio: posiciona el menú justo debajo de "Contacto" -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navContacto" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contacto</a>
+                    <ul class="dropdown-menu k-dropdown" aria-labelledby="navContacto">
+                      <li><a class="dropdown-item" href="#">Clientes</a></li>
+                      <li><a class="dropdown-item" href="#">Nuevos Negocios</a></li>
+                      <li><a class="dropdown-item" href="#">Talento Kener</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item k-dropdown-portal" href="https://kener-proveedores.com.mx/usuario/login" target="_blank" rel="noopener">Portal Proveedores <i class="bi bi-box-arrow-up-right small"></i></a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item"><a class="nav-link nav-link-portal" href="../../pages/login.html">Iniciar Sesión <i class="bi bi-box-arrow-in-right"></i></a></li>
               </ul>
               <a href="#" class="btn btn-gradient rounded-pill px-4">Farmacovigilancia <i class="bi bi-arrow-right-short"></i></a>
               </div>

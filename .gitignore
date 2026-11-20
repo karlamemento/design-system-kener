@@ -19,3 +19,7 @@ css/kener-home.css
 
 # Respaldos locales de versiones anteriores (no se suben al repositorio)
 .backup-motion/
+
+# Video institucional ORIGINAL (148 MB): supera el límite de 100 MB de GitHub.
+# En el sitio se usa la versión comprimida img/video-kener-web.mp4
+img/Video Kener s-v.mp4

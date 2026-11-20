@@ -610,7 +610,7 @@ body {
   position: relative;
   transition: color var(--motion-base) ease;
 }
-.k-nav .nav-link:not(.nav-link-portal)::after {
+.k-nav .nav-link:not(.nav-link-portal):not(.dropdown-toggle)::after {
   content: "";
   position: absolute;
   left: 0.5rem;
@@ -623,8 +623,8 @@ body {
   transform-origin: left;
   transition: transform var(--motion-base) var(--motion-ease);
 }
-.k-nav .nav-link:not(.nav-link-portal):hover::after,
-.k-nav .nav-link:not(.nav-link-portal).active::after {
+.k-nav .nav-link:not(.nav-link-portal):not(.dropdown-toggle):hover::after,
+.k-nav .nav-link:not(.nav-link-portal):not(.dropdown-toggle).active::after {
   transform: scaleX(1);
 }
 .k-nav .navbar-brand img {
@@ -887,7 +887,7 @@ body {
 }
 .hero-video-media{
   position:absolute; inset:-8% 0; z-index:-2;   /* margen extra para el parallax */
-  background:url("../img/hero-laboratorio-poster.jpg") center / cover no-repeat;  /* primer cuadro del video */
+  background:url("../img/hero-kener-poster.jpg") center / cover no-repeat;  /* primer cuadro del video */
 }
 .hero-video-el{
   width:100%; height:100%; object-fit:cover; display:block;
@@ -949,4 +949,103 @@ body {
   .hero-video .eyebrow{font-size:12px; letter-spacing:.08em;}
   .hero-video-toggle{right:16px; bottom:16px;}
   .hero-scroll-cue{display:none;}
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   SECCIÓN VIDEO — reproductor con preview (20/11/2026)
+   HTML: index.html → #sec-video. Lógica: js/home.js ("Video institucional").
+   El póster se muestra hasta que el usuario pulsa reproducir; entonces se
+   oculta el botón y aparecen los controles nativos del navegador.
+   ════════════════════════════════════════════════════════════════════ */
+.k-video{
+  position:relative; width:100%; aspect-ratio:16 / 9;
+  border-radius:var(--r-lg); overflow:hidden;
+  background:var(--grad-profundo);
+  box-shadow:var(--shadow-mid);
+}
+.k-video-el{width:100%; height:100%; object-fit:cover; display:block; background:transparent;}
+.k-video::after{                      /* velo suave sobre el póster para que el botón destaque */
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(6,42,56,0) 40%, rgba(6,42,56,.55) 100%);
+  transition:opacity 400ms ease;
+}
+.k-video-play{
+  position:absolute; left:24px; bottom:24px; z-index:1;
+  display:flex; align-items:center; gap:12px;
+  padding:8px 20px 8px 8px; border-radius:50px; border:1px solid rgba(255,255,255,.45);
+  background:rgba(255,255,255,.16); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  color:#fff; font:500 16px/1.1 var(--font-text);
+  transition:background-color 300ms ease, transform 350ms var(--motion-ease, ease);
+}
+.k-video-play i{
+  width:48px; height:48px; border-radius:50%; display:grid; place-items:center;
+  background:#fff; color:var(--primary); font-size:1.6rem; padding-left:3px;
+  transition:transform 350ms var(--motion-ease, ease);
+}
+.k-video-play small{display:block; font-size:12px; font-weight:400; opacity:.8; margin-top:2px;}
+.k-video-play:hover{background:rgba(255,255,255,.26); transform:translateY(-2px);}
+.k-video-play:hover i{transform:scale(1.08);}
+.k-video-play:focus-visible{outline:2px solid var(--sec-aquamarine); outline-offset:3px;}
+.k-video.is-started::after,
+.k-video.is-started .k-video-play{opacity:0; pointer-events:none;}
+.k-video.is-started .k-video-play{visibility:hidden;}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   NAV — Dropdown "Contacto" (20/11/2026)
+   Se despliega justo debajo del texto "Contacto", alineado a su borde
+   izquierdo, con la estética de tarjetas de la marca.
+   ════════════════════════════════════════════════════════════════════ */
+.k-nav .dropdown-toggle::after{                 /* flecha de Bootstrap, más fina */
+  border:none; content:"\F282"; font-family:"bootstrap-icons"; font-size:.7em;
+  vertical-align:middle; margin-left:.35em; display:inline-block;
+  transition:transform 300ms var(--motion-ease, ease);
+}
+.k-nav .dropdown-toggle.show{color:var(--primary);}
+.k-nav .dropdown-toggle.show::after{transform:rotate(180deg);}
+
+.k-dropdown{
+  --bs-dropdown-min-width:240px;
+  --bs-dropdown-padding-y:8px;
+  --bs-dropdown-border-color:var(--line);
+  --bs-dropdown-border-radius:var(--r-md);
+  --bs-dropdown-link-color:var(--ink);
+  --bs-dropdown-link-hover-color:var(--primary);
+  --bs-dropdown-link-hover-bg:var(--bg);
+  --bs-dropdown-link-active-color:#fff;
+  --bs-dropdown-link-active-bg:var(--primary);
+  --bs-dropdown-item-padding-x:14px;
+  --bs-dropdown-item-padding-y:9px;
+  --bs-dropdown-divider-bg:var(--line);
+  padding-inline:8px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  box-shadow:var(--shadow-mid);
+  font-size:15px;
+}
+.k-dropdown .dropdown-item{border-radius:10px; font-weight:500; transition:background-color 200ms ease, color 200ms ease, padding-left 250ms var(--motion-ease, ease);}
+.k-dropdown .dropdown-item:hover{padding-left:18px;}
+.k-dropdown .k-dropdown-portal{color:var(--primary); background:rgba(0,90,123,.06);}
+
+@media (min-width: 992px){
+  .k-nav .navbar-nav .dropdown-menu.k-dropdown{
+    top:calc(100% + 10px);     /* debajo del texto, con aire */
+    left:0;
+    margin-top:0;
+  }
+  .k-dropdown.show{animation:k-dropdown-in 260ms var(--motion-ease, ease) both;}
+}
+@keyframes k-dropdown-in{
+  from{opacity:0; transform:translateY(-6px);}
+  to  {opacity:1; transform:translateY(0);}
+}
+/* Móvil: el menú se integra en la lista desplegable del navbar */
+@media (max-width: 991.98px){
+  .k-dropdown{box-shadow:none; background:var(--bg); border:none; margin:4px 0 8px;}
+}
+
+/* Móvil: el subrayado de la sección activa es una marca corta, no una línea de lado a lado */
+@media (max-width: 991.98px){
+  .k-nav .nav-link:not(.nav-link-portal):not(.dropdown-toggle)::after{left:0; right:auto; width:28px;}
 }

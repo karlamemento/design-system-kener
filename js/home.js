@@ -128,3 +128,28 @@ document.addEventListener("DOMContentLoaded", () => {
     entry.isIntersecting ? video.play().catch(() => {}) : video.pause();
   }, { threshold: 0.05 }).observe(hero);
 });
+
+
+/*Video institucional (sección #sec-video)
+  - Muestra el póster con un botón propio; al pulsarlo se reproduce con
+    sonido y se activan los controles nativos.
+  - Se pausa automáticamente si el usuario sale de la sección. */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-k-video]").forEach(wrap => {
+    const video = wrap.querySelector("video");
+    const btn = wrap.querySelector(".k-video-play");
+    if (!video || !btn) return;
+
+    btn.addEventListener("click", () => {
+      wrap.classList.add("is-started");
+      video.controls = true;
+      const p = video.play();
+      if (p && p.catch) p.catch(() => {});
+      video.focus({ preventScroll: true });
+    });
+
+    new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting && !video.paused) video.pause();
+    }, { threshold: 0.25 }).observe(wrap);
+  });
+});
